@@ -3,4 +3,10 @@
 
     <!-- Login strings -->
     <string name="appointments">Appointments</string>
+    <string name="ht_user_email">Usuario</string>
+    <string name="ht_user_password">Contraseña</string>
+    <string name="btn_login">LOG IN</string>
+    <string name="tv_sign_up">¿No eres usuario?. Regístrate!</string>
+    <string name="error_email">Introduzca un email válido</string>
+    <string name="error_password">Introduzca una contraseña correcta</string>
 </resources>
