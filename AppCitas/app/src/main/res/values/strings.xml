@@ -7,6 +7,17 @@
     <string name="ht_user_password">Contraseña</string>
     <string name="btn_login">LOG IN</string>
     <string name="tv_sign_up">¿No eres usuario?. Regístrate!</string>
+
+    <!-- Sign up strings -->
+    <string name="btn_sign_up">CREAR CUENTA</string>
+    <string name="tv_goto_login">¿Ya eres usuario?. Inicia sesión</string>
+
+    <!-- Error form strings -->
+    <string name="error_empty_field">Campo obligatorio vacío</string>
     <string name="error_email">Introduzca un email válido</string>
     <string name="error_password">Introduzca una contraseña correcta</string>
+    <string name="error_invalid_password">La contraseña no es correcta</string>
+    <string name="error_wrong_password">La contraseña ha de contener:\n - Al menos una minúscula \n - Al menos una mayúscula \n - Al menos un dígito \n - No se permiten carácteres especiales</string>
+    <string name="error_symbol">No se permiten símbolos</string>
+    <string name="error_wrong_login">Usuario y contraseña no corresponden</string>
 </resources>
