@@ -20,4 +20,12 @@
     <string name="error_wrong_password">La contraseña ha de contener:\n - Al menos una minúscula \n - Al menos una mayúscula \n - Al menos un dígito \n - No se permiten carácteres especiales</string>
     <string name="error_symbol">No se permiten símbolos</string>
     <string name="error_wrong_login">Usuario y contraseña no corresponden</string>
+
+    <!-- Dialog information values -->
+    <string name="accept">Aceptar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="retry">Reintentar</string>
+
+    <!-- Error for network connection -->
+    <string name="error_connection">Se ha producido un error de conexión</string>
 </resources>

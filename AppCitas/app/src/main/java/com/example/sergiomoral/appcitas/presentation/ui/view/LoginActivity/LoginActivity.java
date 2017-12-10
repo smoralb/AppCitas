@@ -1,6 +1,7 @@
 package com.example.sergiomoral.appcitas.presentation.ui.view.LoginActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,6 +17,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.sergiomoral.appcitas.R;
+import com.example.sergiomoral.appcitas.presentation.ui.view.NetworkErrorActivity.NetworkErrorActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -52,7 +54,8 @@ public class LoginActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_login)
     public void authenticateLoginForm() {
-
+        Intent x = new Intent(this, NetworkErrorActivity.class);
+        startActivity(x);
 
     }
 }
