@@ -25,6 +25,7 @@
     <string name="accept">Aceptar</string>
     <string name="cancel">Cancelar</string>
     <string name="retry">Reintentar</string>
+    <string name="loading">Cargando...</string>
 
     <!-- Error for network connection -->
     <string name="error_connection">Se ha producido un error de conexión</string>
