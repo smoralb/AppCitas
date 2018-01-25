@@ -2,7 +2,7 @@
     <string name="app_name">AppCitas</string>
 
     <!-- Login strings -->
-    <string name="appointments">Appointments</string>
+    <string name="mainActivity">Appointments</string>
     <string name="ht_user_email">Usuario</string>
     <string name="ht_user_password">Contraseña</string>
     <string name="btn_login">LOG IN</string>

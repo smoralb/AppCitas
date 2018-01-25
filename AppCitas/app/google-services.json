@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "645475595427",
+    "firebase_url": "https://appointments-tfg.firebaseio.com",
+    "project_id": "appointments-tfg",
+    "storage_bucket": "appointments-tfg.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:645475595427:android:b150a8eeb625958c",
+        "android_client_info": {
+          "package_name": "com.example.sergiomoral.appcitas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "645475595427-g4s6k8dho9178tv4cfc618ua50v7l5l6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sergiomoral.appcitas",
+            "certificate_hash": "63067c5141e99af8a391acc1cf3a2497fd11f984"
+          }
+        },
+        {
+          "client_id": "645475595427-es18ke3up0k7u10cugqd0rkkf0hga4vg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9Sd7dxiLIyiRtfj_pbEE2TJcTxzYPRvs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "645475595427-es18ke3up0k7u10cugqd0rkkf0hga4vg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

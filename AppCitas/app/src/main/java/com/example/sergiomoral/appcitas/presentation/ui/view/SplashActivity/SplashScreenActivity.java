@@ -1,11 +1,14 @@
 package com.example.sergiomoral.appcitas.presentation.ui.view.SplashActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.sergiomoral.appcitas.R;
+import com.example.sergiomoral.appcitas.presentation.base.BaseActivity;
+import com.example.sergiomoral.appcitas.presentation.di.components.DaggerActivityComponent;
 import com.example.sergiomoral.appcitas.presentation.ui.view.LoginActivity.LoginActivity;
 
 import java.util.Timer;
@@ -18,7 +21,7 @@ import java.util.TimerTask;
  * Created by sergiomoral on 12/11/17.
  */
 
-public class SplashScreenActivity extends AppCompatActivity{
+public class SplashScreenActivity extends Activity {
 
     private static final long SPLASH_SCREEN_DELAY = 3000;
 
@@ -26,8 +29,6 @@ public class SplashScreenActivity extends AppCompatActivity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
-
-        getSupportActionBar().hide();
 
         TimerTask task = new TimerTask() {
             @Override
@@ -48,4 +49,5 @@ public class SplashScreenActivity extends AppCompatActivity{
         Timer timer = new Timer();
         timer.schedule(task, SPLASH_SCREEN_DELAY);
     }
+
 }

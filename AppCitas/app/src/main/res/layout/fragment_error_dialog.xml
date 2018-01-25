@@ -4,20 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="40dp">
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/iv_icon"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_gravity="center"
-            android:contentDescription="@string/app_name"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_information" />
+            android:layout_gravity="center_horizontal"
+            android:src="@android:drawable/ic_delete" />
     </FrameLayout>
 
     <LinearLayout
@@ -27,22 +24,30 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tv_title"
+            android:id="@+id/error_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:textStyle="bold"
             android:textColor="@android:color/black"
             android:textSize="20sp"
-            tools:text="Titulo del error" />
+            android:textStyle="bold"
+            tools:text="@string/error_email" />
 
         <TextView
-            android:id="@+id/tv_content"
+            android:id="@+id/error_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Contenido del error"
-            android:textColor="@android:color/black"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            tools:text="Contenido error del mensaje" />
+
+        <Button
+            android:id="@+id/btn_ok"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="@string/accept" />
+
     </LinearLayout>
 </LinearLayout>

@@ -1,23 +1,16 @@
 package com.example.sergiomoral.appcitas.presentation.ui.view.LoginActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.view.View;
-import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.sergiomoral.appcitas.R;
-import com.example.sergiomoral.appcitas.presentation.ui.view.NetworkErrorActivity.NetworkErrorActivity;
+import com.example.sergiomoral.appcitas.presentation.base.BaseActivity;
+import com.example.sergiomoral.appcitas.presentation.di.components.DaggerApplicationComponent;
+import com.example.sergiomoral.appcitas.presentation.di.modules.ApplicationModule;
+import com.example.sergiomoral.appcitas.presentation.ui.view.SignUpActivity.SignUpActivity;
+
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -26,36 +19,76 @@ import butterknife.OnClick;
  * Created by sergiomoral on 12/11/17.
  */
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity implements LoginView{
 
 
     @BindView(R.id.et_user_email)
     EditText mUserEmail;
     @BindView(R.id.et_user_password)
     EditText mUserPassword;
+    @BindView(R.id.btn_login)
+    Button btnLogin;
 
-    TextInputLayout textInputLayoutUserName;
-    TextInputLayout textInputLayoutUserPassword;
+    /*@Inject
+    LoginPresenter loginPresenter;*/
+
+
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+    protected void initInjector() {
+        DaggerApplicationComponent.builder()
+                .applicationModule(new ApplicationModule(getApplication()))
+                .build();
+    }
 
-        getSupportActionBar().hide();
+    @Override
+    protected void initUI() {
+        initLabels();
+    }
+
+    public void initLabels () {
+        mUserEmail.getText().clear();
+        mUserPassword.getText().clear();
+    }
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.activity_login;
+    }
+
+   /* @Override
+    public void showLoginError() {
+        //mDialogManager.showLoginError();
+    }
+
+    @Override
+    public void showLoginEmptyFields() {
 
     }
 
+    @Override
+    public void gotToNetworkError() {
+
+    }*/
 
     @OnClick(R.id.tv_signUp)
-    public void goToRegister() {
-        Toast.makeText(this, "Pronto!", Toast.LENGTH_SHORT).show();
+    public void goToSignUpActivity() {
+        Intent goToRegister = new Intent(this,SignUpActivity.class);
+        startActivity(goToRegister);
     }
 
     @OnClick(R.id.btn_login)
     public void authenticateLoginForm() {
-        Intent x = new Intent(this, NetworkErrorActivity.class);
-        startActivity(x);
+        Toast.makeText(this, "Hol 2", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
 
     }
 }

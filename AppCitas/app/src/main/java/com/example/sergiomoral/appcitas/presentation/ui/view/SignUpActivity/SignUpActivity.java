@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.widget.Toast;
 
 import com.example.sergiomoral.appcitas.R;
 
@@ -15,7 +16,7 @@ import butterknife.OnClick;
  * Created by sergiomoral on 18/11/17.
  */
 
-public class SignUpActivity extends AppCompatActivity{
+public class SignUpActivity extends AppCompatActivity {
 
     @BindView(R.id.et_user_email)
     TextInputEditText mUserEmail;
@@ -33,22 +34,25 @@ public class SignUpActivity extends AppCompatActivity{
     }
 
     @OnClick(R.id.btn_signup)
-    public void authenticateForm(){
-        if (isValid()){
-
+    public void authenticateForm() {
+        if (isValid()) {
+            Toast.makeText(this, "Logeado", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public boolean isValid(){
-        if (TextUtils.isEmpty(mUserEmail.getText()) || TextUtils.isEmpty(mUserPassword.getText())){
-            mUserEmail.setError(getString(R.string.error_empty_field));
-        }
-        else if (!mUserPassword.getText().toString().matches(regexpEmail)){
-            mUserEmail.setError(getString(R.string.error_email));
-        }
-        else if (!mUserPassword.getText().toString().matches(regexpPassword)){
+    public boolean isValid() {
 
+        boolean valid = false;
+        if (TextUtils.isEmpty(mUserEmail.getText()) || TextUtils.isEmpty(mUserPassword.getText())) {
+            mUserEmail.setError(getString(R.string.error_empty_field));
+        } else if (!mUserPassword.getText().toString().matches(regexpEmail)) {
+            mUserEmail.setError(getString(R.string.error_email));
+        } else if (!mUserPassword.getText().toString().matches(regexpPassword)) {
+            mUserPassword.setError(getString(R.string.error_password));
+        } else {
+            valid = true;
         }
+        return valid;
     }
 
 }
