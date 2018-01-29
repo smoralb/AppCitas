@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.sergiomoral.appcitas.R;

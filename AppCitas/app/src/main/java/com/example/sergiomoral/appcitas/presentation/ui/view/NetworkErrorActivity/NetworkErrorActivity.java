@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.example.sergiomoral.appcitas.R;
 
+import butterknife.OnClick;
+
 /**
  * Created by sergiomoral on 10/12/17.
  */
@@ -18,5 +20,10 @@ public class NetworkErrorActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState, persistentState);
 
         setContentView(R.layout.activity_network_error);
+    }
+
+    @OnClick(R.id.btn_retry)
+    public void retryConnection(){
+        //TODO: volver  comprobar si tiene conexión a internet ya sea por datos o wifi
     }
 }

@@ -4,11 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 
 import com.example.sergiomoral.appcitas.R;
-import com.example.sergiomoral.appcitas.presentation.base.BaseActivity;
-import com.example.sergiomoral.appcitas.presentation.di.components.DaggerActivityComponent;
 import com.example.sergiomoral.appcitas.presentation.ui.view.LoginActivity.LoginActivity;
 
 import java.util.Timer;

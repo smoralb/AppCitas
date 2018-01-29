@@ -5,10 +5,14 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.example.sergiomoral.appcitas.Appointments;
 import com.example.sergiomoral.appcitas.presentation.di.components.ApplicationComponent;
 import com.example.sergiomoral.appcitas.presentation.di.modules.ActivityModule;
+import com.example.sergiomoral.appcitas.presentation.ui.dialogs.base.DialogManager;
 import com.example.sergiomoral.appcitas.presentation.ui.view.BaseView;
 
+
+import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 
@@ -18,6 +22,9 @@ import butterknife.ButterKnife;
 
 public abstract class BaseActivity extends Activity implements BaseView {
 
+
+    @Inject
+    DialogManager mDialogManager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,7 +43,7 @@ public abstract class BaseActivity extends Activity implements BaseView {
     }
 
     protected ApplicationComponent getAppComponent() {
-        return getAppComponent();
+        return ((Appointments) getApplication()).getAppComponent();
     }
 
     protected ActivityModule getActivityModule() {
@@ -50,4 +57,14 @@ public abstract class BaseActivity extends Activity implements BaseView {
     protected abstract void initUI();
 
     public abstract int getLayoutId();
+
+    @Override
+    public void showLoading() {
+        mDialogManager.showLoading();
+    }
+
+    @Override
+    public void hideLoading() {
+        mDialogManager.hideLoading();
+    }
 }

@@ -13,7 +13,8 @@
     <string name="tv_goto_login">¿Ya eres usuario?. Inicia sesión</string>
 
     <!-- Error form strings -->
-    <string name="error_empty_field">Campo obligatorio vacío</string>
+    <string name="error_title">Se ha producido un error</string>
+    <string name="error_empty_field">Campos obligatorios vacío</string>
     <string name="error_email">Introduzca un email válido</string>
     <string name="error_password">Introduzca una contraseña correcta</string>
     <string name="error_invalid_password">La contraseña no es correcta</string>
@@ -25,7 +26,7 @@
     <string name="accept">Aceptar</string>
     <string name="cancel">Cancelar</string>
     <string name="retry">Reintentar</string>
-    <string name="loading">Cargando...</string>
+    <string name="loading">Cargando</string>
 
     <!-- Error for network connection -->
     <string name="error_connection">Se ha producido un error de conexión</string>

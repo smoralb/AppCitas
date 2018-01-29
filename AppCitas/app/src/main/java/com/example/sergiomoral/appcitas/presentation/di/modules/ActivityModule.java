@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 
 import com.example.sergiomoral.appcitas.presentation.di.quialifiers.ActivityContext;
+import com.example.sergiomoral.appcitas.presentation.di.quialifiers.PerActivity;
+import com.example.sergiomoral.appcitas.presentation.ui.dialogs.base.DialogManager;
+import com.example.sergiomoral.appcitas.presentation.ui.dialogs.base.DialogManagerImp;
 
 import dagger.Module;
 import dagger.Provides;
@@ -31,4 +34,8 @@ public class ActivityModule {
     Activity providesActivity() {
         return mActivity;
     }
+
+    @Provides
+    @PerActivity
+    public DialogManager providesDialogManager(DialogManagerImp dialogManagerImp) { return dialogManagerImp; }
 }

@@ -21,18 +21,12 @@ public class ApplicationModule {
     private final Application mApplication;
 
     public ApplicationModule(Application application) {
-        mApplication = application;
+        this.mApplication = application;
     }
 
     @Provides
     @Singleton
-    Application providesApplication() {
-        return mApplication;
-    }
-
-    @Provides
-    @ApplicationContext
-    Context providesApplicationContext() {
+    Application providesApplicationContext() {
         return mApplication;
     }
 

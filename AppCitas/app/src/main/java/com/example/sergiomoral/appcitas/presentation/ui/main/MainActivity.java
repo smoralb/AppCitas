@@ -1,4 +1,4 @@
-package com.example.sergiomoral.appcitas;
+package com.example.sergiomoral.appcitas.presentation.ui.main;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -91,7 +91,4 @@ public class MainActivity extends Activity {
                 .build();
     }
 
-    public ApplicationComponent getAppComponent() {
-        return mApplicationComponent;
-    }
 }
