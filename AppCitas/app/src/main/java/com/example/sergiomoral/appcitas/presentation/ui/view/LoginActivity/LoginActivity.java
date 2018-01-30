@@ -31,11 +31,14 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @BindView(R.id.btn_login)
     Button btnLogin;
 
+    String regexpEmail = "^[A-Za-z][A-Za-z0-9_.-]*@[A-Za-z0-9_.-]+\\.[A-Za-z0-9_.]+[A-za-z]$";
+    String regexpPassword = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d]{8,15}$/";
+
     @Inject
     DialogManager mDialogManager;
 
     @Inject
-    public LoginActivity(){
+    public LoginActivity() {
 
     }
 
@@ -88,17 +91,28 @@ public class LoginActivity extends BaseActivity implements LoginView {
     }
 
     @OnClick(R.id.btn_login)
-    public void showLoading(){
+    public void showLoading() {
         if (!isEmpty()) {
-            mDialogManager.showLoading();
-            //TODO: Petición a FireBase para comprobar que existe el usuario en el Presenter
-        }
-        else {
-            mDialogManager.showEmptyFieldsError(getString(R.string.error_empty_field));
-        }
+            if (isEmailValid() || isPasswordValid()) {
+
+                mDialogManager.showLoading();
+                //TODO: Petición a FireBase para comprobar que existe el usuario en el Presenter
+                //mPresenter.....
+            } else
+                mDialogManager.showLoginError(R.string.error_login);
+        } else
+            mDialogManager.showEmptyFieldsError(R.string.error_empty_field);
     }
 
-    public boolean isEmpty (){
+    public boolean isEmpty() {
         return TextUtils.isEmpty(mUserEmail.getText()) || TextUtils.isEmpty(mUserPassword.getText());
+    }
+
+    public boolean isEmailValid() {
+        return mUserEmail.getText().toString().matches(regexpEmail);
+    }
+
+    public boolean isPasswordValid() {
+        return mUserPassword.getText().toString().matches(regexpPassword);
     }
 }

@@ -10,7 +10,7 @@ public interface  DialogManager {
 
     // Interface where we specify the methods that will be implemented in DialogManerImp and used in the different types of dialogs
 
-    void showEmptyFieldsError(String message);
+    void showEmptyFieldsError(@StringRes int message);
 
     // Error shown when the user's credentials aren't in database
     void showLoginError (@StringRes int message);

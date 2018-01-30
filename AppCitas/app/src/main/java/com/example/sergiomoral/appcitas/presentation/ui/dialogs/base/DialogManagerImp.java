@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.example.sergiomoral.appcitas.R;
 import com.example.sergiomoral.appcitas.presentation.ui.dialogs.ErrorDialog;
 import com.example.sergiomoral.appcitas.presentation.ui.dialogs.LoadingDialog;
 
@@ -13,7 +14,7 @@ import javax.inject.Inject;
  * Created by sergiomoral on 25/1/18.
  */
 
-public class DialogManagerImp implements DialogManager{
+public class DialogManagerImp implements DialogManager {
 
 
     public static final String TAG_LOADING_DIALOG = "loadingDialog";
@@ -22,28 +23,27 @@ public class DialogManagerImp implements DialogManager{
 
     @Inject
     LoadingDialog mLoadingDialog;
+    @Inject
+    ErrorDialog mErrorDialog;
 
 
     @Inject
-    public DialogManagerImp (Activity activity){
+    public DialogManagerImp(Activity activity) {
         mActivity = activity;
     }
 
     @Override
-    public void showEmptyFieldsError(String message) {
-        ErrorDialog errorDialog = new ErrorDialog();
-        errorDialog.setErrorTitle("Se ha producido un error");
-        errorDialog.setErrorMessage(message);
-        show(errorDialog);
+    public void showEmptyFieldsError(int message) {
 
-        /*mErrorDialog.setErrorMessage(message);
-        mErrorDialog.show(mActivity.getFragmentManager(), TAG_LOADING_DIALOG);
-        show(mErrorDialog);*/
+        mErrorDialog.setErrorMessage(R.string.error_empty_field);
+        show(mErrorDialog);
     }
 
     @Override
     public void showLoginError(int message) {
 
+        mErrorDialog.setErrorMessage(message);
+        show(mErrorDialog);
     }
 
     @Override
@@ -56,7 +56,7 @@ public class DialogManagerImp implements DialogManager{
         try {
             mLoadingDialog.dismiss();
         } catch (Exception e) {
-            Log.d("Loading error closing","Cannot close loading");
+            Log.d("Loading error closing", "Cannot close loading");
         }
     }
 

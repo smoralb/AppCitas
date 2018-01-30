@@ -14,13 +14,15 @@
 
     <!-- Error form strings -->
     <string name="error_title">Se ha producido un error</string>
-    <string name="error_empty_field">Campos obligatorios vacío</string>
-    <string name="error_email">Introduzca un email válido</string>
-    <string name="error_password">Introduzca una contraseña correcta</string>
-    <string name="error_invalid_password">La contraseña no es correcta</string>
-    <string name="error_wrong_password">La contraseña ha de contener:\n - Al menos una minúscula \n - Al menos una mayúscula \n - Al menos un dígito \n - No se permiten carácteres especiales</string>
-    <string name="error_symbol">No se permiten símbolos</string>
+    <string name="error_empty_field">Campos obligatorios vacíos</string>
     <string name="error_wrong_login">Usuario y contraseña no corresponden</string>
+    <string name="error_login">Usuario y/o contraseña incorrectos</string>
+
+    <!-- Error for signUp activity -->
+    <string name="error_email">Introduzca un email valido</string>
+    <!--Falta incluir regexp en el dialog -->
+    <string name="error_password">Introduzca una contraseña valida</string>
+
 
     <!-- Dialog information values -->
     <string name="accept">Aceptar</string>

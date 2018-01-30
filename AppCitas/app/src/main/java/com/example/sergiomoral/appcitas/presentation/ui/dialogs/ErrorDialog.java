@@ -1,12 +1,15 @@
 package com.example.sergiomoral.appcitas.presentation.ui.dialogs;
 
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.sergiomoral.appcitas.R;
 import com.example.sergiomoral.appcitas.presentation.ui.dialogs.base.BaseDialog;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 
@@ -26,11 +29,13 @@ public class ErrorDialog extends BaseDialog {
     Button btnAccept;
 
     @Nullable
-    private String msg;
+    private int msg;
 
-    @Nullable
-    private String title;
 
+    @Inject
+    public ErrorDialog() {
+
+    }
 
     @Override
     protected int getLayoutId() {
@@ -47,20 +52,17 @@ public class ErrorDialog extends BaseDialog {
                 dismiss();
             }
         });
-        if (msg != null) {
-            errorMessage.setText(msg);
+        if (getString(msg) != null) {
+            errorMessage.setText(getString(msg));
         }
 
-        if (title != null) {
-            errorTitle.setText(title);
-        }
+        //if (getString(title) != null) {
+        errorTitle.setText(getString(R.string.error_title));
+        //}
     }
 
-    public void setErrorTitle(@Nullable String title) {
-        this.title = title;
-    }
 
-    public void setErrorMessage(@Nullable String msg) {
+    public void setErrorMessage(@Nullable int msg) {
         this.msg = msg;
     }
 }

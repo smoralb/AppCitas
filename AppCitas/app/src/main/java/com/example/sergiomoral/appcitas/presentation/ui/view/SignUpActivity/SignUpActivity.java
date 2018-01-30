@@ -1,5 +1,7 @@
 package com.example.sergiomoral.appcitas.presentation.ui.view.SignUpActivity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
@@ -9,6 +11,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.sergiomoral.appcitas.R;
+import com.example.sergiomoral.appcitas.presentation.ui.view.LoginActivity.LoginActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -17,7 +20,7 @@ import butterknife.OnClick;
  * Created by sergiomoral on 18/11/17.
  */
 
-public class SignUpActivity extends AppCompatActivity {
+public class SignUpActivity extends Activity {
 
     @BindView(R.id.et_user_email)
     TextInputEditText mUserEmail;
@@ -34,10 +37,18 @@ public class SignUpActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        goBackLogin();
+    }
+
     @OnClick(R.id.btn_signup)
     public void authenticateForm() {
         if (isValid()) {
-            Toast.makeText(this, "Logeado", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Dado de alta", Toast.LENGTH_SHORT).show();
+            // Registrar  el usuario introducido en la bbdd de FireBase
+            //TODO: Hacer petición en el presenter y si se devuelve el ok, se elimina el boton o se manda directamente al login
         }
     }
 
@@ -54,6 +65,12 @@ public class SignUpActivity extends AppCompatActivity {
             valid = true;
         }
         return valid;
+    }
+
+
+    @OnClick(R.id.lbl_login)
+    public void goBackLogin() {
+        finish();
     }
 
 }
