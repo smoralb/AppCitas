@@ -38,7 +38,7 @@ public abstract class BaseActivity extends Activity implements BaseView {
         }
 
         initInjector();
-        //attachViewToPresenter();
+        attachViewToPresenter();
         initUI();
     }
 
@@ -57,6 +57,8 @@ public abstract class BaseActivity extends Activity implements BaseView {
     protected abstract void initUI();
 
     public abstract int getLayoutId();
+
+    public abstract void attachViewToPresenter();
 
     @Override
     public void showLoading() {

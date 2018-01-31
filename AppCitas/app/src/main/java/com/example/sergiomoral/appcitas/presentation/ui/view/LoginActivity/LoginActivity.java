@@ -9,6 +9,7 @@ import com.example.sergiomoral.appcitas.R;
 import com.example.sergiomoral.appcitas.presentation.base.BaseActivity;
 import com.example.sergiomoral.appcitas.presentation.di.components.DaggerActivityComponent;
 import com.example.sergiomoral.appcitas.presentation.ui.dialogs.base.DialogManager;
+import com.example.sergiomoral.appcitas.presentation.ui.presenter.login.LoginPresenter;
 import com.example.sergiomoral.appcitas.presentation.ui.view.NetworkErrorActivity.NetworkErrorActivity;
 import com.example.sergiomoral.appcitas.presentation.ui.view.SignUpActivity.SignUpActivity;
 
@@ -31,11 +32,11 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @BindView(R.id.btn_login)
     Button btnLogin;
 
-    String regexpEmail = "^[A-Za-z][A-Za-z0-9_.-]*@[A-Za-z0-9_.-]+\\.[A-Za-z0-9_.]+[A-za-z]$";
-    String regexpPassword = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d]{8,15}$/";
-
     @Inject
     DialogManager mDialogManager;
+
+    @Inject
+    LoginPresenter mLoginPresenter;
 
     @Inject
     public LoginActivity() {
@@ -67,15 +68,20 @@ public class LoginActivity extends BaseActivity implements LoginView {
         return R.layout.activity_login;
     }
 
+    @Override
+    public void attachViewToPresenter() {
+        mLoginPresenter.attachView(this);
+    }
+
 
     @Override
-    public void showLoginError() {
-
+    public void showEmptyFieldsError() {
+        mDialogManager.showEmptyFieldsError(R.string.error_empty_field);
     }
 
     @Override
-    public void showLoginEmptyFields() {
-
+    public void showLoginError() {
+        mDialogManager.showLoginError(R.string.error_login);
     }
 
     @Override
@@ -91,28 +97,9 @@ public class LoginActivity extends BaseActivity implements LoginView {
     }
 
     @OnClick(R.id.btn_login)
-    public void showLoading() {
-        if (!isEmpty()) {
-            if (isEmailValid() || isPasswordValid()) {
-
-                mDialogManager.showLoading();
-                //TODO: Petición a FireBase para comprobar que existe el usuario en el Presenter
-                //mPresenter.....
-            } else
-                mDialogManager.showLoginError(R.string.error_login);
-        } else
-            mDialogManager.showEmptyFieldsError(R.string.error_empty_field);
+    public void loginProcess() {
+        mLoginPresenter.initLoginProcess(mUserEmail.getText().toString(), mUserPassword.getText().toString());
     }
 
-    public boolean isEmpty() {
-        return TextUtils.isEmpty(mUserEmail.getText()) || TextUtils.isEmpty(mUserPassword.getText());
-    }
 
-    public boolean isEmailValid() {
-        return mUserEmail.getText().toString().matches(regexpEmail);
-    }
-
-    public boolean isPasswordValid() {
-        return mUserPassword.getText().toString().matches(regexpPassword);
-    }
 }

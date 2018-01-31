@@ -3,6 +3,8 @@ package com.example.sergiomoral.appcitas.presentation.di.modules;
 import android.app.Activity;
 import android.content.Context;
 
+import com.example.sergiomoral.appcitas.data.manager.AuthManager;
+import com.example.sergiomoral.appcitas.data.manager.imp.AuthManagerImp;
 import com.example.sergiomoral.appcitas.presentation.di.quialifiers.ActivityContext;
 import com.example.sergiomoral.appcitas.presentation.di.quialifiers.PerActivity;
 import com.example.sergiomoral.appcitas.presentation.ui.dialogs.base.DialogManager;
@@ -38,4 +40,7 @@ public class ActivityModule {
     @Provides
     @PerActivity
     public DialogManager providesDialogManager(DialogManagerImp dialogManagerImp) { return dialogManagerImp; }
+
+    @Provides
+    public AuthManager providesAuthenticationManager (AuthManagerImp authManagerImp) { return authManagerImp; }
 }

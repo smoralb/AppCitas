@@ -8,9 +8,9 @@ import com.example.sergiomoral.appcitas.presentation.ui.view.BaseView;
 
 public interface LoginView extends BaseView{
 
-    void showLoginError();
+    void showEmptyFieldsError();
 
-    void showLoginEmptyFields();
+    void showLoginError();
 
     void gotToNetworkError();
 
