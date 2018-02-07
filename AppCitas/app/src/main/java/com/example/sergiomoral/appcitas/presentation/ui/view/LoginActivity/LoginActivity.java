@@ -1,6 +1,7 @@
 package com.example.sergiomoral.appcitas.presentation.ui.view.LoginActivity;
 
 import android.content.Intent;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 

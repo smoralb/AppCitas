@@ -37,7 +37,6 @@ public class NetworkErrorActivity extends BaseActivity implements NetworkErrorVi
 
     @Override
     protected void initUI() {
-
     }
 
     @Override
@@ -47,7 +46,7 @@ public class NetworkErrorActivity extends BaseActivity implements NetworkErrorVi
 
     @Override
     public void attachViewToPresenter() {
-        mPresenter.attachView(this); 
+        mPresenter.attachView(this);
     }
 
     @OnClick(R.id.btn_retry)
