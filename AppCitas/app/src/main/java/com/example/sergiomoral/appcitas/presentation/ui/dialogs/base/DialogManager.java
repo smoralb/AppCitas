@@ -6,17 +6,19 @@ import android.support.annotation.StringRes;
  * Created by sergiomoral on 25/1/18.
  */
 
-public interface  DialogManager {
+public interface DialogManager {
 
     // Interface where we specify the methods that will be implemented in DialogManerImp and used in the different types of dialogs
 
     void showEmptyFieldsError(@StringRes int message);
 
     // Error shown when the user's credentials aren't in database
-    void showLoginError (@StringRes int message);
+    void showLoginError(@StringRes int message);
 
     void showLoading();
 
     void hideLoading();
+
+    void showNetworkError(@StringRes int msg);
 
 }

@@ -1,44 +1,58 @@
 package com.example.sergiomoral.appcitas.presentation.ui.view.SplashActivity;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 
 import com.example.sergiomoral.appcitas.R;
+import com.example.sergiomoral.appcitas.presentation.base.BaseActivity;
+import com.example.sergiomoral.appcitas.presentation.di.components.DaggerActivityComponent;
+import com.example.sergiomoral.appcitas.presentation.ui.presenter.Splash.SplashScreenPresenter;
 import com.example.sergiomoral.appcitas.presentation.ui.view.LoginActivity.LoginActivity;
+import com.example.sergiomoral.appcitas.presentation.ui.view.NetworkErrorActivity.NetworkErrorActivity;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-
+import javax.inject.Inject;
 
 
 /**
  * Created by sergiomoral on 12/11/17.
  */
 
-public class SplashScreenActivity extends Activity {
+public class SplashScreenActivity extends BaseActivity implements SplashScreenView {
 
     private static final long SPLASH_SCREEN_DELAY = 3000;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.splash_screen);
+    @Inject
+    SplashScreenPresenter mSplashPresenter;
 
+    private Context context;
+
+    @Inject
+    public SplashScreenActivity() {
+    }
+
+    @Override
+    protected void initInjector() {
+        DaggerActivityComponent.builder()
+                .applicationComponent(getAppComponent())
+                .activityModule(getActivityModule())
+                .build().inject(this);
+    }
+
+    @Override
+    protected void initUI() {
+
+        context = this;
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
-
-                // Start the next activity
-                Intent mainIntent = new Intent().setClass(
-                        SplashScreenActivity.this, LoginActivity.class);
-                startActivity(mainIntent);
-
-                // Close the activity so the user won't able to go back this
-                // activity pressing Back button
-                finish();
+                if (checkConnectivity(context)) {
+                    goToLogin();
+                } else {
+                    goToNetWorkError();
+                }
             }
         };
 
@@ -46,5 +60,24 @@ public class SplashScreenActivity extends Activity {
         Timer timer = new Timer();
         timer.schedule(task, SPLASH_SCREEN_DELAY);
     }
+
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.splash_screen;
+    }
+
+    @Override
+    public void attachViewToPresenter() {
+        mSplashPresenter.attachView(this);
+    }
+
+    @Override
+    public void goToNetWorkError() {
+        Intent networkError = new Intent().setClass(
+                this, NetworkErrorActivity.class);
+        startActivity(networkError);
+    }
+
 
 }

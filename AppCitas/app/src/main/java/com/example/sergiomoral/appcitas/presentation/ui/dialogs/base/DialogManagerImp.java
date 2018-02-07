@@ -60,6 +60,13 @@ public class DialogManagerImp implements DialogManager {
         }
     }
 
+    @Override
+    public void showNetworkError(int msg) {
+        mErrorDialog.setErrorMessage(msg);
+        show(mErrorDialog);
+    }
+
+
     private void show(@NonNull BaseDialog baseDialog) {
         try {
             if (mActivity != null && !mActivity.isFinishing()) {
@@ -69,4 +76,6 @@ public class DialogManagerImp implements DialogManager {
             Log.d("Error", "Couldn't show dialog");
         }
     }
+
+
 }

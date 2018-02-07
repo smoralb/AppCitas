@@ -1,7 +1,11 @@
 package com.example.sergiomoral.appcitas.presentation.base;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
@@ -10,6 +14,7 @@ import com.example.sergiomoral.appcitas.presentation.di.components.ApplicationCo
 import com.example.sergiomoral.appcitas.presentation.di.modules.ActivityModule;
 import com.example.sergiomoral.appcitas.presentation.ui.dialogs.base.DialogManager;
 import com.example.sergiomoral.appcitas.presentation.ui.view.BaseView;
+import com.example.sergiomoral.appcitas.presentation.ui.view.LoginActivity.LoginActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 
@@ -69,5 +74,20 @@ public abstract class BaseActivity extends Activity implements BaseView {
     @Override
     public void hideLoading() {
         mDialogManager.hideLoading();
+    }
+
+    public void goToLogin() {
+        Intent mainIntent = new Intent().setClass(
+                this, LoginActivity.class);
+        startActivity(mainIntent);
+    }
+
+    public static boolean checkConnectivity(Context context) {
+        if (context == null) {
+            return false;
+        }
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }

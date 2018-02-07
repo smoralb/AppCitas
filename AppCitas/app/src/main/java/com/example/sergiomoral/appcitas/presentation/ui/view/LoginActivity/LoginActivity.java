@@ -1,7 +1,6 @@
 package com.example.sergiomoral.appcitas.presentation.ui.view.LoginActivity;
 
 import android.content.Intent;
-import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -47,7 +46,6 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     @Override
     protected void initInjector() {
-
         DaggerActivityComponent.builder()
                 .applicationComponent(getAppComponent())
                 .activityModule(getActivityModule())
