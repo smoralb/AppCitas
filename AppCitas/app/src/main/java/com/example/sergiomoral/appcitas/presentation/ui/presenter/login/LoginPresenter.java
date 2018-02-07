@@ -5,7 +5,6 @@ import android.text.TextUtils;
 import com.example.sergiomoral.appcitas.data.manager.AuthManager;
 import com.example.sergiomoral.appcitas.presentation.ui.presenter.Presenter;
 import com.example.sergiomoral.appcitas.presentation.ui.view.LoginActivity.LoginView;
-import com.google.firebase.auth.FirebaseAuth;
 
 import javax.inject.Inject;
 
@@ -37,8 +36,9 @@ public class LoginPresenter implements Presenter<LoginView> {
         if (!isEmpty(user, password)) {
             if (isEmailValid(user) || isPasswordValid(password)) {
                 showLoading();
-                //TODO: Petición a FireBase para comprobar que existe el usuario en el Presenter
-
+                if (mAuthManager.signInUser(user, password)) {
+                    mView.goToListAppointments();
+                }
             } else
                 mView.showLoginError();
         } else

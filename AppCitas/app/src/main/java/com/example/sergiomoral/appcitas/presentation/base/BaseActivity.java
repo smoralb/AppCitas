@@ -10,6 +10,7 @@ import com.example.sergiomoral.appcitas.presentation.di.components.ApplicationCo
 import com.example.sergiomoral.appcitas.presentation.di.modules.ActivityModule;
 import com.example.sergiomoral.appcitas.presentation.ui.dialogs.base.DialogManager;
 import com.example.sergiomoral.appcitas.presentation.ui.view.BaseView;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 import javax.inject.Inject;
@@ -25,6 +26,7 @@ public abstract class BaseActivity extends Activity implements BaseView {
 
     @Inject
     DialogManager mDialogManager;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,6 +44,7 @@ public abstract class BaseActivity extends Activity implements BaseView {
         initUI();
     }
 
+
     protected ApplicationComponent getAppComponent() {
         return ((Appointments) getApplication()).getAppComponent();
     }
@@ -49,8 +52,6 @@ public abstract class BaseActivity extends Activity implements BaseView {
     protected ActivityModule getActivityModule() {
         return new ActivityModule(this);
     }
-
-    //protected abstract void attachViewToPresenter();
 
     protected abstract void initInjector();
 

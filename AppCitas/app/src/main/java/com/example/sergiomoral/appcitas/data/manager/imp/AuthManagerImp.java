@@ -1,6 +1,5 @@
 package com.example.sergiomoral.appcitas.data.manager.imp;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,6 +7,8 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.sergiomoral.appcitas.data.manager.AuthManager;
+import com.example.sergiomoral.appcitas.data.manager.BaseManager;
+import com.example.sergiomoral.appcitas.presentation.ui.view.SignUpActivity.SignUpActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -16,88 +17,97 @@ import com.google.firebase.auth.FirebaseUser;
 
 import javax.inject.Inject;
 
+
 /**
  * Created by sergiomoral on 30/1/18.
  */
 
-public class AuthManagerImp extends Activity implements AuthManager {
-
+public class AuthManagerImp extends BaseManager implements AuthManager {
 
     private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
+    boolean authentication, register = false;
 
 
     @Inject
-    public AuthManagerImp(){
-
+    public AuthManagerImp() {
+        mAuth = FirebaseAuth.getInstance();
     }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        initAuth();
+    }
+
+    public void initAuth() {
         mAuth = FirebaseAuth.getInstance();
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                signInEmail(firebaseAuth);
-            }
-        };
-        createAccount();
-        signInAccount();
     }
 
-    private void createAccount() {
-        mAuth.createUserWithEmailAndPassword("example@email.com", "password")
+    @Override
+    public boolean signInUser(String email, String password) {
+
+        mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d("Main Activity", "createUserWithEmail:onComplete:" + task.isSuccessful());
-                        if (!task.isSuccessful()) {
-                            Toast.makeText(AuthManagerImp.this, "Authentication failed!", Toast.LENGTH_SHORT).show();
+                        if (task.isSuccessful()) {
+                            //Sign in successfully, get user info
+                            Log.d("AuthManagerImp", "signInWithEmail:success");
+                            authentication = true;
+                        } else {
+                            // Sign in fails
+                            Log.w("AuthManagerImp", "signInWithEmail:failure", task.getException());
                         }
                     }
                 });
+        return authentication;
     }
 
-    private void signInAccount() {
-        mAuth.signInWithEmailAndPassword("example@email.com", "password")
+    @Override
+    public boolean signUpUser(String email, String password) {
+
+        mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.d("Main Activity", "signInWithEmail:onComplete:" + task.isSuccessful());
-                        if (!task.isSuccessful()) {
-                            Toast.makeText(AuthManagerImp.this, "Authentication failed!", Toast.LENGTH_SHORT).show();
+                        if (task.isSuccessful()) {
+                            Log.d("AuthManagerImp", "signUpWithEmail:success");
+                            register = true;
+                        } else {
+                            Log.w("AuthManagerImp", "signUpWithEmail:failure", task.getException());
                         }
                     }
                 });
+        return register;
     }
 
 
     @Override
-    public void signInEmail(@NonNull FirebaseAuth firebaseAuth) {
-        // Comprueba si el usuario ya ha accedido
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-        if (user != null) {
-            // User is signed in
-            Log.d("Main Activity", "onAuthStateChanged:signed_in:" + user.getUid());
-        } else {
-            // User is signed out
-            Log.d("Main Activity", "onAuthStateChanged:signed_out");
+    public boolean isSignedIn() {
+        return mAuth.getCurrentUser() != null;
+    }
+
+    @Override
+    public void signOut() {
+        if (isSignedIn()) {
+            mAuth.signOut();
         }
+    }
+
+    @Override
+    public String getCurrentUserId() {
+        return (isSignedIn()) ? mAuth.getCurrentUser().getUid() : null;
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        mAuth.addAuthStateListener(mAuthListener);
+        mAuth = FirebaseAuth.getInstance();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        if (mAuthListener != null) {
-            mAuth.removeAuthStateListener(mAuthListener);
-        }
     }
 }

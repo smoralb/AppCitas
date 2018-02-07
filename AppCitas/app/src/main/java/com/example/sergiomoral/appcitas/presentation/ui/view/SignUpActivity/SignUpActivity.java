@@ -1,17 +1,14 @@
 package com.example.sergiomoral.appcitas.presentation.ui.view.SignUpActivity;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.TextInputEditText;
-import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
-import android.widget.Button;
-import android.widget.Toast;
+
+import android.widget.EditText;
 
 import com.example.sergiomoral.appcitas.R;
-import com.example.sergiomoral.appcitas.presentation.ui.view.LoginActivity.LoginActivity;
+import com.example.sergiomoral.appcitas.presentation.base.BaseActivity;
+import com.example.sergiomoral.appcitas.presentation.di.components.DaggerActivityComponent;
+import com.example.sergiomoral.appcitas.presentation.ui.presenter.SignUp.SignUpPresenter;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -20,57 +17,73 @@ import butterknife.OnClick;
  * Created by sergiomoral on 18/11/17.
  */
 
-public class SignUpActivity extends Activity {
+public class SignUpActivity extends BaseActivity implements SignUpView {
 
     @BindView(R.id.et_user_email)
-    TextInputEditText mUserEmail;
+    EditText mUserEmail;
+
     @BindView(R.id.et_user_password)
-    TextInputEditText mUserPassword;
+    EditText mUserPassword;
 
-    String regexpEmail = "^[A-Za-z][A-Za-z0-9_.-]*@[A-Za-z0-9_.-]+\\.[A-Za-z0-9_.]+[A-za-z]$";
-    String regexpPassword = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d]{8,15}$/";
+    @Inject
+    public SignUpPresenter mPresenter;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup);
-
+    @Inject
+    public SignUpActivity (){
     }
 
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        goBackLogin();
+    protected void initInjector() {
+        DaggerActivityComponent.builder()
+                .applicationComponent(getAppComponent())
+                .activityModule(getActivityModule())
+                .build().inject(this);
     }
+
+    @Override
+    protected void initUI() {
+        initLabels();
+    }
+
+    public void initLabels() {
+        mUserEmail.getText().clear();
+        mUserPassword.getText().clear();
+    }
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.activity_signup;
+    }
+
+    @Override
+    public void attachViewToPresenter() {
+        mPresenter.attachView(this);
+    }
+
 
     @OnClick(R.id.btn_signup)
     public void authenticateForm() {
-        if (isValid()) {
-            Toast.makeText(this, "Dado de alta", Toast.LENGTH_SHORT).show();
-            // Registrar  el usuario introducido en la bbdd de FireBase
-            //TODO: Hacer petición en el presenter y si se devuelve el ok, se elimina el boton o se manda directamente al login
+        if (mPresenter.isValid(mUserEmail, mUserPassword)) {
+            mPresenter.initSignUpProccess(mUserEmail.getText().toString(), mUserPassword.getText().toString());
         }
     }
 
-    public boolean isValid() {
 
-        boolean valid = false;
-        if (TextUtils.isEmpty(mUserEmail.getText()) || TextUtils.isEmpty(mUserPassword.getText())) {
-            mUserEmail.setError(getString(R.string.error_empty_field));
-        } else if (!mUserPassword.getText().toString().matches(regexpEmail)) {
-            mUserEmail.setError(getString(R.string.error_email));
-        } else if (!mUserPassword.getText().toString().matches(regexpPassword)) {
-            mUserPassword.setError(getString(R.string.error_password));
-        } else {
-            valid = true;
-        }
-        return valid;
+    @Override
+    public void signUpError() {
+
     }
-
 
     @OnClick(R.id.lbl_login)
-    public void goBackLogin() {
+    @Override
+    public void goToLoginActivity() {
         finish();
     }
 
+    @Override
+    public void setError(int field, int message) {
+        if (field == SignUpPresenter.USER) {
+            mUserEmail.setError(getString(message));
+        } else mUserPassword.setError(getString(message));
+    }
 }

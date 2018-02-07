@@ -9,6 +9,7 @@ import com.example.sergiomoral.appcitas.presentation.di.quialifiers.ActivityCont
 import com.example.sergiomoral.appcitas.presentation.di.quialifiers.PerActivity;
 import com.example.sergiomoral.appcitas.presentation.ui.dialogs.base.DialogManager;
 import com.example.sergiomoral.appcitas.presentation.ui.dialogs.base.DialogManagerImp;
+import com.example.sergiomoral.appcitas.presentation.ui.view.SignUpActivity.SignUpActivity;
 
 import dagger.Module;
 import dagger.Provides;
@@ -43,4 +44,5 @@ public class ActivityModule {
 
     @Provides
     public AuthManager providesAuthenticationManager (AuthManagerImp authManagerImp) { return authManagerImp; }
+
 }

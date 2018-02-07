@@ -2,26 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e9b50654-a768-4bc8-9c5e-0ab780918f10" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppCitas/app/src/main/java/com/example/sergiomoral/appcitas/Appointments.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppCitas/app/src/main/java/com/example/sergiomoral/appcitas/presentation/ui/dialog/DialogManager.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppCitas/app/src/main/java/com/example/sergiomoral/appcitas/presentation/ui/dialog/InfoDialog.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/AppCitas/app/src/main/res/layout/dialog_loading.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppCitas/.idea/misc.xml" afterPath="$PROJECT_DIR$/AppCitas/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppCitas/app/build.gradle" afterPath="$PROJECT_DIR$/AppCitas/app/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppCitas/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AppCitas/app/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppCitas/app/src/main/java/com/example/sergiomoral/appcitas/presentation/di/modules/AppModule.java" afterPath="$PROJECT_DIR$/AppCitas/app/src/main/java/com/example/sergiomoral/appcitas/presentation/di/modules/AppModule.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppCitas/app/src/main/java/com/example/sergiomoral/appcitas/presentation/dialogs/LoadingDialog.java" afterPath="$PROJECT_DIR$/AppCitas/app/src/main/java/com/example/sergiomoral/appcitas/presentation/dialogs/LoadingDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppCitas/app/src/main/java/com/example/sergiomoral/appcitas/presentation/dialogs/base/BaseDialog.java" afterPath="$PROJECT_DIR$/AppCitas/app/src/main/java/com/example/sergiomoral/appcitas/presentation/dialogs/base/BaseDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppCitas/app/src/main/java/com/example/sergiomoral/appcitas/presentation/dialogs/base/DialogManager.java" afterPath="$PROJECT_DIR$/AppCitas/app/src/main/java/com/example/sergiomoral/appcitas/presentation/dialogs/base/DialogManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppCitas/app/src/main/java/com/example/sergiomoral/appcitas/presentation/dialogs/base/DialogManagerImp.java" afterPath="$PROJECT_DIR$/AppCitas/app/src/main/java/com/example/sergiomoral/appcitas/presentation/dialogs/base/DialogManagerImp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppCitas/app/src/main/java/com/example/sergiomoral/appcitas/presentation/ui/view/LoginActivity/LoginActivity.java" afterPath="$PROJECT_DIR$/AppCitas/app/src/main/java/com/example/sergiomoral/appcitas/presentation/ui/view/LoginActivity/LoginActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppCitas/app/src/main/java/com/example/sergiomoral/appcitas/presentation/ui/view/SignUpActivity/SignUpActivity.java" afterPath="$PROJECT_DIR$/AppCitas/app/src/main/java/com/example/sergiomoral/appcitas/presentation/ui/view/SignUpActivity/SignUpActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppCitas/app/src/main/java/com/example/sergiomoral/appcitas/presentation/ui/view/SplashActivity/SplashScreenActivity.java" afterPath="$PROJECT_DIR$/AppCitas/app/src/main/java/com/example/sergiomoral/appcitas/presentation/ui/view/SplashActivity/SplashScreenActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppCitas/app/src/main/res/layout/activity_login.xml" afterPath="$PROJECT_DIR$/AppCitas/app/src/main/res/layout/activity_login.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppCitas/app/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/AppCitas/app/src/main/res/layout/activity_main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppCitas/app/src/main/res/layout/fragment_info_dialog.xml" afterPath="$PROJECT_DIR$/AppCitas/app/src/main/res/layout/fragment_info_dialog.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppCitas/app/src/main/res/layout/splash_screen.xml" afterPath="$PROJECT_DIR$/AppCitas/app/src/main/res/layout/splash_screen.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppCitas/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/AppCitas/app/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppCitas/build.gradle" afterPath="$PROJECT_DIR$/AppCitas/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AppCitas/app/src/main/java/com/example/sergiomoral/appcitas/presentation/base/BaseActivity.java" afterPath="$PROJECT_DIR$/AppCitas/app/src/main/java/com/example/sergiomoral/appcitas/presentation/base/BaseActivity.java" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -59,11 +43,11 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="AndroidView" />
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane" />
+      <pane id="AndroidView" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -169,10 +153,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1280" height="710" extended-state="6" />
+    <frame x="0" y="22" width="1280" height="710" extended-state="0" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="simpleUML" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="simpleUML" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -182,8 +166,8 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2494043" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24781573" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2494043" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />

@@ -5,14 +5,23 @@ import android.app.Application;
 import com.example.sergiomoral.appcitas.presentation.di.components.ApplicationComponent;
 import com.example.sergiomoral.appcitas.presentation.di.components.DaggerApplicationComponent;
 import com.example.sergiomoral.appcitas.presentation.di.modules.ApplicationModule;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 
 /**
  * Created by sergiomoral on 25/1/18.
  */
 
-public class Appointments extends Application{
+public class Appointments extends Application {
 
     private ApplicationComponent mAppComponent;
+
+
+    //Entry point to acces from the app to the database
+    private FirebaseDatabase mFirebaseDatabase;
+    //Object reference of a specific part of database
+    private DatabaseReference mDatabaseReference;
 
 
     @Override
@@ -28,8 +37,7 @@ public class Appointments extends Application{
                 .build();
     }
 
-
-    public ApplicationComponent getAppComponent(){
+    public ApplicationComponent getAppComponent() {
         return mAppComponent;
     }
 }

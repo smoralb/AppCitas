@@ -1,8 +1,5 @@
 package com.example.sergiomoral.appcitas.data.manager;
 
-import android.support.annotation.NonNull;
-
-import com.google.firebase.auth.FirebaseAuth;
 
 /**
  * Created by sergiomoral on 30/1/18.
@@ -10,6 +7,13 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public interface AuthManager {
 
-    void signInEmail (@NonNull FirebaseAuth firebaseAuth);
+    boolean signInUser(String email, String password);
 
+    boolean signUpUser(String email, String password);
+
+    boolean isSignedIn();
+
+    void signOut();
+
+    String getCurrentUserId();
 }

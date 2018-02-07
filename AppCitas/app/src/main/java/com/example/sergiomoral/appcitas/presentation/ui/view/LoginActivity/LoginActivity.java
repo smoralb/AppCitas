@@ -9,6 +9,7 @@ import com.example.sergiomoral.appcitas.R;
 import com.example.sergiomoral.appcitas.presentation.base.BaseActivity;
 import com.example.sergiomoral.appcitas.presentation.di.components.DaggerActivityComponent;
 import com.example.sergiomoral.appcitas.presentation.ui.dialogs.base.DialogManager;
+import com.example.sergiomoral.appcitas.presentation.ui.main.MainActivity;
 import com.example.sergiomoral.appcitas.presentation.ui.presenter.login.LoginPresenter;
 import com.example.sergiomoral.appcitas.presentation.ui.view.NetworkErrorActivity.NetworkErrorActivity;
 import com.example.sergiomoral.appcitas.presentation.ui.view.SignUpActivity.SignUpActivity;
@@ -94,6 +95,12 @@ public class LoginActivity extends BaseActivity implements LoginView {
     public void goToSignUpActivity() {
         Intent goToRegister = new Intent(this, SignUpActivity.class);
         startActivity(goToRegister);
+    }
+
+    @Override
+    public void goToListAppointments() {
+        Intent goToAppointments = new Intent(this, MainActivity.class);
+        startActivity(goToAppointments);
     }
 
     @OnClick(R.id.btn_login)
