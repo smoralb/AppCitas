@@ -47,9 +47,9 @@ public class SignUpPresenter implements Presenter<SignUpView> {
             mView.setError(USER, R.string.error_empty_field);
         } else if (!user.getText().toString().matches(regexpEmail)) {
             mView.setError(USER, R.string.error_email);
-        } else if (!password.getText().toString().matches(regexpPassword)) {
+        } /*else if (!password.getText().toString().matches(regexpPassword)) {
             mView.setError(PASSWORD, R.string.error_password);
-        } else {
+        } */else {
             valid = true;
         }
         return valid;

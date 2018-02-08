@@ -1,6 +1,8 @@
 package com.example.sergiomoral.appcitas.presentation.ui.main;
 
 
+import android.graphics.Typeface;
+
 import com.example.sergiomoral.appcitas.presentation.base.BaseActivity;
 import com.example.sergiomoral.appcitas.presentation.di.components.ApplicationComponent;
 import com.example.sergiomoral.appcitas.presentation.di.components.DaggerApplicationComponent;
@@ -21,6 +23,7 @@ public class MainActivity extends BaseActivity {
     protected void initUI() {
 
     }
+
 
     @Override
     public int getLayoutId() {

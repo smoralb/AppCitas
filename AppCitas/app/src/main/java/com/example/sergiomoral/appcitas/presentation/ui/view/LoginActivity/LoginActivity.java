@@ -13,6 +13,7 @@ import com.example.sergiomoral.appcitas.presentation.di.components.DaggerActivit
 import com.example.sergiomoral.appcitas.presentation.ui.dialogs.base.DialogManager;
 import com.example.sergiomoral.appcitas.presentation.ui.main.MainActivity;
 import com.example.sergiomoral.appcitas.presentation.ui.presenter.login.LoginPresenter;
+import com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsActivity.AppointmentsListActivity;
 import com.example.sergiomoral.appcitas.presentation.ui.view.NetworkErrorActivity.NetworkErrorActivity;
 import com.example.sergiomoral.appcitas.presentation.ui.view.SignUpActivity.SignUpActivity;
 
@@ -100,7 +101,8 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     @Override
     public void goToListAppointments() {
-        Intent goToAppointments = new Intent(this, MainActivity.class);
+        hideLoading();
+        Intent goToAppointments = new Intent(this, AppointmentsListActivity.class);
         startActivity(goToAppointments);
     }
 

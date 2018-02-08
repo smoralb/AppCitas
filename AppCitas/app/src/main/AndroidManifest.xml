@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".presentation.ui.main.MainActivity"/>
+        <activity android:name=".presentation.ui.view.ListAppointmentsActivity.AppointmentsListActivity"/>
         <activity
             android:name=".presentation.ui.view.SignUpActivity.SignUpActivity"
             android:theme="@style/AppTheme" />

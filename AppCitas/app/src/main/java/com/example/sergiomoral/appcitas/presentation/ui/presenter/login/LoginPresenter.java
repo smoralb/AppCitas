@@ -37,11 +37,12 @@ public class LoginPresenter implements Presenter<LoginView> {
 
     public void initLoginProcess(final String user, final String password) {
         if (!isEmpty(user, password)) {
-            if (isEmailValid(user) || isPasswordValid(password)) {
+            if (isEmailValid(user) /*|| isPasswordValid(password)*/) {
                 showLoading();
                 if (mAuthManager.signInUser(user, password)) {
                     mView.goToListAppointments();
                 }
+                mView.hideLoading();
             } else
                 mView.showLoginError();
         } else

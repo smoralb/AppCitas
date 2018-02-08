@@ -19,7 +19,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //noinspection GradleCompatible
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
@@ -46,9 +46,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:11.0.4'
     //Firebase RealTimeDatabase
     compile 'com.google.firebase:firebase-database:11.0.4'
-    //HollyViewPager
-    compile 'com.github.florent37:hollyviewpager:1.0.1'
-    compile 'com.github.ksoichiro:android-observablescrollview:1.5.2'
+    //GuillotineToolbar
+    compile 'com.github.Yalantis:GuillotineMenu-Android:1.2'
+
 }
 
 

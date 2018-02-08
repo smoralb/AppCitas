@@ -3,6 +3,7 @@ package com.example.sergiomoral.appcitas.presentation.di.components;
 import com.example.sergiomoral.appcitas.presentation.ui.main.MainActivity;
 import com.example.sergiomoral.appcitas.presentation.di.modules.ActivityModule;
 import com.example.sergiomoral.appcitas.presentation.di.quialifiers.PerActivity;
+import com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsActivity.AppointmentsListActivity;
 import com.example.sergiomoral.appcitas.presentation.ui.view.LoginActivity.LoginActivity;
 import com.example.sergiomoral.appcitas.presentation.ui.view.NetworkErrorActivity.NetworkErrorActivity;
 import com.example.sergiomoral.appcitas.presentation.ui.view.SignUpActivity.SignUpActivity;
@@ -27,5 +28,7 @@ public interface ActivityComponent {
     void inject(SplashScreenActivity splashScreenActivity);
 
     void inject(NetworkErrorActivity networkErrorActivity);
+
+    void inject(AppointmentsListActivity appointmentsListActivity);
 
 }

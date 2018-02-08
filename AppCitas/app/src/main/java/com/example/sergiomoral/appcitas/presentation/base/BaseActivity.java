@@ -1,6 +1,5 @@
 package com.example.sergiomoral.appcitas.presentation.base;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -8,6 +7,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 
 import com.example.sergiomoral.appcitas.Appointments;
 import com.example.sergiomoral.appcitas.presentation.di.components.ApplicationComponent;
@@ -15,7 +15,6 @@ import com.example.sergiomoral.appcitas.presentation.di.modules.ActivityModule;
 import com.example.sergiomoral.appcitas.presentation.ui.dialogs.base.DialogManager;
 import com.example.sergiomoral.appcitas.presentation.ui.view.BaseView;
 import com.example.sergiomoral.appcitas.presentation.ui.view.LoginActivity.LoginActivity;
-import com.google.firebase.auth.FirebaseAuth;
 
 
 import javax.inject.Inject;
@@ -26,7 +25,7 @@ import butterknife.ButterKnife;
  * Created by sergiomoral on 10/1/18.
  */
 
-public abstract class BaseActivity extends Activity implements BaseView {
+public abstract class BaseActivity extends AppCompatActivity implements BaseView {
 
 
     @Inject

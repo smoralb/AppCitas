@@ -32,4 +32,9 @@
 
     <!-- Error for network connection -->
     <string name="error_connection">Se ha producido un error de conexión</string>
+
+    <!-- Guillotine strings -->
+    <string name="profile">PROFILE</string>
+    <string name="settings">SETTINGS</string>
+    <string name="logout">LOG OUT</string>
 </resources>

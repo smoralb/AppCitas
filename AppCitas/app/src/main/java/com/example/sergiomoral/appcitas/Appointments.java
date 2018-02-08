@@ -1,12 +1,11 @@
 package com.example.sergiomoral.appcitas;
 
 import android.app.Application;
+import android.graphics.Typeface;
 
 import com.example.sergiomoral.appcitas.presentation.di.components.ApplicationComponent;
 import com.example.sergiomoral.appcitas.presentation.di.components.DaggerApplicationComponent;
 import com.example.sergiomoral.appcitas.presentation.di.modules.ApplicationModule;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 
 /**
@@ -17,11 +16,8 @@ public class Appointments extends Application {
 
     private ApplicationComponent mAppComponent;
 
-
-    //Entry point to acces from the app to the database
-    private FirebaseDatabase mFirebaseDatabase;
-    //Object reference of a specific part of database
-    private DatabaseReference mDatabaseReference;
+    private static final String CANARO_EXTRA_BOLD_PATH = "fonts/canaro_extra_bold.otf";
+    public static Typeface canaroExtraBold;
 
 
     @Override
@@ -29,12 +25,19 @@ public class Appointments extends Application {
         super.onCreate();
 
         initInjector();
+        initTypeface();
+
     }
 
     private void initInjector() {
         mAppComponent = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this))
                 .build();
+    }
+
+    private void initTypeface() {
+        canaroExtraBold = Typeface.createFromAsset(getAssets(), CANARO_EXTRA_BOLD_PATH);
+
     }
 
     public ApplicationComponent getAppComponent() {
