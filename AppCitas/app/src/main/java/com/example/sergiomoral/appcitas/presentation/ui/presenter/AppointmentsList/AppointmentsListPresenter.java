@@ -52,6 +52,7 @@ public class AppointmentsListPresenter implements Presenter<AppointmentsListView
             public void onClick(View v) {
                 // your action
                 mAuth.signOut();
+                mView.goToLogin();
             }
         });
     }

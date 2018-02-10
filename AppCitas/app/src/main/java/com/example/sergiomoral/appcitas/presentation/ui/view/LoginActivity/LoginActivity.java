@@ -101,9 +101,9 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     @Override
     public void goToListAppointments() {
-        hideLoading();
         Intent goToAppointments = new Intent(this, AppointmentsListActivity.class);
         startActivity(goToAppointments);
+        finish();
     }
 
     @OnClick(R.id.btn_login)

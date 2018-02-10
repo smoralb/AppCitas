@@ -41,6 +41,7 @@ public class LoginPresenter implements Presenter<LoginView> {
                 showLoading();
                 mAuthManager.signInUser(user, password);
                 mView.goToListAppointments();
+
             }
             mView.hideLoading();
             /*} else

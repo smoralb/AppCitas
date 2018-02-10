@@ -5,4 +5,7 @@ package com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsAc
  */
 
 public interface AppointmentsListView {
+
+    void goToLogin();
+
 }

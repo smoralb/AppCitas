@@ -49,7 +49,9 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="20dp"
-            android:text="@string/accept" />
+            android:background="@color/app_primary_color"
+            android:text="@string/accept"
+            android:textColor="@color/selected_item_color" />
 
     </LinearLayout>
 </LinearLayout>

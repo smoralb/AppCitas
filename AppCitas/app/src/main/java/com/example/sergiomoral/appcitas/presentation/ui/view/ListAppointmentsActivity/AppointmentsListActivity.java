@@ -52,6 +52,7 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
 
         mPresenter.initGuillotineAnimation(guillotineMenu, toolbar, contentHamburger);
 
+
     }
 
     @Inject
