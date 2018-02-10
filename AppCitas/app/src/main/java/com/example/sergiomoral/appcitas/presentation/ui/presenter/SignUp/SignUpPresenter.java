@@ -49,8 +49,10 @@ public class SignUpPresenter implements Presenter<SignUpView> {
     public boolean isValid(EditText user, EditText password) {
 
         boolean valid = false;
-        if (TextUtils.isEmpty(user.getText().toString()) || TextUtils.isEmpty(password.getText().toString())) {
+        if (TextUtils.isEmpty(user.getText().toString())) {
             mView.setError(USER, R.string.error_empty_field);
+        } else if (TextUtils.isEmpty(password.getText().toString())) {
+            mView.setError(PASSWORD, R.string.error_empty_field);
         } else if (!user.getText().toString().matches(regexpEmail)) {
             mView.setError(USER, R.string.error_email);
         } /*else if (!password.getText().toString().matches(regexpPassword)) {
