@@ -4,6 +4,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.sergiomoral.appcitas.R;
@@ -25,11 +26,21 @@ public class ErrorDialog extends BaseDialog {
     @BindView(R.id.error_message)
     TextView errorMessage;
 
+    @BindView(R.id.error_icon)
+    ImageView errorIcon;
+
     @BindView(R.id.btn_ok)
     Button btnAccept;
 
     @Nullable
     private int msg;
+
+    @Nullable
+    private int title;
+
+
+    @Nullable
+    private int icon;
 
 
     @Inject
@@ -45,6 +56,9 @@ public class ErrorDialog extends BaseDialog {
     @Override
     protected void initUI() {
         setCancelable(false);
+        if (icon != 0) {
+            errorIcon.setImageDrawable(getResources().getDrawable(icon));
+        }
         btnAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,13 +70,24 @@ public class ErrorDialog extends BaseDialog {
             errorMessage.setText(getString(msg));
         }
 
-        //if (getString(title) != null) {
-        errorTitle.setText(getString(R.string.error_title));
-        //}
+        if (getString(title).equals(null)) {
+            errorTitle.setText(getString(R.string.error_title));
+        } else {
+            errorTitle.setText(getString(title));
+        }
+
     }
 
 
     public void setErrorMessage(@Nullable int msg) {
         this.msg = msg;
+    }
+
+    public void setErrorTitle(@Nullable int title) {
+        this.title = title;
+    }
+
+    public void serErrorIcon(@Nullable int icon) {
+        this.icon = icon;
     }
 }

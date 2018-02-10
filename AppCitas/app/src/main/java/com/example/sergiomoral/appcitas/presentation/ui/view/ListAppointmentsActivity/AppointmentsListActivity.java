@@ -31,15 +31,6 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
     @BindView(R.id.content_hamburger)
     View contentHamburger;
 
-   /* @BindView(R.id.log_out)
-    LinearLayout mLogOut;
-    @BindView(R.id.profile_group)
-    LinearLayout mProfile;
-    @BindView(R.id.settings_group)
-    LinearLayout mSettings;
-    */
-
-
     @Inject
     AppointmentsListPresenter mPresenter;
 
@@ -61,15 +52,12 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
 
         mPresenter.initGuillotineAnimation(guillotineMenu, toolbar, contentHamburger);
 
-
     }
-
 
     @Inject
     public AppointmentsListActivity() {
 
     }
-
 
     @Override
     protected void initInjector() {

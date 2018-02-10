@@ -10,6 +10,8 @@ public interface SignUpView extends BaseView{
 
     void signUpError();
 
+    void signUpSuccess();
+
     void goToLoginActivity();
 
     void setError(int field, int message);

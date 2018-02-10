@@ -1,5 +1,6 @@
 package com.example.sergiomoral.appcitas.presentation.ui.dialogs.base;
 
+import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
 
 /**
@@ -20,5 +21,10 @@ public interface DialogManager {
     void hideLoading();
 
     void showNetworkError(@StringRes int msg);
+
+    void showSuccessSignUp(@DrawableRes int icon, @StringRes int title, @StringRes int msg);
+
+    void showErrorSignUp(@DrawableRes int icon, @StringRes int title, @StringRes int msg);
+
 
 }

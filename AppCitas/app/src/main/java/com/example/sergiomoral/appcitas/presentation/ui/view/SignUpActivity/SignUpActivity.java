@@ -6,6 +6,7 @@ import android.widget.EditText;
 import com.example.sergiomoral.appcitas.R;
 import com.example.sergiomoral.appcitas.presentation.base.BaseActivity;
 import com.example.sergiomoral.appcitas.presentation.di.components.DaggerActivityComponent;
+import com.example.sergiomoral.appcitas.presentation.ui.dialogs.base.DialogManager;
 import com.example.sergiomoral.appcitas.presentation.ui.presenter.SignUp.SignUpPresenter;
 
 import javax.inject.Inject;
@@ -29,7 +30,10 @@ public class SignUpActivity extends BaseActivity implements SignUpView {
     public SignUpPresenter mPresenter;
 
     @Inject
-    public SignUpActivity (){
+    public DialogManager mDialogManager;
+
+    @Inject
+    public SignUpActivity() {
     }
 
     @Override
@@ -71,6 +75,12 @@ public class SignUpActivity extends BaseActivity implements SignUpView {
 
     @Override
     public void signUpError() {
+        mDialogManager.showErrorSignUp(R.drawable.ic_error, R.string.error_title, R.string.error_user);
+    }
+
+    @Override
+    public void signUpSuccess() {
+        mDialogManager.showSuccessSignUp(R.drawable.ic_ok, R.string.success_title, R.string.success_message);
 
     }
 

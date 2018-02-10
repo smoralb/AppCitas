@@ -20,6 +20,10 @@
 
     <!-- Error for signUp activity -->
     <string name="error_email">Introduzca un email valido</string>
+    <string name="success_title">Registrado correctamente</string>
+    <string name="success_message">Ahora podrá iniciar sesión con sus credenciales</string>
+    <string name="error_user">El usuario ya existe en la base de datos</string>
+
     <!--Falta incluir regexp en el dialog -->
     <string name="error_password">Introduzca una contraseña valida</string>
 

@@ -66,6 +66,21 @@ public class DialogManagerImp implements DialogManager {
         show(mErrorDialog);
     }
 
+    @Override
+    public void showSuccessSignUp(int icon, int title, int msg) {
+        mErrorDialog.serErrorIcon(icon);
+        mErrorDialog.setErrorTitle(title);
+        mErrorDialog.setErrorMessage(msg);
+        show(mErrorDialog);
+    }
+
+    @Override
+    public void showErrorSignUp(int icon, int title, int msg) {
+        mErrorDialog.serErrorIcon(icon);
+        mErrorDialog.setErrorTitle(title);
+        mErrorDialog.setErrorMessage(msg);
+        show(mErrorDialog);
+    }
 
     private void show(@NonNull BaseDialog baseDialog) {
         try {

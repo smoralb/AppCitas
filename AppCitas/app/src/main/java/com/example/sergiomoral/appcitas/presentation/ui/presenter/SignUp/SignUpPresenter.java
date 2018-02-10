@@ -5,6 +5,7 @@ import android.widget.EditText;
 
 import com.example.sergiomoral.appcitas.R;
 import com.example.sergiomoral.appcitas.data.manager.AuthManager;
+import com.example.sergiomoral.appcitas.presentation.ui.dialogs.base.DialogManager;
 import com.example.sergiomoral.appcitas.presentation.ui.presenter.Presenter;
 import com.example.sergiomoral.appcitas.presentation.ui.view.SignUpActivity.SignUpView;
 
@@ -23,6 +24,7 @@ public class SignUpPresenter implements Presenter<SignUpView> {
     String regexpEmail = "^[A-Za-z][A-Za-z0-9_.-]*@[A-Za-z0-9_.-]+\\.[A-Za-z0-9_.]+[A-za-z]$";
     String regexpPassword = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d]{8,15}$/";
 
+
     public static final int USER = 1;
     public static final int PASSWORD = 2;
 
@@ -32,7 +34,11 @@ public class SignUpPresenter implements Presenter<SignUpView> {
     }
 
     public void initSignUpProccess(String user, String password) {
-        mAuth.signUpUser(user, password);
+        if (!mAuth.signUpUser(user, password)) {
+            mView.signUpError();
+        } else {
+            mView.signUpSuccess();
+        }
     }
 
     @Override
@@ -49,7 +55,7 @@ public class SignUpPresenter implements Presenter<SignUpView> {
             mView.setError(USER, R.string.error_email);
         } /*else if (!password.getText().toString().matches(regexpPassword)) {
             mView.setError(PASSWORD, R.string.error_password);
-        } */else {
+        } */ else {
             valid = true;
         }
         return valid;

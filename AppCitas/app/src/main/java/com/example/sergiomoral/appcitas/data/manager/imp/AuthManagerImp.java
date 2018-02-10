@@ -6,8 +6,10 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.sergiomoral.appcitas.R;
 import com.example.sergiomoral.appcitas.data.manager.AuthManager;
 import com.example.sergiomoral.appcitas.data.manager.BaseManager;
+import com.example.sergiomoral.appcitas.presentation.ui.dialogs.base.DialogManager;
 import com.example.sergiomoral.appcitas.presentation.ui.view.SignUpActivity.SignUpActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -25,7 +27,10 @@ import javax.inject.Inject;
 public class AuthManagerImp extends BaseManager implements AuthManager {
 
     private FirebaseAuth mAuth;
-    boolean authentication, register = false;
+    boolean register = false;
+
+    @Inject
+    DialogManager mDialogManager;
 
 
     @Inject
@@ -46,31 +51,11 @@ public class AuthManagerImp extends BaseManager implements AuthManager {
 
     @Override
     public void signInUser(String email, String password) {
-
-       /* mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            //Sign in successfully, get user info
-                            Log.d("AuthManagerImp", "signInWithEmail:success");
-                            authentication = true;
-                        } else {
-                            // Sign in fails
-                            authentication = false;
-                            //TODO: Mostrar dialog de inicio de sesion incorrecto
-                            Log.w("AuthManagerImp", "signInWithEmail:failure", task.getException());
-                        }
-                    }
-                });
-        return authentication;*/
-
-       mAuth.signInWithEmailAndPassword(email, password);
+        mAuth.signInWithEmailAndPassword(email, password);
     }
 
     @Override
     public boolean signUpUser(String email, String password) {
-
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
