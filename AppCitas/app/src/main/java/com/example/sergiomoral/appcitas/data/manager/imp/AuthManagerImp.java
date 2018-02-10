@@ -45,9 +45,9 @@ public class AuthManagerImp extends BaseManager implements AuthManager {
     }
 
     @Override
-    public boolean signInUser(String email, String password) {
+    public void signInUser(String email, String password) {
 
-        mAuth.signInWithEmailAndPassword(email, password)
+       /* mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -57,11 +57,15 @@ public class AuthManagerImp extends BaseManager implements AuthManager {
                             authentication = true;
                         } else {
                             // Sign in fails
+                            authentication = false;
+                            //TODO: Mostrar dialog de inicio de sesion incorrecto
                             Log.w("AuthManagerImp", "signInWithEmail:failure", task.getException());
                         }
                     }
                 });
-        return authentication;
+        return authentication;*/
+
+       mAuth.signInWithEmailAndPassword(email, password);
     }
 
     @Override

@@ -7,7 +7,7 @@ package com.example.sergiomoral.appcitas.data.manager;
 
 public interface AuthManager {
 
-    boolean signInUser(String email, String password);
+    void signInUser(String email, String password);
 
     boolean signUpUser(String email, String password);
 

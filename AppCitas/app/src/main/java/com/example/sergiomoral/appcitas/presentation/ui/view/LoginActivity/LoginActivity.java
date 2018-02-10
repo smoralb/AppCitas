@@ -108,6 +108,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     @OnClick(R.id.btn_login)
     public void loginProcess() {
+        hideSoftKeyboard();
         mLoginPresenter.initLoginProcess(mUserEmail.getText().toString(), mUserPassword.getText().toString());
     }
 }

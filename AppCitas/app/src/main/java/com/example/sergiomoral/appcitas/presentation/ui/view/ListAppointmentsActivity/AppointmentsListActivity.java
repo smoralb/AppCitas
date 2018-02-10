@@ -12,7 +12,6 @@ import com.example.sergiomoral.appcitas.R;
 import com.example.sergiomoral.appcitas.presentation.base.BaseActivity;
 import com.example.sergiomoral.appcitas.presentation.di.components.DaggerActivityComponent;
 import com.example.sergiomoral.appcitas.presentation.ui.presenter.AppointmentsList.AppointmentsListPresenter;
-import com.google.firebase.auth.FirebaseAuth;
 
 import javax.inject.Inject;
 
@@ -32,12 +31,13 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
     @BindView(R.id.content_hamburger)
     View contentHamburger;
 
-    @BindView(R.id.log_out)
+   /* @BindView(R.id.log_out)
     LinearLayout mLogOut;
     @BindView(R.id.profile_group)
     LinearLayout mProfile;
     @BindView(R.id.settings_group)
     LinearLayout mSettings;
+    */
 
 
     @Inject
@@ -50,6 +50,10 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
 
         View guillotineMenu = LayoutInflater.from(this).inflate(R.layout.guillotine, null);
         root.addView(guillotineMenu);
+
+        LinearLayout mLogOut = (LinearLayout) findViewById(R.id.log_out);
+        LinearLayout mProfile = (LinearLayout) findViewById(R.id.profile_group);
+        LinearLayout mSettings = (LinearLayout) findViewById(R.id.settings_group);
 
         mPresenter.clickListenerProfile(mProfile);
         mPresenter.clickListenerSettings(mSettings);
