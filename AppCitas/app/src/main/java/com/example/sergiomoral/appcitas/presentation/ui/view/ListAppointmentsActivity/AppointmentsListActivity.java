@@ -2,6 +2,8 @@ package com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsAc
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,6 +53,16 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
         mPresenter.clickListenerLogOut(mLogOut);
 
         mPresenter.initGuillotineAnimation(guillotineMenu, toolbar, contentHamburger);
+
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add_appointment);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Se presionó el FAB", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
 
 
     }
