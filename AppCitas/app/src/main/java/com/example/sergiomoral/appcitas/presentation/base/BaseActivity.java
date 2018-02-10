@@ -79,6 +79,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         Intent mainIntent = new Intent().setClass(
                 this, LoginActivity.class);
         startActivity(mainIntent);
+        finish();
     }
 
     public static boolean checkConnectivity(Context context) {
