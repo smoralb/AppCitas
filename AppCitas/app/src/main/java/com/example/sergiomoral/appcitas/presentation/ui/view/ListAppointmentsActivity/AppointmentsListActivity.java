@@ -36,36 +36,7 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
     @Inject
     AppointmentsListPresenter mPresenter;
 
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        View guillotineMenu = LayoutInflater.from(this).inflate(R.layout.guillotine, null);
-        root.addView(guillotineMenu);
-
-        LinearLayout mLogOut = (LinearLayout) findViewById(R.id.log_out);
-        LinearLayout mProfile = (LinearLayout) findViewById(R.id.profile_group);
-        LinearLayout mSettings = (LinearLayout) findViewById(R.id.settings_group);
-
-        mPresenter.clickListenerProfile(mProfile);
-        mPresenter.clickListenerSettings(mSettings);
-        mPresenter.clickListenerLogOut(mLogOut);
-
-        mPresenter.initGuillotineAnimation(guillotineMenu, toolbar, contentHamburger);
-
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add_appointment);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Se presionó el FAB", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
-
-    }
+    View guillotineMenu;
 
     @Inject
     public AppointmentsListActivity() {
@@ -86,6 +57,36 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
             setSupportActionBar(toolbar);
             getSupportActionBar().setTitle(null);
         }
+        initGuillotineMenu();
+        initFloatingButton();
+    }
+
+    public void initGuillotineMenu() {
+        guillotineMenu = LayoutInflater.from(this).inflate(R.layout.guillotine, null);
+        root.addView(guillotineMenu);
+
+
+        LinearLayout mLogOut = (LinearLayout) findViewById(R.id.log_out);
+        LinearLayout mProfile = (LinearLayout) findViewById(R.id.profile_group);
+        LinearLayout mSettings = (LinearLayout) findViewById(R.id.settings_group);
+
+        mPresenter.clickListenerProfile(mProfile);
+        mPresenter.clickListenerSettings(mSettings);
+        mPresenter.clickListenerLogOut(mLogOut);
+
+        mPresenter.initGuillotineAnimation(guillotineMenu, toolbar, contentHamburger);
+    }
+
+    public void initFloatingButton() {
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add_appointment);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Se presionó el FAB", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
     }
 
     @Override
