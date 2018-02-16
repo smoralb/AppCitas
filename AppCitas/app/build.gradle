@@ -31,6 +31,11 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     //Retrofit 2
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    //JSON Parsing
+    compile 'com.google.code.gson:gson:2.6.1'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    //Recyclerview
+    compile 'com.android.support:recyclerview-v7:26.1.0'
     //Android SpinKit
     compile 'com.github.ybq:Android-SpinKit:1.1.0'
     //Design support Library

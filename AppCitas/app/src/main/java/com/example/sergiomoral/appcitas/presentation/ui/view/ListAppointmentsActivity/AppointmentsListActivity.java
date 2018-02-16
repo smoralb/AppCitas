@@ -78,15 +78,7 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
     }
 
     public void initFloatingButton() {
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add_appointment);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Se presionó el FAB", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        //TODO: Creación de nueva cita
     }
 
     @Override
