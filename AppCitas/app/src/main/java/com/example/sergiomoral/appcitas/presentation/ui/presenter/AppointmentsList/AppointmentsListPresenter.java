@@ -120,7 +120,7 @@ public class AppointmentsListPresenter implements Presenter<AppointmentsListView
             @Override
             public void onCancelled(DatabaseError error) {
                 // Failed to read value
-
+                //TODO: Falta logica de error
             }
         });
     }
