@@ -11,8 +11,15 @@ import com.example.sergiomoral.appcitas.domain.interactor.BaseInteractor;
 import com.example.sergiomoral.appcitas.presentation.ui.presenter.Presenter;
 import com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsActivity.AppointmentsListView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.ValueEventListener;
 import com.yalantis.guillotine.animation.GuillotineAnimation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -30,14 +37,17 @@ public class AppointmentsListPresenter implements Presenter<AppointmentsListView
     private AppointmentsListView mView;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     List<Appointment> mAppointments;
+    private DatabaseReference mDatabase;
 
 
     @Inject
     public AppointmentsListPresenter() {
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
     }
 
 
-    public List<Appointment> getAppointments(){
+    public List<Appointment> getAppointments() {
         return mAppointments;
     }
 
@@ -94,5 +104,26 @@ public class AppointmentsListPresenter implements Presenter<AppointmentsListView
             mView.showLoading();
         }
     }
+
+    public void requestData() {
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                GenericTypeIndicator<ArrayList<Appointment>> t = new GenericTypeIndicator<ArrayList<Appointment>>() {
+                };
+                ArrayList<Appointment> appointments = dataSnapshot.child("LISTACITAS").getValue(t);
+                mView.showAppointments(appointments);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+
+            }
+        });
+    }
+
 
 }

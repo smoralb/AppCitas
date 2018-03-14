@@ -45,7 +45,6 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
     @BindView(R.id.rw_appointments)
     RecyclerView recyclerAppointments;
 
-    private DatabaseReference mDatabase;
 
     @Inject
     AppointmentsListPresenter mPresenter;
@@ -56,8 +55,6 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //mPresenter.initAppointmentList();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
         initValues();
 
 
@@ -68,22 +65,9 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
     }
 
     public void initValues() {
-        mDatabase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                GenericTypeIndicator<ArrayList<Appointment>> t = new GenericTypeIndicator<ArrayList<Appointment>>() {};
-                ArrayList<Appointment> appointments = dataSnapshot.child("LISTACITAS").getValue(t);
-                showAppointments(appointments);
-            }
 
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-
-            }
-        });
+        showLoading();
+        mPresenter.requestData();
     }
 
 
@@ -142,5 +126,6 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
         recyclerAppointments.setLayoutManager(new LinearLayoutManager(this));
         AppointmentListAdapter adapter = new AppointmentListAdapter(this, appointments);
         recyclerAppointments.setAdapter(adapter);
+        hideLoading();
     }
 }
