@@ -1,9 +1,5 @@
 package com.example.sergiomoral.appcitas.presentation.ui.view.NetworkErrorActivity;
 
-
-import android.support.design.widget.Snackbar;
-import android.widget.Toast;
-
 import com.example.sergiomoral.appcitas.R;
 import com.example.sergiomoral.appcitas.presentation.base.BaseActivity;
 import com.example.sergiomoral.appcitas.presentation.di.components.DaggerActivityComponent;

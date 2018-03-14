@@ -41,4 +41,7 @@
     <string name="profile">PROFILE</string>
     <string name="settings">SETTINGS</string>
     <string name="logout">LOG OUT</string>
+
+    <!-- String for exceptions -->
+    <string name="generic_error">Se ha producido un error</string>
 </resources>

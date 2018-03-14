@@ -2,18 +2,28 @@ package com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsAc
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.example.sergiomoral.appcitas.R;
+import com.example.sergiomoral.appcitas.domain.entities.Appointment;
 import com.example.sergiomoral.appcitas.presentation.base.BaseActivity;
 import com.example.sergiomoral.appcitas.presentation.di.components.DaggerActivityComponent;
 import com.example.sergiomoral.appcitas.presentation.ui.presenter.AppointmentsList.AppointmentsListPresenter;
+import com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsActivity.adapter.AppointmentListAdapter;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -29,19 +39,53 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.root)
-    FrameLayout root;
+    LinearLayout root;
     @BindView(R.id.content_hamburger)
     View contentHamburger;
+    @BindView(R.id.rw_appointments)
+    RecyclerView recyclerAppointments;
+
+    private DatabaseReference mDatabase;
 
     @Inject
     AppointmentsListPresenter mPresenter;
 
     View guillotineMenu;
 
-    @Inject
-    public AppointmentsListActivity() {
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        //mPresenter.initAppointmentList();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        initValues();
+
 
     }
+
+    @Inject
+    public AppointmentsListActivity() {
+    }
+
+    public void initValues() {
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                GenericTypeIndicator<ArrayList<Appointment>> t = new GenericTypeIndicator<ArrayList<Appointment>>() {};
+                ArrayList<Appointment> appointments = dataSnapshot.child("LISTACITAS").getValue(t);
+                showAppointments(appointments);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+
+            }
+        });
+    }
+
 
     @Override
     protected void initInjector() {
@@ -89,5 +133,14 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
     @Override
     public void attachViewToPresenter() {
         mPresenter.attachView(this);
+    }
+
+
+    @Override
+    public void showAppointments(ArrayList<Appointment> appointments) {
+        //appointments = mPresenter.getAppointments();
+        recyclerAppointments.setLayoutManager(new LinearLayoutManager(this));
+        AppointmentListAdapter adapter = new AppointmentListAdapter(this, appointments);
+        recyclerAppointments.setAdapter(adapter);
     }
 }

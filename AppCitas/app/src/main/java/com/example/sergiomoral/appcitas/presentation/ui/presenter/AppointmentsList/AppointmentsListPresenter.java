@@ -5,10 +5,15 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.example.sergiomoral.appcitas.R;
+import com.example.sergiomoral.appcitas.domain.entities.Appointment;
+import com.example.sergiomoral.appcitas.domain.exceptions.BaseException;
+import com.example.sergiomoral.appcitas.domain.interactor.BaseInteractor;
 import com.example.sergiomoral.appcitas.presentation.ui.presenter.Presenter;
 import com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsActivity.AppointmentsListView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.yalantis.guillotine.animation.GuillotineAnimation;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -19,16 +24,21 @@ import javax.inject.Inject;
 
 public class AppointmentsListPresenter implements Presenter<AppointmentsListView> {
 
-
+    //TODO: Mandar a Constants
     private static final long RIPPLE_DURATION = 250;
 
     private AppointmentsListView mView;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    List<Appointment> mAppointments;
 
 
     @Inject
     public AppointmentsListPresenter() {
+    }
 
+
+    public List<Appointment> getAppointments(){
+        return mAppointments;
     }
 
     @Override
@@ -50,7 +60,6 @@ public class AppointmentsListPresenter implements Presenter<AppointmentsListView
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // your action
                 mAuth.signOut();
                 mView.goToLogin();
             }
@@ -78,6 +87,12 @@ public class AppointmentsListPresenter implements Presenter<AppointmentsListView
 
             }
         });
+    }
+
+    private void showLoading() {
+        if (mView != null) {
+            mView.showLoading();
+        }
     }
 
 }
