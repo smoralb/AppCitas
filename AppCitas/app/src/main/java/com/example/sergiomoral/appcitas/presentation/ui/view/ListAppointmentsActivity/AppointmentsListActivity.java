@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.example.sergiomoral.appcitas.R;
@@ -21,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
+import com.yalantis.guillotine.animation.GuillotineAnimation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,11 +41,13 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.root)
-    LinearLayout root;
+    FrameLayout root;
     @BindView(R.id.content_hamburger)
     View contentHamburger;
     @BindView(R.id.rw_appointments)
     RecyclerView recyclerAppointments;
+
+
 
 
     @Inject
@@ -103,6 +107,8 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
         mPresenter.clickListenerLogOut(mLogOut);
 
         mPresenter.initGuillotineAnimation(guillotineMenu, toolbar, contentHamburger);
+
+
     }
 
     public void initFloatingButton() {
@@ -122,7 +128,6 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
 
     @Override
     public void showAppointments(ArrayList<Appointment> appointments) {
-        //appointments = mPresenter.getAppointments();
         recyclerAppointments.setLayoutManager(new LinearLayoutManager(this));
         AppointmentListAdapter adapter = new AppointmentListAdapter(this, appointments);
         recyclerAppointments.setAdapter(adapter);

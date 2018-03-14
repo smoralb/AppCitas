@@ -6,8 +6,6 @@ import android.widget.LinearLayout;
 
 import com.example.sergiomoral.appcitas.R;
 import com.example.sergiomoral.appcitas.domain.entities.Appointment;
-import com.example.sergiomoral.appcitas.domain.exceptions.BaseException;
-import com.example.sergiomoral.appcitas.domain.interactor.BaseInteractor;
 import com.example.sergiomoral.appcitas.presentation.ui.presenter.Presenter;
 import com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsActivity.AppointmentsListView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -54,15 +52,6 @@ public class AppointmentsListPresenter implements Presenter<AppointmentsListView
     @Override
     public void attachView(AppointmentsListView view) {
         mView = view;
-    }
-
-    public void initGuillotineAnimation(View guillotineMenu, Toolbar toolbar, View contentHamburger) {
-
-        new GuillotineAnimation.GuillotineBuilder(guillotineMenu, guillotineMenu.findViewById(R.id.guillotine_hamburger), contentHamburger)
-                .setStartDelay(RIPPLE_DURATION)
-                .setActionBarViewForAnimation(toolbar)
-                .setClosedOnStart(true)
-                .build();
     }
 
     public void clickListenerLogOut(LinearLayout logOut) {
@@ -126,4 +115,11 @@ public class AppointmentsListPresenter implements Presenter<AppointmentsListView
     }
 
 
+    public void initGuillotineAnimation(View guillotineMenu, Toolbar toolbar, View contentHamburger) {
+        new GuillotineAnimation.GuillotineBuilder(guillotineMenu, guillotineMenu.findViewById(R.id.guillotine_hamburger), contentHamburger)
+                .setStartDelay(RIPPLE_DURATION)
+                .setActionBarViewForAnimation(toolbar)
+                .setClosedOnStart(true)
+                .build();
+    }
 }
