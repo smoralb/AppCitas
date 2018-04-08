@@ -2,7 +2,6 @@ package com.example.sergiomoral.appcitas.presentation.ui.view.SignUpActivity;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
-import android.text.TextUtils;
 import android.widget.TextView;
 
 import com.example.sergiomoral.appcitas.R;
@@ -163,7 +162,7 @@ public class SignUpActivity extends BaseActivity implements SignUpView, Personal
             dataFragment.setArguments(args);
             fm.beginTransaction()
                     .setCustomAnimations(R.anim.anim_enter_right, R.anim.anim_leave_right)
-                    .add(R.id.v_continer, dataFragment, BuildData.TAG_FRAGMENT_PERSONAL_DATA)
+                    .add(R.id.v_container, dataFragment, BuildData.TAG_FRAGMENT_PERSONAL_DATA)
                     .commit();
         } else {
             fm.beginTransaction()
@@ -183,7 +182,7 @@ public class SignUpActivity extends BaseActivity implements SignUpView, Personal
             userDataFragment.setArguments(args);
             fm.beginTransaction()
                     .setCustomAnimations(R.anim.anim_enter_right, R.anim.anim_leave_right)
-                    .replace(R.id.v_continer, userDataFragment)
+                    .replace(R.id.v_container, userDataFragment)
                     .addToBackStack(null)
                     //.add(R.id.v_continer, userDataFragment, BuildData.TAG_FRAGMENT_USER_DATA)
                     .commit();
