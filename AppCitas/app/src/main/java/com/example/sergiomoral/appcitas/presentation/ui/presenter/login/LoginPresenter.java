@@ -1,11 +1,8 @@
 package com.example.sergiomoral.appcitas.presentation.ui.presenter.login;
 
-import android.content.Context;
 import android.text.TextUtils;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 
-import com.example.sergiomoral.appcitas.data.manager.AuthManager;
+import com.example.sergiomoral.appcitas.data.manager.signin.AuthManager;
 import com.example.sergiomoral.appcitas.presentation.ui.presenter.Presenter;
 import com.example.sergiomoral.appcitas.presentation.ui.view.LoginActivity.LoginView;
 

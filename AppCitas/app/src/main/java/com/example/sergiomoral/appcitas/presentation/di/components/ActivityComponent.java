@@ -7,6 +7,8 @@ import com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsAct
 import com.example.sergiomoral.appcitas.presentation.ui.view.LoginActivity.LoginActivity;
 import com.example.sergiomoral.appcitas.presentation.ui.view.NetworkErrorActivity.NetworkErrorActivity;
 import com.example.sergiomoral.appcitas.presentation.ui.view.SignUpActivity.SignUpActivity;
+import com.example.sergiomoral.appcitas.presentation.ui.view.SignUpActivity.sections.PersonalDataFragment;
+import com.example.sergiomoral.appcitas.presentation.ui.view.SignUpActivity.sections.UserDataFragment;
 import com.example.sergiomoral.appcitas.presentation.ui.view.SplashActivity.SplashScreenActivity;
 
 import dagger.Component;
@@ -30,5 +32,9 @@ public interface ActivityComponent {
     void inject(NetworkErrorActivity networkErrorActivity);
 
     void inject(AppointmentsListActivity appointmentsListActivity);
+
+    void inject(PersonalDataFragment personalDataFragment);
+
+    void inject(UserDataFragment userDataFragment);
 
 }

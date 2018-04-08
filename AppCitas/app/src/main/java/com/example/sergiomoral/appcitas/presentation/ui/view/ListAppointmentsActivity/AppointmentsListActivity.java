@@ -59,7 +59,7 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        initValues();
+        mPresenter.requestData();
 
 
     }
@@ -67,13 +67,6 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
     @Inject
     public AppointmentsListActivity() {
     }
-
-    public void initValues() {
-
-        showLoading();
-        mPresenter.requestData();
-    }
-
 
     @Override
     protected void initInjector() {

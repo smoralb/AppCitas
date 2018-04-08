@@ -8,6 +8,7 @@ import com.example.sergiomoral.appcitas.R;
 import com.example.sergiomoral.appcitas.domain.entities.Appointment;
 import com.example.sergiomoral.appcitas.presentation.ui.presenter.Presenter;
 import com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsActivity.AppointmentsListView;
+import com.example.sergiomoral.appcitas.presentation.utils.constants.BuildData;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,9 +29,6 @@ import javax.inject.Inject;
  */
 
 public class AppointmentsListPresenter implements Presenter<AppointmentsListView> {
-
-    //TODO: Mandar a Constants
-    private static final long RIPPLE_DURATION = 250;
 
     private AppointmentsListView mView;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -59,6 +57,7 @@ public class AppointmentsListPresenter implements Presenter<AppointmentsListView
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //TODO: LLevar a AuthManager
                 mAuth.signOut();
                 mView.goToLogin();
             }
@@ -95,6 +94,7 @@ public class AppointmentsListPresenter implements Presenter<AppointmentsListView
     }
 
     public void requestData() {
+        mView.showLoading();
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -117,7 +117,7 @@ public class AppointmentsListPresenter implements Presenter<AppointmentsListView
 
     public void initGuillotineAnimation(View guillotineMenu, Toolbar toolbar, View contentHamburger) {
         new GuillotineAnimation.GuillotineBuilder(guillotineMenu, guillotineMenu.findViewById(R.id.guillotine_hamburger), contentHamburger)
-                .setStartDelay(RIPPLE_DURATION)
+                .setStartDelay(BuildData.RIPPLE_DURATION)
                 .setActionBarViewForAnimation(toolbar)
                 .setClosedOnStart(true)
                 .build();

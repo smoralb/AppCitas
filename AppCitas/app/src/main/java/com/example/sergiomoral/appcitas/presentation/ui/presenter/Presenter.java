@@ -7,4 +7,5 @@ package com.example.sergiomoral.appcitas.presentation.ui.presenter;
 public interface Presenter<V> {
 
     void attachView(V view);
+
 }

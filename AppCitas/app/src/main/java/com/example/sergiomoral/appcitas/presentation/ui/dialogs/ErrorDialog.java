@@ -71,7 +71,7 @@ public class ErrorDialog extends BaseDialog {
         }
 
         if (getString(title).equals(null)) {
-            errorTitle.setText(getString(R.string.error_title));
+            errorTitle.setText(getString(R.string.generic_error));
         } else {
             errorTitle.setText(getString(title));
         }

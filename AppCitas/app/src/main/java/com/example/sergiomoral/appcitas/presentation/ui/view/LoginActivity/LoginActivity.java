@@ -1,9 +1,6 @@
 package com.example.sergiomoral.appcitas.presentation.ui.view.LoginActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -11,7 +8,6 @@ import com.example.sergiomoral.appcitas.R;
 import com.example.sergiomoral.appcitas.presentation.base.BaseActivity;
 import com.example.sergiomoral.appcitas.presentation.di.components.DaggerActivityComponent;
 import com.example.sergiomoral.appcitas.presentation.ui.dialogs.base.DialogManager;
-import com.example.sergiomoral.appcitas.presentation.ui.main.MainActivity;
 import com.example.sergiomoral.appcitas.presentation.ui.presenter.login.LoginPresenter;
 import com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsActivity.AppointmentsListActivity;
 import com.example.sergiomoral.appcitas.presentation.ui.view.NetworkErrorActivity.NetworkErrorActivity;

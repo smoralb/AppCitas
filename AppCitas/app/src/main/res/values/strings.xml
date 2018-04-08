@@ -3,22 +3,36 @@
 
     <!-- Login strings -->
     <string name="mainActivity">Appointments</string>
-    <string name="ht_user_email">Usuario</string>
-    <string name="ht_user_password">Contraseña</string>
     <string name="btn_login">LOG IN</string>
     <string name="tv_sign_up">¿No eres usuario?. Regístrate!</string>
 
     <!-- Sign up strings -->
-    <string name="btn_sign_up">CREAR CUENTA</string>
     <string name="tv_goto_login">¿Ya eres usuario?. Inicia sesión</string>
+    <string name="ht_user_name">Nombre</string>
+    <string name="ht_user_surname">Primer apellido</string>
+    <string name="ht_user_surname2">Segundo apellido</string>
+    <string name="ht_user_email">Correo electrónico</string>
+    <string name="ht_user_id">DNI</string>
+    <string name="ht_user_password">Contraseña</string>
+    <string name="ht_user_repeat_password">Repita su contraseña</string>
+
+    <string name="tv_user_name">Nombre</string>
+    <string name="tv_user_surname">Primer apellido</string>
+    <string name="tv_user_surname2">Segundo apellido</string>
+    <string name="tv_user_email">Correo electrónico</string>
+    <string name="tv_user_id">DNI</string>
+    <string name="tv_user_password">Contraseña</string>
+    <string name="tv_user_repeat_password">Repita su contraseña</string>
+
+    <string name="btn_sign_up">CREAR CUENTA</string>
 
     <!-- Error form strings -->
-    <string name="error_title">Se ha producido un error</string>
     <string name="error_empty_field">Campos obligatorios vacíos</string>
     <string name="error_wrong_login">Usuario y contraseña no corresponden</string>
     <string name="error_login">Usuario y/o contraseña incorrectos</string>
 
     <!-- Error for signUp activity -->
+    <string name="error_values">Introduzca valores válidos</string>
     <string name="error_email">Introduzca un email valido</string>
     <string name="success_title">Registrado correctamente</string>
     <string name="success_message">Ahora podrá iniciar sesión con sus credenciales</string>
@@ -26,6 +40,7 @@
 
     <!--Falta incluir regexp en el dialog -->
     <string name="error_password">Introduzca una contraseña valida</string>
+    <string name="error_passwords">Ambas contraseñas no coinciden</string>
 
 
     <!-- Dialog information values -->
@@ -44,4 +59,11 @@
 
     <!-- String for exceptions -->
     <string name="generic_error">Se ha producido un error</string>
+
+    <!-- Strings for signup process -->
+    <string name="personal_data">PERSONAL DATA</string>
+    <string name="user_data">USER DATA</string>
+    <string name="finalize">FINALIZAR</string>
+
+
 </resources>

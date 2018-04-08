@@ -4,9 +4,6 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.sergiomoral.appcitas.data.manager.AuthManager;
-import com.example.sergiomoral.appcitas.data.manager.imp.AuthManagerImp;
-import com.example.sergiomoral.appcitas.presentation.di.quialifiers.ApplicationContext;
 import com.example.sergiomoral.appcitas.presentation.utils.constants.ErrorHelper;
 
 import javax.inject.Singleton;
