@@ -105,7 +105,7 @@ public class SignUpActivity extends BaseActivity implements SignUpView, Personal
             mUser.setEmail(email);
             if (password.equals(repeatPassword)) {
                 mUser.setPassword(password);
-                mPresenter.initSignUpProccess(email,password);
+                mPresenter.initSignUpProccess(email, password);
             }
         } else {
             mDialogManager.showErrorSignUp(R.drawable.ic_error, R.string.generic_error, R.string.error_passwords);
@@ -125,7 +125,7 @@ public class SignUpActivity extends BaseActivity implements SignUpView, Personal
     @Override
     public void continueRegister(String name, String surname, String surname2, String userID) {
         if (isValid(name, surname, surname2, userID)) {
-            mPresenter.goToUserDataStep(name,surname,surname2,userID);
+            mPresenter.goToUserDataStep(name, surname, surname2, userID);
         } else {
             mDialogManager.showErrorSignUp(R.drawable.ic_error, R.string.generic_error, R.string.error_values);
         }
