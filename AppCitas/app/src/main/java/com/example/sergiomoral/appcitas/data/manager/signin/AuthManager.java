@@ -1,4 +1,4 @@
-package com.example.sergiomoral.appcitas.data.manager;
+package com.example.sergiomoral.appcitas.data.manager.signin;
 
 
 /**
@@ -9,7 +9,7 @@ public interface AuthManager {
 
     void signInUser(String email, String password);
 
-    boolean signUpUser(String email, String password);
+    boolean signUpUser(String userName,String userSurname, String userSurname2, String userID,String email, String password);
 
     boolean isSignedIn();
 

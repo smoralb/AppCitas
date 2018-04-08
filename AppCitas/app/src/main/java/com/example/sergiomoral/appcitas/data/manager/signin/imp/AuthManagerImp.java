@@ -1,14 +1,13 @@
-package com.example.sergiomoral.appcitas.data.manager.imp;
+package com.example.sergiomoral.appcitas.data.manager.signin.imp;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.example.sergiomoral.appcitas.R;
-import com.example.sergiomoral.appcitas.data.manager.AuthManager;
 import com.example.sergiomoral.appcitas.data.manager.BaseManager;
+import com.example.sergiomoral.appcitas.data.manager.signin.AuthManager;
+import com.example.sergiomoral.appcitas.domain.entities.User;
 import com.example.sergiomoral.appcitas.presentation.ui.dialogs.base.DialogManager;
 import com.example.sergiomoral.appcitas.presentation.ui.view.SignUpActivity.SignUpActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -16,6 +15,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import javax.inject.Inject;
 
@@ -27,6 +28,10 @@ import javax.inject.Inject;
 public class AuthManagerImp extends BaseManager implements AuthManager {
 
     private FirebaseAuth mAuth;
+    private DatabaseReference mDataBase;
+
+    User mUser;
+
     boolean register = false;
 
     @Inject
@@ -36,6 +41,7 @@ public class AuthManagerImp extends BaseManager implements AuthManager {
     @Inject
     public AuthManagerImp() {
         mAuth = FirebaseAuth.getInstance();
+        mDataBase = FirebaseDatabase.getInstance().getReference();
     }
 
     @Override
@@ -55,12 +61,23 @@ public class AuthManagerImp extends BaseManager implements AuthManager {
     }
 
     @Override
-    public boolean signUpUser(String email, String password) {
-        mAuth.createUserWithEmailAndPassword(email, password)
+    public boolean signUpUser(String userName, String userSurname, String userSurname2, String userID, String email, String password) {
+
+        this.mUser = new User.Builder()
+                .name(userName)
+                .apellido1(userSurname)
+                .apellido2(userSurname2)
+                .userId(userID)
+                .email(email)
+                .password(password)
+                .build();
+
+        mAuth.createUserWithEmailAndPassword(mUser.getEmail(), mUser.getPassword())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            mDataBase.child("USERSLIST").child("002").setValue(mUser);
                             Log.d("AuthManagerImp", "signUpWithEmail:success");
                             register = true;
                         } else {
