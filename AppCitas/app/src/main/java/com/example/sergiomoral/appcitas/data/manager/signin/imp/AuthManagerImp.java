@@ -18,6 +18,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
 
 
@@ -72,12 +75,14 @@ public class AuthManagerImp extends BaseManager implements AuthManager {
                 .password(password)
                 .build();
 
+
         mAuth.createUserWithEmailAndPassword(mUser.getEmail(), mUser.getPassword())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            mDataBase.child("USERSLIST").child("002").setValue(mUser);
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            mDataBase.child("USERSLIST").child(user.getUid()).setValue(mUser);
                             Log.d("AuthManagerImp", "signUpWithEmail:success");
                             register = true;
                         } else {
