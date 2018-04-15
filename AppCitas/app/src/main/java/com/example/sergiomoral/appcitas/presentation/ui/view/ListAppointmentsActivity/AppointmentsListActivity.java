@@ -17,6 +17,7 @@ import com.example.sergiomoral.appcitas.presentation.base.BaseActivity;
 import com.example.sergiomoral.appcitas.presentation.di.components.DaggerActivityComponent;
 import com.example.sergiomoral.appcitas.presentation.ui.presenter.AppointmentsList.AppointmentsListPresenter;
 import com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsActivity.adapter.AppointmentListAdapter;
+import com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsActivity.adapter.onItemClickListener;
 import com.example.sergiomoral.appcitas.presentation.utils.constants.BuildData;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -89,9 +90,9 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
         guillotineMenu = LayoutInflater.from(this).inflate(R.layout.guillotine, null);
         root.addView(guillotineMenu);
 
-        LinearLayout mLogOut = (LinearLayout) findViewById(R.id.log_out);
-        LinearLayout mProfile = (LinearLayout) findViewById(R.id.profile_group);
-        LinearLayout mSettings = (LinearLayout) findViewById(R.id.settings_group);
+        LinearLayout mLogOut = findViewById(R.id.log_out);
+        LinearLayout mProfile = findViewById(R.id.profile_group);
+        LinearLayout mSettings = findViewById(R.id.settings_group);
 
         mPresenter.clickListenerProfile(mProfile);
         mPresenter.clickListenerSettings(mSettings);
@@ -120,7 +121,12 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
     @Override
     public void showAppointments(ArrayList<Appointment> appointments) {
         recyclerAppointments.setLayoutManager(new LinearLayoutManager(this));
-        AppointmentListAdapter adapter = new AppointmentListAdapter(this, appointments);
+        AppointmentListAdapter adapter = new AppointmentListAdapter(this, appointments, new onItemClickListener() {
+            @Override
+            public void onItemClick(Appointment item) {
+                //TODO: Pasar toda la info a otra Activity de detalles.
+            }
+        });
         recyclerAppointments.setAdapter(adapter);
         hideLoading();
     }

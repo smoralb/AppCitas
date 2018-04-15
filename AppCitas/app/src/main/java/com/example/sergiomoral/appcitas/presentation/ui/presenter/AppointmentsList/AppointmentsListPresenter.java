@@ -59,7 +59,6 @@ public class AppointmentsListPresenter implements Presenter<AppointmentsListView
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: LLevar a AuthManager
                 mAuth.signOut();
                 mView.goToLogin();
             }

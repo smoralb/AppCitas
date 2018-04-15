@@ -23,10 +23,13 @@ public class AppointmentListAdapter extends RecyclerView.Adapter<AppointmentList
 
     private ArrayList<Appointment> mAppointments;
     private Context mContext;
+    private onItemClickListener itemListener;
+    View itemView;
 
-    public AppointmentListAdapter(Context context, ArrayList<Appointment> appointments) {
+    public AppointmentListAdapter(Context context, ArrayList<Appointment> appointments, onItemClickListener itemClickListener) {
         this.mAppointments = appointments;
         this.mContext = context;
+        this.itemListener = itemClickListener;
     }
 
 
@@ -34,7 +37,7 @@ public class AppointmentListAdapter extends RecyclerView.Adapter<AppointmentList
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
 
-        View itemView = inflater.inflate(R.layout.item_appointment, parent, false);
+        itemView = inflater.inflate(R.layout.item_appointment, parent, false);
 
 
         ViewHolder viewHolder = new ViewHolder(itemView);
@@ -47,6 +50,15 @@ public class AppointmentListAdapter extends RecyclerView.Adapter<AppointmentList
         holder.mItemDate.setText(mAppointments.get(position).getFechacita());
         holder.mItemHour.setText(mAppointments.get(position).getHoracita());
         holder.mItemTitle.setText(mAppointments.get(position).getOficina().getNombrelocal());
+    }
+
+    private void bind(final Appointment item, final onItemClickListener listener){
+        itemView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                listener.onItemClick(item);
+            }
+        });
     }
 
     @Override
@@ -74,5 +86,4 @@ public class AppointmentListAdapter extends RecyclerView.Adapter<AppointmentList
             context = itemView.getContext();
         }
     }
-
 }
