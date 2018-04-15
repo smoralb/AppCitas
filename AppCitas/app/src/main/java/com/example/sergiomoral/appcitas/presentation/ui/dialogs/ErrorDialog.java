@@ -1,5 +1,6 @@
 package com.example.sergiomoral.appcitas.presentation.ui.dialogs;
 
+import android.app.Activity;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.view.View;
@@ -38,6 +39,8 @@ public class ErrorDialog extends BaseDialog {
     @Nullable
     private int title;
 
+    @Nullable
+    private Activity activity;
 
     @Nullable
     private int icon;
@@ -64,6 +67,8 @@ public class ErrorDialog extends BaseDialog {
             public void onClick(View v) {
                 //Close dialog
                 dismiss();
+                if (activity != null)
+                    activity.finish();
             }
         });
         if (getString(msg) != null) {
@@ -89,5 +94,9 @@ public class ErrorDialog extends BaseDialog {
 
     public void serErrorIcon(@Nullable int icon) {
         this.icon = icon;
+    }
+
+    public void setActivity(@Nullable Activity activity) {
+        this.activity = activity;
     }
 }

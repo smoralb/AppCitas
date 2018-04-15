@@ -17,8 +17,10 @@ public class BuildData {
     public static final String TAG_FRAGMENT_USER_DATA = "USER DATA";
     public static final int USER = 1;
     public static final int PASSWORD = 2;
-    public static  final int NAV_FORWARD = 3;
+    public static final int NAV_FORWARD = 3;
     public static final int NAV_BACKWARDS = 4;
+    public static final int SIGN_UP_REQUEST = 5;
+    public static final int RESULT_KO = 6;
 
     @Inject
     public BuildData(Application application) {

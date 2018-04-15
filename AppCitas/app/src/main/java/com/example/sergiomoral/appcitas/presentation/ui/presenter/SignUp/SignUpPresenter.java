@@ -1,5 +1,8 @@
 package com.example.sergiomoral.appcitas.presentation.ui.presenter.SignUp;
 
+import android.app.Activity;
+import android.content.Context;
+
 import com.example.sergiomoral.appcitas.data.manager.signin.AuthManager;
 import com.example.sergiomoral.appcitas.presentation.ui.presenter.Presenter;
 import com.example.sergiomoral.appcitas.presentation.ui.view.SignUpActivity.SignUpView;
@@ -27,12 +30,8 @@ public class SignUpPresenter implements Presenter<SignUpView> {
         mAuth = authManager;
     }
 
-    public void initSignUpProccess(String userEmail, String password) {
-        if (!mAuth.signUpUser(userName, userSurname, userSurname2, userID, userEmail, password)) {
-            mView.signUpError();
-        } else {
-            mView.signUpSuccess();
-        }
+    public void initSignUpProccess(String userEmail, String password, Context context) {
+        mAuth.signUpUser(userName, userSurname, userSurname2, userID, userEmail, password,context);
     }
 
     @Override

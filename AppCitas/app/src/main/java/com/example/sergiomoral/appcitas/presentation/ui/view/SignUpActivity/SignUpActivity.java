@@ -1,5 +1,6 @@
 package com.example.sergiomoral.appcitas.presentation.ui.view.SignUpActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.widget.TextView;
@@ -82,21 +83,13 @@ public class SignUpActivity extends BaseActivity implements SignUpView, Personal
 
     @Override
     public void signUpError() {
-        mDialogManager.showErrorSignUp(R.drawable.ic_error, R.string.generic_error, R.string.error_user);
+        mDialogManager.showErrorSignUp(R.drawable.ic_error, R.string.generic_error, R.string.error_user,this);
     }
 
     @Override
     public void signUpSuccess() {
-        mDialogManager.showSuccessSignUp(R.drawable.ic_ok, R.string.success_title, R.string.success_message);
+        mDialogManager.showSuccessSignUp(R.drawable.ic_ok, R.string.success_title, R.string.success_message,this);
 
-    }
-
-    @Override
-    public void setError(int field, int message) {
-       /* if (field == SignUpPresenter.USER) {
-            mUserEmail.setError(getString(message));
-        } else mUserPassword.setError(getString(message));
-        */
     }
 
     @Override
@@ -105,10 +98,12 @@ public class SignUpActivity extends BaseActivity implements SignUpView, Personal
             mUser.setEmail(email);
             if (password.equals(repeatPassword)) {
                 mUser.setPassword(password);
-                mPresenter.initSignUpProccess(email, password);
+                showLoading();
+                mPresenter.initSignUpProccess(email, password,this);
+            } else {
+                mDialogManager.showErrorSignUp(R.drawable.ic_error, R.string.generic_error, R.string.error_passwords,this);
             }
-        } else {
-            mDialogManager.showErrorSignUp(R.drawable.ic_error, R.string.generic_error, R.string.error_passwords);
+            hideLoading();
         }
     }
 
@@ -127,7 +122,7 @@ public class SignUpActivity extends BaseActivity implements SignUpView, Personal
         if (isValid(name, surname, surname2, userID)) {
             mPresenter.goToUserDataStep(name, surname, surname2, userID);
         } else {
-            mDialogManager.showErrorSignUp(R.drawable.ic_error, R.string.generic_error, R.string.error_values);
+            mDialogManager.showErrorSignUp(R.drawable.ic_error, R.string.generic_error, R.string.error_values,this);
         }
     }
 

@@ -12,6 +12,7 @@ import com.example.sergiomoral.appcitas.presentation.ui.presenter.login.LoginPre
 import com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsActivity.AppointmentsListActivity;
 import com.example.sergiomoral.appcitas.presentation.ui.view.NetworkErrorActivity.NetworkErrorActivity;
 import com.example.sergiomoral.appcitas.presentation.ui.view.SignUpActivity.SignUpActivity;
+import com.example.sergiomoral.appcitas.presentation.utils.constants.BuildData;
 
 import javax.inject.Inject;
 
@@ -92,7 +93,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @OnClick(R.id.tv_signUp)
     public void goToSignUpActivity() {
         Intent goToRegister = new Intent(this, SignUpActivity.class);
-        startActivity(goToRegister);
+        startActivityForResult(goToRegister, BuildData.SIGN_UP_REQUEST);
     }
 
     @Override

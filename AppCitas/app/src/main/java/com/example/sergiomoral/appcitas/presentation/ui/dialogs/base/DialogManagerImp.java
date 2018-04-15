@@ -1,14 +1,19 @@
 package com.example.sergiomoral.appcitas.presentation.ui.dialogs.base;
 
 import android.app.Activity;
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.example.sergiomoral.appcitas.R;
 import com.example.sergiomoral.appcitas.presentation.ui.dialogs.ErrorDialog;
 import com.example.sergiomoral.appcitas.presentation.ui.dialogs.LoadingDialog;
 
 import javax.inject.Inject;
+
+import butterknife.BindView;
 
 /**
  * Created by sergiomoral on 25/1/18.
@@ -19,12 +24,16 @@ public class DialogManagerImp implements DialogManager {
 
     public static final String TAG_LOADING_DIALOG = "loadingDialog";
 
-    private Activity mActivity;
 
     @Inject
     LoadingDialog mLoadingDialog;
     @Inject
     ErrorDialog mErrorDialog;
+
+    @BindView(R.id.btn_ok)
+    Button mButtonAccept;
+
+    private Activity mActivity;
 
 
     @Inject
@@ -67,18 +76,21 @@ public class DialogManagerImp implements DialogManager {
     }
 
     @Override
-    public void showSuccessSignUp(int icon, int title, int msg) {
+    public void showSuccessSignUp(int icon, int title, int msg, Activity activity) {
         mErrorDialog.serErrorIcon(icon);
         mErrorDialog.setErrorTitle(title);
         mErrorDialog.setErrorMessage(msg);
+        mErrorDialog.setActivity(activity);
         show(mErrorDialog);
+
     }
 
     @Override
-    public void showErrorSignUp(int icon, int title, int msg) {
+    public void showErrorSignUp(int icon, int title, int msg, Activity activity) {
         mErrorDialog.serErrorIcon(icon);
         mErrorDialog.setErrorTitle(title);
         mErrorDialog.setErrorMessage(msg);
+        mErrorDialog.setActivity(activity);
         show(mErrorDialog);
     }
 

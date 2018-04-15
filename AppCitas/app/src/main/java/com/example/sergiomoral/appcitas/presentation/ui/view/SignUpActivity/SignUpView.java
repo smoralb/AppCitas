@@ -12,10 +12,6 @@ public interface SignUpView extends BaseView {
 
     void signUpSuccess();
 
-    //void goToLoginActivity();
-
-    void setError(int field, int message);
-
     void showOrHidePersonalData(int navMode);
 
     void showOrHideUserData(int navMode);

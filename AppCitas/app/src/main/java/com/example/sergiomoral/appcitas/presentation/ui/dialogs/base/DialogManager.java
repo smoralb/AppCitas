@@ -1,7 +1,11 @@
 package com.example.sergiomoral.appcitas.presentation.ui.dialogs.base;
 
+import android.app.Activity;
+import android.content.Context;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
+
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Created by sergiomoral on 25/1/18.
@@ -22,9 +26,9 @@ public interface DialogManager {
 
     void showNetworkError(@StringRes int msg);
 
-    void showSuccessSignUp(@DrawableRes int icon, @StringRes int title, @StringRes int msg);
+    void showSuccessSignUp(@DrawableRes int icon, @StringRes int title, @StringRes int msg, Activity activity);
 
-    void showErrorSignUp(@DrawableRes int icon, @StringRes int title, @StringRes int msg);
+    void showErrorSignUp(@DrawableRes int icon, @StringRes int title, @StringRes int msg, Activity activity);
 
 
 }
