@@ -3,8 +3,6 @@ package com.example.sergiomoral.appcitas.domain.entities;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.Date;
-
 /**
  * Created by sergiomoral on 26/2/18.
  */
@@ -13,7 +11,7 @@ public class Appointment implements Parcelable {
 
 
     private String idcita;
-    private String useremail;
+    private String userID;
     private String fechacita;
     private String horacita;
     private Office oficina;
@@ -24,7 +22,7 @@ public class Appointment implements Parcelable {
 
     private Appointment(Builder builder) {
         setIdcita(builder.idcita);
-        setUseremail(builder.useremail);
+        setUserID(builder.userID);
         setFechacita(builder.fechacita);
         setHoracita(builder.horacita);
         setOficina(builder.oficina);
@@ -39,7 +37,7 @@ public class Appointment implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.idcita);
-        dest.writeString(this.useremail);
+        dest.writeString(this.userID);
         dest.writeString(this.fechacita);
         dest.writeString(this.horacita);
         dest.writeParcelable(this.oficina, flags);
@@ -47,7 +45,7 @@ public class Appointment implements Parcelable {
 
     protected Appointment(Parcel in) {
         this.idcita = in.readString();
-        this.useremail = in.readString();
+        this.userID = in.readString();
         this.fechacita = in.readString();
         this.horacita = in.readString();
         this.oficina = in.readParcelable(Office.class.getClassLoader());
@@ -73,12 +71,12 @@ public class Appointment implements Parcelable {
         this.idcita = idcita;
     }
 
-    public String getUseremail() {
-        return useremail;
+    public String getUserID() {
+        return userID;
     }
 
-    public void setUseremail(String useremail) {
-        this.useremail = useremail;
+    public void setUserID(String userID) {
+        this.userID = userID;
     }
 
     public String getFechacita() {
@@ -108,7 +106,7 @@ public class Appointment implements Parcelable {
 
     public static final class Builder {
         private String idcita;
-        private String useremail;
+        private String userID;
         private String fechacita;
         private String horacita;
         private Office oficina;
@@ -121,8 +119,8 @@ public class Appointment implements Parcelable {
             return this;
         }
 
-        public Builder useremail(String val) {
-            useremail = val;
+        public Builder usertoken(String val) {
+            userID = val;
             return this;
         }
 

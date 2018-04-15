@@ -32,7 +32,8 @@ public class AppointmentsListPresenter implements Presenter<AppointmentsListView
 
     private AppointmentsListView mView;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    List<Appointment> mAppointments;
+    ArrayList<Appointment> mAppointments = new ArrayList<>();
+    ArrayList<Appointment> mAppointmentsFilteredByUser = new ArrayList<>();
     private DatabaseReference mDatabase;
 
 
@@ -93,17 +94,25 @@ public class AppointmentsListPresenter implements Presenter<AppointmentsListView
         }
     }
 
-    public void requestData() {
+    public void requestData(final String userToken) {
         mView.showLoading();
+
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
                 GenericTypeIndicator<ArrayList<Appointment>> t = new GenericTypeIndicator<ArrayList<Appointment>>() {
                 };
                 ArrayList<Appointment> appointments = dataSnapshot.child("LISTACITAS").getValue(t);
-                mView.showAppointments(appointments);
+                int index = 0;
+                for (Appointment appointment : appointments) {
+                    if (appointments.get(index).getUserID().equals(userToken)) {
+                        mAppointmentsFilteredByUser.add(appointment);
+                        index++;
+                    } else {
+                        index++;
+                    }
+                }
+                mView.showAppointments(mAppointmentsFilteredByUser);
             }
 
             @Override

@@ -37,12 +37,9 @@ public class LoginPresenter implements Presenter<LoginView> {
             if (isEmailValid(user) /*|| isPasswordValid(password)*/) {
                 showLoading();
                 mAuthManager.signInUser(user, password);
-                mView.goToListAppointments();
-
+                mView.goToListAppointments(mAuthManager.getCurrentUserId());
             }
             mView.hideLoading();
-            /*} else
-                mView.showLoginError();*/
         } else
             mView.showEmptyFieldsError();
     }

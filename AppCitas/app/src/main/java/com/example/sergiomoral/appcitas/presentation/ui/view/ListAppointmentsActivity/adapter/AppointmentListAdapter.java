@@ -44,12 +44,9 @@ public class AppointmentListAdapter extends RecyclerView.Adapter<AppointmentList
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        //Appointment appointment = mAppointments.get(position);
-
         holder.mItemDate.setText(mAppointments.get(position).getFechacita());
         holder.mItemHour.setText(mAppointments.get(position).getHoracita());
         holder.mItemTitle.setText(mAppointments.get(position).getOficina().getNombrelocal());
-
     }
 
     @Override

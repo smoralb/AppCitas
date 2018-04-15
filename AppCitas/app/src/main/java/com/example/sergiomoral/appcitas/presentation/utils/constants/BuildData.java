@@ -15,6 +15,7 @@ public class BuildData {
     public static final long RIPPLE_DURATION = 250;
     public static final String TAG_FRAGMENT_PERSONAL_DATA = "PERSONAL DATA";
     public static final String TAG_FRAGMENT_USER_DATA = "USER DATA";
+    public static final String USER_TOKEN = "userToken";
     public static final int USER = 1;
     public static final int PASSWORD = 2;
     public static final int NAV_FORWARD = 3;

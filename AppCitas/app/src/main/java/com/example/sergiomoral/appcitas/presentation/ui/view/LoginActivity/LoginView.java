@@ -16,5 +16,5 @@ public interface LoginView extends BaseView {
 
     void showEmptyFieldsError();
 
-    void goToListAppointments();
+    void goToListAppointments(String userToken);
 }

@@ -1,5 +1,6 @@
 package com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,6 +17,7 @@ import com.example.sergiomoral.appcitas.presentation.base.BaseActivity;
 import com.example.sergiomoral.appcitas.presentation.di.components.DaggerActivityComponent;
 import com.example.sergiomoral.appcitas.presentation.ui.presenter.AppointmentsList.AppointmentsListPresenter;
 import com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsActivity.adapter.AppointmentListAdapter;
+import com.example.sergiomoral.appcitas.presentation.utils.constants.BuildData;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -47,21 +49,18 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
     @BindView(R.id.rw_appointments)
     RecyclerView recyclerAppointments;
 
-
-
-
     @Inject
     AppointmentsListPresenter mPresenter;
 
     View guillotineMenu;
+    String userToken;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mPresenter.requestData();
-
-
+        userToken = getIntent().getStringExtra(BuildData.USER_TOKEN);
+        mPresenter.requestData(userToken);
     }
 
     @Inject
@@ -89,7 +88,6 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
     public void initGuillotineMenu() {
         guillotineMenu = LayoutInflater.from(this).inflate(R.layout.guillotine, null);
         root.addView(guillotineMenu);
-
 
         LinearLayout mLogOut = (LinearLayout) findViewById(R.id.log_out);
         LinearLayout mProfile = (LinearLayout) findViewById(R.id.profile_group);

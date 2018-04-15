@@ -97,8 +97,9 @@ public class LoginActivity extends BaseActivity implements LoginView {
     }
 
     @Override
-    public void goToListAppointments() {
+    public void goToListAppointments(String token) {
         Intent goToAppointments = new Intent(this, AppointmentsListActivity.class);
+        goToAppointments.putExtra(BuildData.USER_TOKEN,token);
         startActivity(goToAppointments);
         finish();
     }
