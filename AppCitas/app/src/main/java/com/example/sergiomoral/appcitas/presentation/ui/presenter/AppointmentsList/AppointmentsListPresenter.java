@@ -1,6 +1,7 @@
 package com.example.sergiomoral.appcitas.presentation.ui.presenter.AppointmentsList;
 
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -118,7 +119,7 @@ public class AppointmentsListPresenter implements Presenter<AppointmentsListView
             @Override
             public void onCancelled(DatabaseError error) {
                 // Failed to read value
-                //TODO: Falta logica de error
+                Log.w(BuildData.TAG_DATABASE_ERROR, "loadPost:onCancelled", error.toException());
             }
         });
     }
