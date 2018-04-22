@@ -2,6 +2,7 @@ package com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsAc
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,12 +11,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.sergiomoral.appcitas.R;
 import com.example.sergiomoral.appcitas.domain.entities.Appointment;
 import com.example.sergiomoral.appcitas.presentation.base.BaseActivity;
 import com.example.sergiomoral.appcitas.presentation.di.components.DaggerActivityComponent;
 import com.example.sergiomoral.appcitas.presentation.ui.presenter.AppointmentsList.AppointmentsListPresenter;
+import com.example.sergiomoral.appcitas.presentation.ui.view.DetailsActivity.AppointmentDetailsActivity;
 import com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsActivity.adapter.AppointmentListAdapter;
 import com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsActivity.adapter.onItemClickListener;
 import com.example.sergiomoral.appcitas.presentation.utils.constants.BuildData;
@@ -104,7 +107,7 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
     }
 
     public void initFloatingButton() {
-        //TODO: Creación de nueva cita
+        Toast.makeText(this, "Falta por implementar", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -124,7 +127,10 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
         AppointmentListAdapter adapter = new AppointmentListAdapter(this, appointments, new onItemClickListener() {
             @Override
             public void onItemClick(Appointment item) {
-                //TODO: Pasar toda la info a otra Activity de detalles.
+                Intent gotToDetails = new Intent(AppointmentsListActivity.this, AppointmentDetailsActivity.class);
+                gotToDetails.putExtra(BuildData.ITEM_APPOINTMENT, item);
+                startActivity(gotToDetails);
+
             }
         });
         recyclerAppointments.setAdapter(adapter);

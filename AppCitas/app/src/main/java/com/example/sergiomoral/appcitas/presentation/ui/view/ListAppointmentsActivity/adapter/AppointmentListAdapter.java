@@ -1,6 +1,7 @@
 package com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsActivity.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.sergiomoral.appcitas.R;
 import com.example.sergiomoral.appcitas.domain.entities.Appointment;
+import com.example.sergiomoral.appcitas.presentation.utils.constants.BuildData;
 
 import java.util.ArrayList;
 
@@ -50,15 +52,8 @@ public class AppointmentListAdapter extends RecyclerView.Adapter<AppointmentList
         holder.mItemDate.setText(mAppointments.get(position).getFechacita());
         holder.mItemHour.setText(mAppointments.get(position).getHoracita());
         holder.mItemTitle.setText(mAppointments.get(position).getOficina().getNombrelocal());
-    }
+        holder.bind(mAppointments.get(position), itemListener);
 
-    private void bind(final Appointment item, final onItemClickListener listener){
-        itemView.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                listener.onItemClick(item);
-            }
-        });
     }
 
     @Override
@@ -84,6 +79,15 @@ public class AppointmentListAdapter extends RecyclerView.Adapter<AppointmentList
             super(itemView);
             ButterKnife.bind(this, itemView);
             context = itemView.getContext();
+        }
+
+        public void bind(final Appointment item, final onItemClickListener listener) {
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onItemClick(item);
+                }
+            });
         }
     }
 }

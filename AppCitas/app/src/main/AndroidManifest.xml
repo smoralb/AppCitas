@@ -27,7 +27,7 @@
             android:name=".presentation.ui.view.LoginActivity.LoginActivity"
             android:theme="@style/AppTheme" />
 
-
+        <activity android:name=".presentation.ui.view.DetailsActivity.AppointmentDetailsActivity"/>
         <activity
             android:name=".presentation.ui.view.NetworkErrorActivity.NetworkErrorActivity"
             android:theme="@style/AppTheme" />
