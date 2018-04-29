@@ -2,6 +2,7 @@ package com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsAc
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,13 +11,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.sergiomoral.appcitas.R;
 import com.example.sergiomoral.appcitas.domain.entities.Appointment;
 import com.example.sergiomoral.appcitas.presentation.base.BaseActivity;
 import com.example.sergiomoral.appcitas.presentation.di.components.DaggerActivityComponent;
 import com.example.sergiomoral.appcitas.presentation.ui.presenter.AppointmentsList.AppointmentsListPresenter;
+import com.example.sergiomoral.appcitas.presentation.ui.view.DetailsActivity.AppointmentDetailsActivity;
 import com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsActivity.adapter.AppointmentListAdapter;
+import com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsActivity.adapter.onItemClickListener;
 import com.example.sergiomoral.appcitas.presentation.utils.constants.BuildData;
 
 import java.util.ArrayList;
@@ -81,9 +85,9 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
         guillotineMenu = LayoutInflater.from(this).inflate(R.layout.guillotine, null);
         root.addView(guillotineMenu);
 
-        LinearLayout mLogOut = (LinearLayout) findViewById(R.id.log_out);
-        LinearLayout mProfile = (LinearLayout) findViewById(R.id.profile_group);
-        LinearLayout mSettings = (LinearLayout) findViewById(R.id.settings_group);
+        LinearLayout mLogOut = findViewById(R.id.log_out);
+        LinearLayout mProfile = findViewById(R.id.profile_group);
+        LinearLayout mSettings = findViewById(R.id.settings_group);
 
         mPresenter.clickListenerProfile(mProfile);
         mPresenter.clickListenerSettings(mSettings);
@@ -95,7 +99,7 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
     }
 
     public void initFloatingButton() {
-        //TODO: Creación de nueva cita
+        Toast.makeText(this, "Falta por implementar", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -112,7 +116,15 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
     @Override
     public void showAppointments(ArrayList<Appointment> appointments) {
         recyclerAppointments.setLayoutManager(new LinearLayoutManager(this));
-        AppointmentListAdapter adapter = new AppointmentListAdapter(this, appointments);
+        AppointmentListAdapter adapter = new AppointmentListAdapter(this, appointments, new onItemClickListener() {
+            @Override
+            public void onItemClick(Appointment item) {
+                Intent gotToDetails = new Intent(AppointmentsListActivity.this, AppointmentDetailsActivity.class);
+                gotToDetails.putExtra(BuildData.ITEM_APPOINTMENT, item);
+                startActivity(gotToDetails);
+
+            }
+        });
         recyclerAppointments.setAdapter(adapter);
         hideLoading();
     }
