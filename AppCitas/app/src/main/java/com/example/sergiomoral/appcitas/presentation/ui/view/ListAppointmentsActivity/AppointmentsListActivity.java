@@ -18,16 +18,8 @@ import com.example.sergiomoral.appcitas.presentation.di.components.DaggerActivit
 import com.example.sergiomoral.appcitas.presentation.ui.presenter.AppointmentsList.AppointmentsListPresenter;
 import com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsActivity.adapter.AppointmentListAdapter;
 import com.example.sergiomoral.appcitas.presentation.utils.constants.BuildData;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.GenericTypeIndicator;
-import com.google.firebase.database.ValueEventListener;
-import com.yalantis.guillotine.animation.GuillotineAnimation;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 

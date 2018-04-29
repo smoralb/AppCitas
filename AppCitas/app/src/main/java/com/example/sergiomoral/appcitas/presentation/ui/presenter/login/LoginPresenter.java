@@ -1,10 +1,14 @@
 package com.example.sergiomoral.appcitas.presentation.ui.presenter.login;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.text.TextUtils;
 
 import com.example.sergiomoral.appcitas.data.manager.signin.AuthManager;
 import com.example.sergiomoral.appcitas.presentation.ui.presenter.Presenter;
+import com.example.sergiomoral.appcitas.presentation.ui.view.LoginActivity.LoginActivity;
 import com.example.sergiomoral.appcitas.presentation.ui.view.LoginActivity.LoginView;
+import com.example.sergiomoral.appcitas.presentation.utils.constants.BuildData;
 
 import javax.inject.Inject;
 
@@ -18,6 +22,8 @@ public class LoginPresenter implements Presenter<LoginView> {
 
     private AuthManager mAuthManager;
 
+    private SharedPreferences loginPreferences;
+    private SharedPreferences.Editor loginPrefsEditor;
 
     String regexpEmail = "^[A-Za-z][A-Za-z0-9_.-]*@[A-Za-z0-9_.-]+\\.[A-Za-z0-9_.]+[A-za-z]$";
     String regexpPassword = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d]{8,15}$/";
@@ -32,16 +38,22 @@ public class LoginPresenter implements Presenter<LoginView> {
         mView = view;
     }
 
-    public void initLoginProcess(final String user, final String password) {
-        if (!isEmpty(user, password)) {
-            if (isEmailValid(user) /*|| isPasswordValid(password)*/) {
-                showLoading();
-                mAuthManager.signInUser(user, password);
-                mView.goToListAppointments(mAuthManager.getCurrentUserId());
-            }
-            mView.hideLoading();
+    public void initLoginProcess(final String user, final String password, Context context, boolean rememberMe) {
+        loginPreferences = context.getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
+        loginPrefsEditor = loginPreferences.edit();
+        if (rememberMe) {
+            showLoading();
+            loginPrefsEditor.putString(BuildData.USER_NAME, user);
+            loginPrefsEditor.putString(BuildData.USER_PASSWORD, password);
         } else
             mView.showEmptyFieldsError();
+        loginPrefsEditor.putBoolean(BuildData.USER_REMEMBER, rememberMe);
+        if (!isEmpty(user, password)) {
+            mAuthManager.signInUser(user, password);
+            mView.goToListAppointments(mAuthManager.getCurrentUserId());
+        }
+        loginPrefsEditor.apply();
+        mView.hideLoading();
     }
 
 
@@ -62,6 +74,4 @@ public class LoginPresenter implements Presenter<LoginView> {
             mView.showLoading();
         }
     }
-
-
 }
