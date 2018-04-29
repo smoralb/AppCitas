@@ -18,6 +18,9 @@ public class BuildData {
     public static final String TAG_DATABASE_ERROR = "DATABASE ERROR";
     public static final String USER_TOKEN = "userToken";
     public static final String ITEM_APPOINTMENT = "itemAppointment";
+    public static final String USER_NAME = "userName";
+    public static final String USER_PASSWORD = "userPassword";
+    public static final String USER_REMEMBER = "userRemember";
     public static final int USER = 1;
     public static final int PASSWORD = 2;
     public static final int NAV_FORWARD = 3;

@@ -7,7 +7,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.sergiomoral.appcitas.R;
-import com.example.sergiomoral.appcitas.domain.entities.User;
 import com.example.sergiomoral.appcitas.presentation.di.components.DaggerActivityComponent;
 import com.example.sergiomoral.appcitas.presentation.ui.presenter.SignUp.UserDataPresenter;
 import com.example.sergiomoral.appcitas.presentation.ui.view.BaseFragment;
