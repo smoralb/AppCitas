@@ -1,7 +1,10 @@
 package com.example.sergiomoral.appcitas.presentation.ui.view.LoginActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.example.sergiomoral.appcitas.R;
@@ -32,12 +35,17 @@ public class LoginActivity extends BaseActivity implements LoginView {
     EditText mUserPassword;
     @BindView(R.id.btn_login)
     Button btnLogin;
+    @BindView(R.id.cb_remenber_me)
+    CheckBox mRememberMe;
 
     @Inject
     DialogManager mDialogManager;
-
     @Inject
     LoginPresenter mLoginPresenter;
+
+    private SharedPreferences loginPreferences;
+
+    private boolean rememberMe;
 
     @Inject
     public LoginActivity() {
@@ -59,8 +67,14 @@ public class LoginActivity extends BaseActivity implements LoginView {
     }
 
     public void initLabels() {
-        mUserEmail.getText().clear();
-        mUserPassword.getText().clear();
+        loginPreferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
+        if (!loginPreferences.getString(BuildData.USER_NAME, "").isEmpty() && !loginPreferences.getString(BuildData.USER_PASSWORD, "").isEmpty()) {
+            mUserEmail.setText(loginPreferences.getString(BuildData.USER_NAME, ""));
+            mUserPassword.setText(loginPreferences.getString(BuildData.USER_PASSWORD, ""));
+            rememberMe = loginPreferences.getBoolean(BuildData.USER_REMEMBER, false);
+        }
+        mRememberMe.setChecked(rememberMe);
+
     }
 
     @Override
@@ -99,7 +113,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @Override
     public void goToListAppointments(String token) {
         Intent goToAppointments = new Intent(this, AppointmentsListActivity.class);
-        goToAppointments.putExtra(BuildData.USER_TOKEN,token);
+        goToAppointments.putExtra(BuildData.USER_TOKEN, token);
         startActivity(goToAppointments);
         finish();
     }
@@ -107,6 +121,10 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @OnClick(R.id.btn_login)
     public void loginProcess() {
         hideSoftKeyboard();
-        mLoginPresenter.initLoginProcess(mUserEmail.getText().toString(), mUserPassword.getText().toString());
+        if (mRememberMe.isChecked()) {
+            rememberMe = true;
+        } else rememberMe = false;
+        mLoginPresenter.initLoginProcess(mUserEmail.getText().toString(), mUserPassword.getText().toString(), this, rememberMe);
+
     }
 }
