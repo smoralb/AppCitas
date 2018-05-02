@@ -1,7 +1,6 @@
 package com.example.sergiomoral.appcitas.presentation.ui.view.SignUpActivity.sections;
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.widget.EditText;
 
 import com.example.sergiomoral.appcitas.R;

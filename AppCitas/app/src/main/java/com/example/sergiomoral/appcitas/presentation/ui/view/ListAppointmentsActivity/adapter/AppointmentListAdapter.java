@@ -6,8 +6,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.sergiomoral.appcitas.R;
 import com.example.sergiomoral.appcitas.domain.entities.Appointment;
 import com.example.sergiomoral.appcitas.presentation.utils.constants.BuildData;
@@ -41,7 +43,6 @@ public class AppointmentListAdapter extends RecyclerView.Adapter<AppointmentList
 
         itemView = inflater.inflate(R.layout.item_appointment, parent, false);
 
-
         ViewHolder viewHolder = new ViewHolder(itemView);
         return viewHolder;
     }
@@ -64,13 +65,16 @@ public class AppointmentListAdapter extends RecyclerView.Adapter<AppointmentList
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.item_title)
+        @BindView(R.id.iv_item_imageview)
+        ImageView mItemPicture;
+
+        @BindView(R.id.tv_item_title)
         TextView mItemTitle;
 
-        @BindView(R.id.item_date)
+        @BindView(R.id.tv_item_date)
         TextView mItemDate;
 
-        @BindView(R.id.item_hour)
+        @BindView(R.id.tv_item_hour)
         TextView mItemHour;
 
         private Context context;

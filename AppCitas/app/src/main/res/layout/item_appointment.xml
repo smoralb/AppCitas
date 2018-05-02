@@ -1,25 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="horizontal"
     android:layout_height="wrap_content">
 
     <ImageView
-        android:layout_width="80dp"
-        android:layout_height="@dimen/item_height"
-        android:layout_margin="10dp"
-        tools:background="@color/app_primary_color" />
+        android:id="@+id/iv_item_imageview"
+        android:layout_width="@dimen/image_logo_width"
+        android:layout_height="@dimen/image_logo_height"
+        android:layout_margin="@dimen/spacing_xsmall"
+        android:background="@color/app_primary_color"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/item_height"
-        android:layout_margin="10dp"
-        android:orientation="vertical">
+        android:layout_height="@dimen/image_logo_height"
+        android:layout_margin="@dimen/spacing_xsmall"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/iv_item_imageview"
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <TextView
-            android:id="@+id/item_title"
+            android:id="@+id/tv_item_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Nombre del local" />
@@ -27,7 +33,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="@dimen/spacing_xsmall">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -38,15 +44,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:layout_marginRight="10dp"
-                    tools:text="Fecha" />
+                    android:layout_marginRight="@dimen/spacing_xsmall"
+                    android:text="@string/appointment_date" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
-                    android:layout_marginRight="10dp"
-                    tools:text="Hora" />
+                    android:layout_marginRight="@dimen/spacing_xsmall"
+                    android:text="@string/appointment_hour" />
             </LinearLayout>
 
             <LinearLayout
@@ -56,7 +62,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/item_date"
+                    android:id="@+id/tv_item_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
@@ -64,7 +70,7 @@
 
 
                 <TextView
-                    android:id="@+id/item_hour"
+                    android:id="@+id/tv_item_hour"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
@@ -72,4 +78,4 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>
