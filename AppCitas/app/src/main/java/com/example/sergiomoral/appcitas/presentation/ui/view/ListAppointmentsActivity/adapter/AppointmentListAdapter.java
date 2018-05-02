@@ -1,6 +1,7 @@
 package com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsActivity.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.sergiomoral.appcitas.R;
 import com.example.sergiomoral.appcitas.domain.entities.Appointment;
+import com.example.sergiomoral.appcitas.presentation.utils.constants.BuildData;
 
 import java.util.ArrayList;
 
@@ -23,10 +25,13 @@ public class AppointmentListAdapter extends RecyclerView.Adapter<AppointmentList
 
     private ArrayList<Appointment> mAppointments;
     private Context mContext;
+    private onItemClickListener itemListener;
+    View itemView;
 
-    public AppointmentListAdapter(Context context, ArrayList<Appointment> appointments) {
+    public AppointmentListAdapter(Context context, ArrayList<Appointment> appointments, onItemClickListener itemClickListener) {
         this.mAppointments = appointments;
         this.mContext = context;
+        this.itemListener = itemClickListener;
     }
 
 
@@ -34,7 +39,7 @@ public class AppointmentListAdapter extends RecyclerView.Adapter<AppointmentList
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
 
-        View itemView = inflater.inflate(R.layout.item_appointment, parent, false);
+        itemView = inflater.inflate(R.layout.item_appointment, parent, false);
 
 
         ViewHolder viewHolder = new ViewHolder(itemView);
@@ -47,6 +52,8 @@ public class AppointmentListAdapter extends RecyclerView.Adapter<AppointmentList
         holder.mItemDate.setText(mAppointments.get(position).getFechacita());
         holder.mItemHour.setText(mAppointments.get(position).getHoracita());
         holder.mItemTitle.setText(mAppointments.get(position).getOficina().getNombrelocal());
+        holder.bind(mAppointments.get(position), itemListener);
+
     }
 
     @Override
@@ -73,6 +80,14 @@ public class AppointmentListAdapter extends RecyclerView.Adapter<AppointmentList
             ButterKnife.bind(this, itemView);
             context = itemView.getContext();
         }
-    }
 
+        public void bind(final Appointment item, final onItemClickListener listener) {
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onItemClick(item);
+                }
+            });
+        }
+    }
 }
