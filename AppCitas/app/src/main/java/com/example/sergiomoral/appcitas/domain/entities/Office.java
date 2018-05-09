@@ -18,16 +18,24 @@ public class Office implements Parcelable {
     private String tipocentro;
     private String direccion;
     private String numvia;
+    private String localidad;
+    private String email;
+    private Double latitud;
+    private Double longitud;
 
     private Office(Builder builder) {
-        nombrelocal = builder.nombrelocal;
-        ciudad = builder.ciudad;
-        telefono = builder.telefono;
-        tipovia = builder.tipovia;
-        codpostal = builder.codpostal;
-        tipocentro = builder.tipocentro;
-        direccion = builder.direccion;
-        numvia = builder.numvia;
+        setNombrelocal(builder.nombrelocal);
+        setCiudad(builder.ciudad);
+        setTelefono(builder.telefono);
+        setTipovia(builder.tipovia);
+        setCodpostal(builder.codpostal);
+        setTipocentro(builder.tipocentro);
+        setDireccion(builder.direccion);
+        setNumvia(builder.numvia);
+        setLocalidad(builder.localidad);
+        setEmail(builder.email);
+        setLatitud(builder.latitud);
+        setLongitud(builder.longitud);
     }
 
 
@@ -46,6 +54,10 @@ public class Office implements Parcelable {
         dest.writeString(this.tipocentro);
         dest.writeString(this.direccion);
         dest.writeString(this.numvia);
+        dest.writeString(this.localidad);
+        dest.writeString(this.email);
+        dest.writeValue(this.latitud);
+        dest.writeValue(this.longitud);
     }
 
     public Office() {
@@ -60,7 +72,23 @@ public class Office implements Parcelable {
         this.tipocentro = in.readString();
         this.direccion = in.readString();
         this.numvia = in.readString();
+        this.localidad = in.readString();
+        this.email = in.readString();
+        this.latitud = (Double) in.readValue(Double.class.getClassLoader());
+        this.longitud = (Double) in.readValue(Double.class.getClassLoader());
     }
+
+    public static final Creator<Office> CREATOR = new Creator<Office>() {
+        @Override
+        public Office createFromParcel(Parcel source) {
+            return new Office(source);
+        }
+
+        @Override
+        public Office[] newArray(int size) {
+            return new Office[size];
+        }
+    };
 
     public String getNombrelocal() {
         return nombrelocal;
@@ -126,17 +154,37 @@ public class Office implements Parcelable {
         this.numvia = numvia;
     }
 
-    public static final Creator<Office> CREATOR = new Creator<Office>() {
-        @Override
-        public Office createFromParcel(Parcel source) {
-            return new Office(source);
-        }
+    public String getLocalidad() {
+        return localidad;
+    }
 
-        @Override
-        public Office[] newArray(int size) {
-            return new Office[size];
-        }
-    };
+    public void setLocalidad(String localidad) {
+        this.localidad = localidad;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Double getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(Double latitud) {
+        this.latitud = latitud;
+    }
+
+    public Double getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(Double longitud) {
+        this.longitud = longitud;
+    }
 
 
     public static final class Builder {
@@ -148,6 +196,10 @@ public class Office implements Parcelable {
         private String tipocentro;
         private String direccion;
         private String numvia;
+        private String localidad;
+        private String email;
+        private Double latitud;
+        private Double longitud;
 
         public Builder() {
         }
@@ -192,8 +244,29 @@ public class Office implements Parcelable {
             return this;
         }
 
+        public Builder localidad(String val) {
+            localidad = val;
+            return this;
+        }
+
+        public Builder email(String val) {
+            email = val;
+            return this;
+        }
+
+        public Builder latitud(Double val) {
+            latitud = val;
+            return this;
+        }
+
+        public Builder longitud(Double val) {
+            longitud = val;
+            return this;
+        }
+
         public Office build() {
             return new Office(this);
         }
     }
 }
+

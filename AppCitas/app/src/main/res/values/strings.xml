@@ -57,6 +57,7 @@
     <string name="logout">LOG OUT</string>
 
     <!-- String for exceptions -->
+    <string name="generic_title_error">Error</string>
     <string name="generic_error">Se ha producido un error</string>
 
     <!-- Strings for signup process -->
