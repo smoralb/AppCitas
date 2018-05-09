@@ -18,6 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="@dimen/image_logo_height"
         android:layout_margin="@dimen/spacing_xsmall"
+        android:gravity="center_vertical"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/iv_item_imageview"

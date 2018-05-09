@@ -2,7 +2,6 @@ package com.example.sergiomoral.appcitas.data.manager.signin.imp;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,8 +12,6 @@ import com.example.sergiomoral.appcitas.data.manager.BaseManager;
 import com.example.sergiomoral.appcitas.data.manager.signin.AuthManager;
 import com.example.sergiomoral.appcitas.domain.entities.User;
 import com.example.sergiomoral.appcitas.presentation.ui.dialogs.base.DialogManager;
-import com.example.sergiomoral.appcitas.presentation.ui.view.SignUpActivity.SignUpActivity;
-import com.example.sergiomoral.appcitas.presentation.utils.constants.BuildData;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -22,9 +19,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -86,12 +80,12 @@ public class AuthManagerImp extends BaseManager implements AuthManager {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            mDialogManager.showSuccessSignUp(R.drawable.ic_ok, R.string.success_title, R.string.success_message,activity);
+                            mDialogManager.showSuccess(R.drawable.ic_ok, R.string.success_title, R.string.success_message,activity);
                             FirebaseUser user = mAuth.getCurrentUser();
                             mDataBase.child("USERSLIST").child(user.getUid()).setValue(mUser);
                             Log.d("AuthManagerImp", "signUpWithEmail:success");
                         } else {
-                            mDialogManager.showErrorSignUp(R.drawable.ic_error, R.string.generic_error, R.string.error_user,activity);
+                            mDialogManager.showError(R.drawable.ic_error, R.string.generic_error, R.string.error_user,activity);
                             Log.w("AuthManagerImp", "signUpWithEmail:failure", task.getException());
                         }
                     }

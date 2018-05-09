@@ -87,7 +87,7 @@ public abstract class BaseFragment extends Fragment {
     }
 
     public void showError(int message) {
-        mDialogManager.showErrorSignUp(R.drawable.ic_error, R.string.generic_error, message,null);
+        mDialogManager.showError(R.drawable.ic_error, R.string.generic_error, message,null);
     }
 
     protected ApplicationComponent getAppComponent() {

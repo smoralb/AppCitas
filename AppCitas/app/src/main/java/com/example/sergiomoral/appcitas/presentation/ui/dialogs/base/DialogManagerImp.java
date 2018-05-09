@@ -76,7 +76,7 @@ public class DialogManagerImp implements DialogManager {
     }
 
     @Override
-    public void showSuccessSignUp(int icon, int title, int msg, Activity activity) {
+    public void showSuccess(int icon, int title, int msg, Activity activity) {
         mErrorDialog.serErrorIcon(icon);
         mErrorDialog.setErrorTitle(title);
         mErrorDialog.setErrorMessage(msg);
@@ -86,7 +86,7 @@ public class DialogManagerImp implements DialogManager {
     }
 
     @Override
-    public void showErrorSignUp(int icon, int title, int msg, Activity activity) {
+    public void showError(int icon, int title, int msg, Activity activity) {
         mErrorDialog.serErrorIcon(icon);
         mErrorDialog.setErrorTitle(title);
         mErrorDialog.setErrorMessage(msg);

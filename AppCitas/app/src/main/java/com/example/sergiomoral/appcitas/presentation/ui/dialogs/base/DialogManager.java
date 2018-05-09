@@ -26,9 +26,9 @@ public interface DialogManager {
 
     void showNetworkError(@StringRes int msg);
 
-    void showSuccessSignUp(@DrawableRes int icon, @StringRes int title, @StringRes int msg, Activity activity);
+    void showSuccess(@DrawableRes int icon, @StringRes int title, @StringRes int msg, Activity activity);
 
-    void showErrorSignUp(@DrawableRes int icon, @StringRes int title, @StringRes int msg, Activity activity);
+    void showError(@DrawableRes int icon, @StringRes int title, @StringRes int msg, Activity activity);
 
 
 }
