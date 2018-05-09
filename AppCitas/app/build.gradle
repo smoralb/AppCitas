@@ -45,6 +45,7 @@ dependencies {
     //BlurDialogFragment
     compile 'fr.tvbarthel.blurdialogfragment:lib:2.2.0'
     //Firebase Authentication
+    //noinspection GradleCompatible
     implementation 'com.google.firebase:firebase-auth:15.0.0'
     //Firebase RealTimeDatabase
     compile 'com.google.firebase:firebase-database:15.0.0'
@@ -67,6 +68,7 @@ dependencies {
     //Google maps API
     compile 'com.google.android.gms:play-services-location:15.0.0'
     compile 'com.google.android.gms:play-services-maps:15.0.0'
+
 
 }
 apply plugin: 'com.google.gms.google-services'
