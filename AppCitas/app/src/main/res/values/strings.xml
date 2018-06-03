@@ -70,11 +70,28 @@
     <string name="appointment_hour">Hora: </string>
     <string name="email_not_disponible">No hay email disponible</string>
     <string name="phone_not_disponible">No hy teléfono disponible</string>
-    <string name="appointment_details">Detalles de cita</string>
-    <string name="btn_delete">ELIMINAR</string>
-    <string name="btn_modify">Modificar</string>
+
+    <!-- Alert dialog -->
     <string name="dialog_warning_title">¿Está seguro de eliminar su cita?</string>
     <string name="dialog_warning_message">Su cita quedaría eliminada permanentemente</string>
+
+    <!-- Appointment details -->
+    <string name="appointment_details">Detalles de cita</string>
+    <string name="btn_delete">ELIMINAR</string>
+    <string name="btn_modify">MODIFICAR</string>
+
+    <!-- Create appointment -->
+    <string name="tv_service">Servicio</string>
+    <string name="et_select_service">Seleccione un servicio</string>
+    <string name="stablishment">Establecimiento</string>
+    <string name="et_stablishment">Seleccione un establecimiento</string>
+    <string name="tv_location">Localidad</string>
+    <string name="et_select_location">Seleccione una localidad</string>
+    <string name="tv_select_hour">Seleccione una hora</string>
+    <string name="et_select_hour">Seleccione una hora</string>
+    <string name="tv_select_date">Seleccione una fecha</string>
+    <string name="et_select_date">Seleccione una fecha</string>
+    <string name="btn_request_appointment">PEDIR CITA</string>
 
 
 </resources>

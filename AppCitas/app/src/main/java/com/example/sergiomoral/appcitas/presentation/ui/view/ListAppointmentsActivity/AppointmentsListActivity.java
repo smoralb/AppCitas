@@ -4,6 +4,7 @@ package com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsAc
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -28,6 +29,7 @@ import java.util.ArrayList;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by sergiomoral on 8/2/18.
@@ -44,6 +46,8 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
     View contentHamburger;
     @BindView(R.id.rw_appointments)
     RecyclerView recyclerAppointments;
+    @BindView(R.id.create_appointment)
+    FloatingActionButton createAppointment;
 
     @Inject
     AppointmentsListPresenter mPresenter;
@@ -81,7 +85,6 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
             getSupportActionBar().setTitle(null);
         }
         initGuillotineMenu();
-        initFloatingButton();
     }
 
     public void initGuillotineMenu() {
@@ -101,8 +104,9 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
 
     }
 
+    @OnClick(R.id.create_appointment)
     public void initFloatingButton() {
-        Toast.makeText(this, "Falta por implementar", Toast.LENGTH_SHORT).show();
+
     }
 
     @Override

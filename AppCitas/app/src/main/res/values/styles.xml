@@ -15,6 +15,7 @@
     </style>
 
 
+
     <style name="LinearLayout" />
 
     <style name="LinearLayout.GuillotineItem">
@@ -24,7 +25,21 @@
         <item name="android:layout_marginTop">@dimen/guillotine_small_margin</item>
     </style>
 
-    <style name="TextView" />
+    <style name="TextView" >
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/font_large</item>
+        <item name="android:layout_marginStart">@dimen/spacing_medium</item>
+        <item name="android:layout_marginTop">@dimen/spacing_xsmall</item>
+    </style>
+
+    <style name="EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd">@dimen/spacing_medium</item>
+        <item name="android:layout_marginStart">@dimen/spacing_medium</item>
+    </style>
 
     <style name="TextView.ToolbarTitle">
         <item name="android:gravity">center</item>
