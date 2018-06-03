@@ -9,4 +9,7 @@ public interface AppointmentDetailsView {
     void showLoading();
 
     void hideLoading();
+
+    void goToAppointments();
+
 }

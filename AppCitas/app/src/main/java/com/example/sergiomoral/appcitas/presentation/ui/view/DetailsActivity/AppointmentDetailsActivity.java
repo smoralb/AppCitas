@@ -162,6 +162,7 @@ public class AppointmentDetailsActivity extends BaseActivity implements Appointm
         mDialogManager.showAlert(R.string.dialog_warning_title, R.string.dialog_warning_message, this, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mDialogManager.hideAlertDialog();
                 mPresenter.deleteAppointment(mAppointment);
             }
         });
@@ -180,7 +181,11 @@ public class AppointmentDetailsActivity extends BaseActivity implements Appointm
 
     @Override
     public void attachViewToPresenter() {
-
+        mPresenter.attachView(this);
     }
 
+    @Override
+    public void goToAppointments() {
+        finish();
+    }
 }

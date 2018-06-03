@@ -34,4 +34,6 @@ public interface DialogManager {
     void showError(@DrawableRes int icon, @StringRes int title, @StringRes int msg, Activity activity);
 
     void showAlert(int title, int message, Activity activity, View.OnClickListener listener);
+
+    void hideAlertDialog();
 }

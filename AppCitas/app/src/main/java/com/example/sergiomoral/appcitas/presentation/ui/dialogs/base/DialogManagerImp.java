@@ -103,6 +103,14 @@ public class DialogManagerImp implements DialogManager {
         show(mAlertDialog);
     }
 
+    @Override
+    public void hideAlertDialog() {
+        if (mAlertDialog != null) {
+            mAlertDialog.dismiss();
+        }
+    }
+
+
     private void show(@NonNull BaseDialog baseDialog) {
         try {
             if (mActivity != null && !mActivity.isFinishing()) {

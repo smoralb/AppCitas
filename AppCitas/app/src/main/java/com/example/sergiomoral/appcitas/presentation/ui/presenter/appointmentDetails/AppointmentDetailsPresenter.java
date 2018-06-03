@@ -43,29 +43,38 @@ public class AppointmentDetailsPresenter implements Presenter<AppointmentDetails
         }
     }
 
-    public void deleteAppointment (Appointment appointment){
-        //showLoading();
-        Query mQuery = mDatabase
+    public void deleteAppointment(Appointment appointment) {
+        showLoading();
+       /* Query mQuery = mDatabase
                 .child("LISTACITAS")
                 .child(appointment.getIdcita());
-
+*/
+        DatabaseReference localReference = FirebaseDatabase.getInstance().getReference().child("LISTACITAS").child(appointment.getIdcita());
+        localReference.removeValue();
+        hideLoading();
+        mView.goToAppointments();
+/*
         mQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot dataSnapshotDelete : dataSnapshot.getChildren()){
+                for (DataSnapshot dataSnapshotDelete : dataSnapshot.getChildren()) {
+                    hideLoading();
                     dataSnapshotDelete.getRef().removeValue();
+                    mView.goToAppointments();
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 hideLoading();
+                mView.goToAppointments();
             }
         });
+        */
     }
 
     private void hideLoading() {
-        if (mView != null){
+        if (mView != null) {
             mView.hideLoading();
         }
     }

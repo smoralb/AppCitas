@@ -6,6 +6,16 @@
     android:layout_height="wrap_content">
 
     <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/spacing_xsmall"
+        android:src="@drawable/ic_right_arrow"
+        android:tint="@color/cpb_grey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
         android:id="@+id/iv_item_imageview"
         android:layout_width="@dimen/image_logo_width"
         android:layout_height="@dimen/image_logo_height"

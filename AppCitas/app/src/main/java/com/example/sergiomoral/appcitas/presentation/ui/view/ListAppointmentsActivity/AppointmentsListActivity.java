@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
 import com.example.sergiomoral.appcitas.R;
 import com.example.sergiomoral.appcitas.domain.entities.Appointment;
 import com.example.sergiomoral.appcitas.presentation.base.BaseActivity;
@@ -50,12 +51,14 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
     View guillotineMenu;
     String userToken;
     private ArrayList<Appointment> mAppointments;
+    private AppointmentListAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         userToken = getIntent().getStringExtra(BuildData.USER_TOKEN);
+        recyclerAppointments.invalidate();
         mPresenter.requestData(userToken);
     }
 
@@ -117,16 +120,30 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
     public void showAppointments(ArrayList<Appointment> appointments) {
         mAppointments = appointments;
         recyclerAppointments.setLayoutManager(new LinearLayoutManager(this));
-        AppointmentListAdapter adapter = new AppointmentListAdapter(this, appointments, new onItemClickListener() {
+        adapter = new AppointmentListAdapter(this, appointments, new onItemClickListener() {
             @Override
             public void onItemClick(Appointment item) {
                 Intent gotToDetails = new Intent(AppointmentsListActivity.this, AppointmentDetailsActivity.class);
                 gotToDetails.putExtra(BuildData.ITEM_APPOINTMENT, item);
                 startActivity(gotToDetails);
-
             }
         });
         recyclerAppointments.setAdapter(adapter);
         hideLoading();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mAppointments != null) {
+            mAppointments.clear();
+            adapter.notifyDataSetChanged();
+            mPresenter.requestData(userToken);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
     }
 }

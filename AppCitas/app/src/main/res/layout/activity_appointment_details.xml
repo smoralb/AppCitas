@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_small"
                 android:fontFamily="@font/nunito_extralight"
-                android:textSize="@dimen/font_large"
+                android:textSize="@dimen/font_xlarge"
                 app:layout_constraintLeft_toRightOf="@id/iv_commerce_logo"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Commerce" />
