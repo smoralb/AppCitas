@@ -112,10 +112,12 @@ public class AppointmentsListPresenter implements Presenter<AppointmentsListView
                 ArrayList<Appointment> appointments = dataSnapshot.child("LISTACITAS").getValue(typeIndicator);
                 int index = 0;
                 for (Appointment appointment : appointments) {
-                    if (appointments.get(index).getUserID().equals(userToken)) {
-                        mAppointmentsFilteredByUser.add(appointment);
-                        index++;
-                    }
+                    if (appointment != null) {
+                        if (appointments.get(index).getUserID().equals(userToken)) {
+                            mAppointmentsFilteredByUser.add(appointment);
+                            index++;
+                        }
+                    } else index++;
                 }
                 mView.showAppointments(mAppointmentsFilteredByUser);
             }
