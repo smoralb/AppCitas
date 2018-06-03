@@ -1,12 +1,7 @@
 package com.example.sergiomoral.appcitas.presentation.ui.view.DetailsActivity;
 
-import android.app.Fragment;
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.sergiomoral.appcitas.R;
@@ -14,6 +9,7 @@ import com.example.sergiomoral.appcitas.domain.entities.Appointment;
 import com.example.sergiomoral.appcitas.presentation.base.BaseActivity;
 import com.example.sergiomoral.appcitas.presentation.di.components.DaggerActivityComponent;
 import com.example.sergiomoral.appcitas.presentation.ui.dialogs.base.DialogManager;
+import com.example.sergiomoral.appcitas.presentation.ui.presenter.appointmentDetails.AppointmentDetailsPresenter;
 import com.example.sergiomoral.appcitas.presentation.utils.Utils;
 import com.example.sergiomoral.appcitas.presentation.utils.constants.BuildData;
 
@@ -56,7 +52,11 @@ public class AppointmentDetailsActivity extends BaseActivity implements Appointm
     @Inject
     DialogManager mDialogManager;
 
+    @Inject
+    AppointmentDetailsPresenter mPresenter;
+
     public String url;
+    public Appointment mAppointment;
 
 
     @Override
@@ -71,37 +71,49 @@ public class AppointmentDetailsActivity extends BaseActivity implements Appointm
     protected void initUI() {
 
 
-        Appointment appointmentSelected = (Appointment) getIntent().getExtras().get(BuildData.ITEM_APPOINTMENT);
+        mAppointment = (Appointment) getIntent().getExtras().get(BuildData.ITEM_APPOINTMENT);
 
-        if (appointmentSelected != null) {
+        if (mAppointment != null) {
 
-            url = "http://maps.google.com/maps/api/staticmap?center=" + appointmentSelected.getOficina().getLatitud() + ","
-                    + appointmentSelected.getOficina().getLongitud()
+            url = "http://maps.google.com/maps/api/staticmap?center=" + mAppointment.getOficina().getLatitud() + ","
+                    + mAppointment.getOficina().getLongitud()
                     + "&zoom=15&"
                     + "size=400x200"
                     + "&sensor=false&markers=color:green%7Clabel:G%7C"
-                    + appointmentSelected.getOficina().getLatitud()
+                    + mAppointment.getOficina().getLatitud()
                     + ", "
-                    + appointmentSelected.getOficina().getLongitud()
+                    + mAppointment.getOficina().getLongitud()
                     + "&key="
                     + getString(R.string.google_api_key);
 
 
             loadMapPreview();
 
-            String road = appointmentSelected.getOficina().getDireccion();
-            String city = appointmentSelected.getOficina().getCiudad();
-            String zipCode = appointmentSelected.getOficina().getCodpostal();
-            String numVia = appointmentSelected.getOficina().getNumvia();
-            String roadType = appointmentSelected.getOficina().getTipovia();
-            String localidad = appointmentSelected.getOficina().getLocalidad();
-            String email = appointmentSelected.getOficina().getEmail();
-            String phone = appointmentSelected.getOficina().getTelefono();
+            String road = mAppointment.getOficina().getDireccion();
+            String city = mAppointment.getOficina().getCiudad();
+            String zipCode = mAppointment.getOficina().getCodpostal();
+            String numVia = mAppointment.getOficina().getNumvia();
+            String roadType = mAppointment.getOficina().getTipovia();
+            String localidad = mAppointment.getOficina().getLocalidad();
+            String email = mAppointment.getOficina().getEmail();
+            String phone = mAppointment.getOficina().getTelefono();
 
-            mCommerceName.setText(appointmentSelected.getOficina().getNombrelocal());
-            mAppointmentDate.setText(appointmentSelected.getFechacita());
-            mAppointmentHour.setText(appointmentSelected.getHoracita());
+            mCommerceName.setText(mAppointment.getOficina().getNombrelocal());
+            mAppointmentDate.setText(mAppointment.getFechacita());
+            mAppointmentHour.setText(mAppointment.getHoracita());
             mCommerceAddress.setText(Utils.addressFormat(roadType, localidad, road, city, numVia, zipCode));
+
+            if (email != null) {
+                mCommerceMail.setText(email);
+            } else {
+                mCommerceMail.setText(R.string.email_not_disponible);
+            }
+            if (phone != null) {
+                mCommercePhone.setText(phone);
+            } else {
+                mCommercePhone.setText(R.string.phone_not_disponible);
+            }
+            mCommercePhone.setText(phone);
 
         } else
             mDialogManager.showError(R.drawable.ic_error, R.string.generic_title_error, R.string.generic_error, this);
@@ -136,6 +148,9 @@ public class AppointmentDetailsActivity extends BaseActivity implements Appointm
     @OnClick(R.id.btn_delete)
     public void deleteAppointment() {
         // TODO: 8/5/18 Accion de eliminar cita
+        mPresenter.deleteAppointment(mAppointment);
+
+
     }
 
     @OnClick(R.id.iv_back)

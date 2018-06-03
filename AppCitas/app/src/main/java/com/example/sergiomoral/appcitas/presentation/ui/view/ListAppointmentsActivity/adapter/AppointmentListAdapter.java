@@ -3,6 +3,7 @@ package com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsAc
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.sergiomoral.appcitas.R;
 import com.example.sergiomoral.appcitas.domain.entities.Appointment;
+import com.example.sergiomoral.appcitas.presentation.utils.Utils;
 import com.example.sergiomoral.appcitas.presentation.utils.constants.BuildData;
 
 import java.util.ArrayList;
@@ -53,6 +55,9 @@ public class AppointmentListAdapter extends RecyclerView.Adapter<AppointmentList
         holder.mItemDate.setText(mAppointments.get(position).getFechacita());
         holder.mItemHour.setText(mAppointments.get(position).getHoracita());
         holder.mItemTitle.setText(mAppointments.get(position).getOficina().getNombrelocal());
+        String url = mAppointments.get(position).getOficina().getLogo();
+        byte[] imageByteArray = Base64.decode(url, Base64.DEFAULT);
+        holder.mItemPicture.setImageBitmap(Utils.getBitmapFromBase64(imageByteArray));
         holder.bind(mAppointments.get(position), itemListener);
 
     }

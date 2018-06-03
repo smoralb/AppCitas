@@ -3,7 +3,6 @@ package com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsAc
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,7 +16,7 @@ import com.example.sergiomoral.appcitas.R;
 import com.example.sergiomoral.appcitas.domain.entities.Appointment;
 import com.example.sergiomoral.appcitas.presentation.base.BaseActivity;
 import com.example.sergiomoral.appcitas.presentation.di.components.DaggerActivityComponent;
-import com.example.sergiomoral.appcitas.presentation.ui.presenter.AppointmentsList.AppointmentsListPresenter;
+import com.example.sergiomoral.appcitas.presentation.ui.presenter.appointmentsList.AppointmentsListPresenter;
 import com.example.sergiomoral.appcitas.presentation.ui.view.DetailsActivity.AppointmentDetailsActivity;
 import com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsActivity.adapter.AppointmentListAdapter;
 import com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsActivity.adapter.onItemClickListener;
@@ -50,6 +49,7 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
 
     View guillotineMenu;
     String userToken;
+    private ArrayList<Appointment> mAppointments;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -115,6 +115,7 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
 
     @Override
     public void showAppointments(ArrayList<Appointment> appointments) {
+        mAppointments = appointments;
         recyclerAppointments.setLayoutManager(new LinearLayoutManager(this));
         AppointmentListAdapter adapter = new AppointmentListAdapter(this, appointments, new onItemClickListener() {
             @Override

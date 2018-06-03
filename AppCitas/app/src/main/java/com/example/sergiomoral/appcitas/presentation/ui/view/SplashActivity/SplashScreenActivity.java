@@ -6,7 +6,7 @@ import android.content.Intent;
 import com.example.sergiomoral.appcitas.R;
 import com.example.sergiomoral.appcitas.presentation.base.BaseActivity;
 import com.example.sergiomoral.appcitas.presentation.di.components.DaggerActivityComponent;
-import com.example.sergiomoral.appcitas.presentation.ui.presenter.Splash.SplashScreenPresenter;
+import com.example.sergiomoral.appcitas.presentation.ui.presenter.splash.SplashScreenPresenter;
 import com.example.sergiomoral.appcitas.presentation.ui.view.NetworkErrorActivity.NetworkErrorActivity;
 
 import java.util.Timer;

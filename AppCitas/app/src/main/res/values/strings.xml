@@ -68,6 +68,8 @@
     <!-- Appointments list item-->
     <string name="appointment_date">Fecha: </string>
     <string name="appointment_hour">Hora: </string>
+    <string name="email_not_disponible">No hay email disponible</string>
+    <string name="phone_not_disponible">No hy teléfono disponible</string>
 
 
 </resources>

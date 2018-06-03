@@ -5,7 +5,7 @@ import android.widget.EditText;
 
 import com.example.sergiomoral.appcitas.R;
 import com.example.sergiomoral.appcitas.presentation.di.components.DaggerActivityComponent;
-import com.example.sergiomoral.appcitas.presentation.ui.presenter.SignUp.PersonalDataPresenter;
+import com.example.sergiomoral.appcitas.presentation.ui.presenter.signUp.PersonalDataPresenter;
 import com.example.sergiomoral.appcitas.presentation.ui.view.BaseFragment;
 
 import javax.inject.Inject;

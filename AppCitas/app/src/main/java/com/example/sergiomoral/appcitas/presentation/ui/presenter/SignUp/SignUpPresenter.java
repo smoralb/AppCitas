@@ -1,6 +1,5 @@
-package com.example.sergiomoral.appcitas.presentation.ui.presenter.SignUp;
+package com.example.sergiomoral.appcitas.presentation.ui.presenter.signUp;
 
-import android.app.Activity;
 import android.content.Context;
 
 import com.example.sergiomoral.appcitas.data.manager.signin.AuthManager;

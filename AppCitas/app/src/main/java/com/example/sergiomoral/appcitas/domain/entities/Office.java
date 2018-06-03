@@ -22,20 +22,22 @@ public class Office implements Parcelable {
     private String email;
     private Double latitud;
     private Double longitud;
+    private String logo;
 
     private Office(Builder builder) {
-        setNombrelocal(builder.nombrelocal);
-        setCiudad(builder.ciudad);
-        setTelefono(builder.telefono);
-        setTipovia(builder.tipovia);
-        setCodpostal(builder.codpostal);
-        setTipocentro(builder.tipocentro);
-        setDireccion(builder.direccion);
-        setNumvia(builder.numvia);
-        setLocalidad(builder.localidad);
-        setEmail(builder.email);
-        setLatitud(builder.latitud);
-        setLongitud(builder.longitud);
+        nombrelocal = builder.nombrelocal;
+        ciudad = builder.ciudad;
+        telefono = builder.telefono;
+        tipovia = builder.tipovia;
+        codpostal = builder.codpostal;
+        tipocentro = builder.tipocentro;
+        direccion = builder.direccion;
+        numvia = builder.numvia;
+        localidad = builder.localidad;
+        email = builder.email;
+        latitud = builder.latitud;
+        longitud = builder.longitud;
+        logo = builder.logo;
     }
 
 
@@ -58,37 +60,11 @@ public class Office implements Parcelable {
         dest.writeString(this.email);
         dest.writeValue(this.latitud);
         dest.writeValue(this.longitud);
+        dest.writeString(this.logo);
     }
 
     public Office() {
     }
-
-    protected Office(Parcel in) {
-        this.nombrelocal = in.readString();
-        this.ciudad = in.readString();
-        this.telefono = in.readString();
-        this.tipovia = in.readString();
-        this.codpostal = in.readString();
-        this.tipocentro = in.readString();
-        this.direccion = in.readString();
-        this.numvia = in.readString();
-        this.localidad = in.readString();
-        this.email = in.readString();
-        this.latitud = (Double) in.readValue(Double.class.getClassLoader());
-        this.longitud = (Double) in.readValue(Double.class.getClassLoader());
-    }
-
-    public static final Creator<Office> CREATOR = new Creator<Office>() {
-        @Override
-        public Office createFromParcel(Parcel source) {
-            return new Office(source);
-        }
-
-        @Override
-        public Office[] newArray(int size) {
-            return new Office[size];
-        }
-    };
 
     public String getNombrelocal() {
         return nombrelocal;
@@ -186,6 +162,42 @@ public class Office implements Parcelable {
         this.longitud = longitud;
     }
 
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
+
+    protected Office(Parcel in) {
+        this.nombrelocal = in.readString();
+        this.ciudad = in.readString();
+        this.telefono = in.readString();
+        this.tipovia = in.readString();
+        this.codpostal = in.readString();
+        this.tipocentro = in.readString();
+        this.direccion = in.readString();
+        this.numvia = in.readString();
+        this.localidad = in.readString();
+        this.email = in.readString();
+        this.latitud = (Double) in.readValue(Double.class.getClassLoader());
+        this.longitud = (Double) in.readValue(Double.class.getClassLoader());
+        this.logo = in.readString();
+    }
+
+    public static final Creator<Office> CREATOR = new Creator<Office>() {
+        @Override
+        public Office createFromParcel(Parcel source) {
+            return new Office(source);
+        }
+
+        @Override
+        public Office[] newArray(int size) {
+            return new Office[size];
+        }
+    };
+
 
     public static final class Builder {
         private String nombrelocal;
@@ -200,6 +212,7 @@ public class Office implements Parcelable {
         private String email;
         private Double latitud;
         private Double longitud;
+        private String logo;
 
         public Builder() {
         }
@@ -261,6 +274,11 @@ public class Office implements Parcelable {
 
         public Builder longitud(Double val) {
             longitud = val;
+            return this;
+        }
+
+        public Builder logo(String val) {
+            logo = val;
             return this;
         }
 

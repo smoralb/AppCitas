@@ -1,24 +1,35 @@
-package com.example.sergiomoral.appcitas.presentation.ui.presenter.AppointmentsList;
+package com.example.sergiomoral.appcitas.presentation.ui.presenter.appointmentsList;
 
+import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.example.sergiomoral.appcitas.Appointments;
 import com.example.sergiomoral.appcitas.R;
 import com.example.sergiomoral.appcitas.domain.entities.Appointment;
 import com.example.sergiomoral.appcitas.presentation.ui.presenter.Presenter;
 import com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsActivity.AppointmentsListView;
 import com.example.sergiomoral.appcitas.presentation.utils.constants.BuildData;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.yalantis.guillotine.animation.GuillotineAnimation;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,12 +52,6 @@ public class AppointmentsListPresenter implements Presenter<AppointmentsListView
     @Inject
     public AppointmentsListPresenter() {
         mDatabase = FirebaseDatabase.getInstance().getReference();
-
-    }
-
-
-    public List<Appointment> getAppointments() {
-        return mAppointments;
     }
 
     @Override
@@ -95,20 +100,20 @@ public class AppointmentsListPresenter implements Presenter<AppointmentsListView
     }
 
     public void requestData(final String userToken) {
-        mView.showLoading();
+        showLoading();
+
+        mDatabase.child("LISTACITAS").keepSynced(true);
 
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                GenericTypeIndicator<ArrayList<Appointment>> t = new GenericTypeIndicator<ArrayList<Appointment>>() {
+                GenericTypeIndicator<ArrayList<Appointment>> typeIndicator = new GenericTypeIndicator<ArrayList<Appointment>>() {
                 };
-                ArrayList<Appointment> appointments = dataSnapshot.child("LISTACITAS").getValue(t);
+                ArrayList<Appointment> appointments = dataSnapshot.child("LISTACITAS").getValue(typeIndicator);
                 int index = 0;
                 for (Appointment appointment : appointments) {
                     if (appointments.get(index).getUserID().equals(userToken)) {
                         mAppointmentsFilteredByUser.add(appointment);
-                        index++;
-                    } else {
                         index++;
                     }
                 }
@@ -122,7 +127,6 @@ public class AppointmentsListPresenter implements Presenter<AppointmentsListView
             }
         });
     }
-
 
     public void initGuillotineAnimation(View guillotineMenu, Toolbar toolbar, View contentHamburger) {
         new GuillotineAnimation.GuillotineBuilder(guillotineMenu, guillotineMenu.findViewById(R.id.guillotine_hamburger), contentHamburger)

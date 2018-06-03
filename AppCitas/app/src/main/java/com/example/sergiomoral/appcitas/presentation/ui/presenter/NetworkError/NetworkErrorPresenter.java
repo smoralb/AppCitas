@@ -1,4 +1,4 @@
-package com.example.sergiomoral.appcitas.presentation.ui.presenter.NetworkError;
+package com.example.sergiomoral.appcitas.presentation.ui.presenter.networkError;
 
 import com.example.sergiomoral.appcitas.presentation.ui.presenter.Presenter;
 import com.example.sergiomoral.appcitas.presentation.ui.view.NetworkErrorActivity.NetworkErrorView;

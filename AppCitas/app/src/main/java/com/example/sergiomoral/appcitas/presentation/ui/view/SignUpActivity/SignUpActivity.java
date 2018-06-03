@@ -9,7 +9,7 @@ import com.example.sergiomoral.appcitas.domain.entities.User;
 import com.example.sergiomoral.appcitas.presentation.base.BaseActivity;
 import com.example.sergiomoral.appcitas.presentation.di.components.DaggerActivityComponent;
 import com.example.sergiomoral.appcitas.presentation.ui.dialogs.base.DialogManager;
-import com.example.sergiomoral.appcitas.presentation.ui.presenter.SignUp.SignUpPresenter;
+import com.example.sergiomoral.appcitas.presentation.ui.presenter.signUp.SignUpPresenter;
 import com.example.sergiomoral.appcitas.presentation.ui.view.SignUpActivity.sections.PersonalDataFragment;
 import com.example.sergiomoral.appcitas.presentation.ui.view.SignUpActivity.sections.UserDataFragment;
 import com.example.sergiomoral.appcitas.presentation.utils.constants.BuildData;

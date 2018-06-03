@@ -10,9 +10,9 @@
         android:layout_width="@dimen/image_logo_width"
         android:layout_height="@dimen/image_logo_height"
         android:layout_margin="@dimen/spacing_xsmall"
-        android:background="@color/app_primary_color"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:background="@color/app_primary_color" />
 
     <LinearLayout
         android:layout_width="wrap_content"

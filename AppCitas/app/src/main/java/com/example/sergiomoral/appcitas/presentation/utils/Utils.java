@@ -1,5 +1,8 @@
 package com.example.sergiomoral.appcitas.presentation.utils;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
 /**
  * Created by sergiomoral on 2/5/18.
  */
@@ -24,5 +27,9 @@ public class Utils {
             default:
                 return "--";
         }
+    }
+
+    public static Bitmap getBitmapFromBase64 (byte[] base64Value){
+        return BitmapFactory.decodeByteArray(base64Value, 0, base64Value.length);
     }
 }

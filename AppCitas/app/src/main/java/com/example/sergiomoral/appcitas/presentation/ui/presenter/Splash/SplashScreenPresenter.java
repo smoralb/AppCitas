@@ -1,4 +1,4 @@
-package com.example.sergiomoral.appcitas.presentation.ui.presenter.Splash;
+package com.example.sergiomoral.appcitas.presentation.ui.presenter.splash;
 
 import com.example.sergiomoral.appcitas.presentation.ui.presenter.Presenter;
 import com.example.sergiomoral.appcitas.presentation.ui.view.SplashActivity.SplashScreenView;

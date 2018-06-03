@@ -5,4 +5,8 @@ package com.example.sergiomoral.appcitas.presentation.ui.view.DetailsActivity;
  */
 
 public interface AppointmentDetailsView {
+
+    void showLoading();
+
+    void hideLoading();
 }

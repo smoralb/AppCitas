@@ -1,4 +1,4 @@
-package com.example.sergiomoral.appcitas.presentation.ui.presenter.SignUp;
+package com.example.sergiomoral.appcitas.presentation.ui.presenter.signUp;
 
 import com.example.sergiomoral.appcitas.presentation.ui.presenter.Presenter;
 import com.example.sergiomoral.appcitas.presentation.ui.view.SignUpActivity.sections.UserDataView;

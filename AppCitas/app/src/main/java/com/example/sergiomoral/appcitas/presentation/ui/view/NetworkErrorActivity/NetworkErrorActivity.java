@@ -4,7 +4,7 @@ import com.example.sergiomoral.appcitas.R;
 import com.example.sergiomoral.appcitas.presentation.base.BaseActivity;
 import com.example.sergiomoral.appcitas.presentation.di.components.DaggerActivityComponent;
 import com.example.sergiomoral.appcitas.presentation.ui.dialogs.base.DialogManager;
-import com.example.sergiomoral.appcitas.presentation.ui.presenter.NetworkError.NetworkErrorPresenter;
+import com.example.sergiomoral.appcitas.presentation.ui.presenter.networkError.NetworkErrorPresenter;
 
 import javax.inject.Inject;
 
