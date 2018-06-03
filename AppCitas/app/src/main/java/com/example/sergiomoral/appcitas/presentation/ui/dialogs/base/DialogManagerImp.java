@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.sergiomoral.appcitas.R;
+import com.example.sergiomoral.appcitas.presentation.ui.dialogs.AlertDialog;
 import com.example.sergiomoral.appcitas.presentation.ui.dialogs.ErrorDialog;
 import com.example.sergiomoral.appcitas.presentation.ui.dialogs.LoadingDialog;
 
@@ -29,9 +30,8 @@ public class DialogManagerImp implements DialogManager {
     LoadingDialog mLoadingDialog;
     @Inject
     ErrorDialog mErrorDialog;
-
-    @BindView(R.id.btn_ok)
-    Button mButtonAccept;
+    @Inject
+    AlertDialog mAlertDialog;
 
     private Activity mActivity;
 
@@ -92,6 +92,15 @@ public class DialogManagerImp implements DialogManager {
         mErrorDialog.setErrorMessage(msg);
         mErrorDialog.setActivity(activity);
         show(mErrorDialog);
+    }
+
+    @Override
+    public void showAlert(int title, int message, Activity activity, View.OnClickListener listener) {
+        mAlertDialog.setTitle(title);
+        mAlertDialog.setMsg(message);
+        mAlertDialog.setActivity(activity);
+        mAlertDialog.setListener(listener);
+        show(mAlertDialog);
     }
 
     private void show(@NonNull BaseDialog baseDialog) {

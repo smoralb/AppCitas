@@ -70,6 +70,11 @@
     <string name="appointment_hour">Hora: </string>
     <string name="email_not_disponible">No hay email disponible</string>
     <string name="phone_not_disponible">No hy teléfono disponible</string>
+    <string name="appointment_details">Detalles de cita</string>
+    <string name="btn_delete">ELIMINAR</string>
+    <string name="btn_modify">Modificar</string>
+    <string name="dialog_warning_title">¿Está seguro de eliminar su cita?</string>
+    <string name="dialog_warning_message">Su cita quedaría eliminada permanentemente</string>
 
 
 </resources>

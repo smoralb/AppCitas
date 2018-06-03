@@ -1,7 +1,9 @@
 package com.example.sergiomoral.appcitas.presentation.ui.presenter.appointmentDetails;
 
 
+import com.example.sergiomoral.appcitas.R;
 import com.example.sergiomoral.appcitas.domain.entities.Appointment;
+import com.example.sergiomoral.appcitas.presentation.ui.dialogs.base.DialogManagerImp;
 import com.example.sergiomoral.appcitas.presentation.ui.presenter.Presenter;
 import com.example.sergiomoral.appcitas.presentation.ui.view.DetailsActivity.AppointmentDetailsView;
 import com.google.firebase.database.DataSnapshot;
@@ -23,6 +25,9 @@ public class AppointmentDetailsPresenter implements Presenter<AppointmentDetails
     DatabaseReference mDatabase;
 
     @Inject
+    DialogManagerImp mDialogManager;
+
+    @Inject
     public AppointmentDetailsPresenter() {
         mDatabase = FirebaseDatabase.getInstance().getReference();
     }
@@ -39,7 +44,7 @@ public class AppointmentDetailsPresenter implements Presenter<AppointmentDetails
     }
 
     public void deleteAppointment (Appointment appointment){
-        showLoading();
+        //showLoading();
         Query mQuery = mDatabase
                 .child("LISTACITAS")
                 .child(appointment.getIdcita());

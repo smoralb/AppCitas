@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -28,7 +27,7 @@
                 android:id="@+id/iv_commerce_logo"
                 android:layout_width="@dimen/image_detail_width"
                 android:layout_height="@dimen/image_detail_height"
-                android:src="@color/app_primary_color" />
+                tools:background="@color/app_primary_color" />
 
 
             <TextView
@@ -37,17 +36,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_small"
                 android:fontFamily="@font/nunito_extralight"
-                android:text="Commerce"
                 android:textSize="@dimen/font_large"
                 app:layout_constraintLeft_toRightOf="@id/iv_commerce_logo"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Commerce" />
 
             <ImageView
                 android:id="@+id/iv_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_small"
-                android:src="@android:drawable/ic_menu_my_calendar"
+                android:layout_marginTop="@dimen/spacing_xsmall"
+                android:src="@drawable/ic_calendar"
                 app:layout_constraintLeft_toRightOf="@id/iv_commerce_logo"
                 app:layout_constraintTop_toBottomOf="@id/tv_commerce_name" />
 
@@ -56,10 +56,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_small"
-                android:text="21/01/2018"
+                android:layout_marginTop="@dimen/spacing_xsmall"
                 app:layout_constraintBottom_toBottomOf="@id/iv_date"
                 app:layout_constraintLeft_toRightOf="@id/iv_date"
-                app:layout_constraintTop_toBottomOf="@id/tv_commerce_name" />
+                app:layout_constraintTop_toBottomOf="@id/tv_commerce_name"
+                tools:text="21/01/2018" />
 
 
             <ImageView
@@ -67,7 +68,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_small"
-                android:src="@android:drawable/ic_menu_mylocation"
+                android:layout_marginTop="@dimen/spacing_xsmall"
+                android:src="@drawable/ic_clock"
                 app:layout_constraintLeft_toRightOf="@id/iv_commerce_logo"
                 app:layout_constraintTop_toBottomOf="@id/iv_date" />
 
@@ -76,10 +78,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_small"
-                android:text="10:30"
+                android:layout_marginTop="@dimen/spacing_xsmall"
                 app:layout_constraintBottom_toBottomOf="@id/iv_hour"
                 app:layout_constraintLeft_toRightOf="@id/iv_hour"
-                app:layout_constraintTop_toBottomOf="@id/iv_date" />
+                app:layout_constraintTop_toBottomOf="@id/iv_date"
+                tools:text="10:30" />
 
             <Button
                 android:id="@+id/btn_modify"
@@ -88,7 +91,7 @@
                 android:layout_marginBottom="@dimen/spacing_xsmall"
                 android:layout_marginTop="@dimen/spacing_small"
                 android:background="@color/app_primary_color"
-                android:text="Modificar"
+                android:text="@string/btn_modify"
                 android:textColor="@color/cpb_white"
                 app:layout_constraintTop_toBottomOf="@id/iv_commerce_logo" />
 
@@ -105,7 +108,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_small"
-                android:text="Detalles de cita:"
+                android:text="@string/appointment_details"
                 android:textSize="@dimen/font_large"
                 app:layout_constraintTop_toBottomOf="@id/iv_commerce_location" />
 
@@ -115,7 +118,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_small"
-                android:src="@android:drawable/ic_menu_my_calendar"
+                android:src="@drawable/ic_phone_call"
                 app:layout_constraintTop_toBottomOf="@id/tv_appointment_detail" />
 
             <TextView
@@ -124,10 +127,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_small"
                 android:layout_marginTop="@dimen/spacing_small"
-                android:text="914996784"
                 app:layout_constraintBottom_toBottomOf="@id/iv_phone"
                 app:layout_constraintLeft_toRightOf="@id/iv_phone"
-                app:layout_constraintTop_toBottomOf="@id/tv_appointment_detail" />
+                app:layout_constraintTop_toBottomOf="@id/tv_appointment_detail"
+                tools:text="914996784" />
 
 
             <ImageView
@@ -135,7 +138,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_xsmall"
-                android:src="@android:drawable/ic_menu_mylocation"
+                android:src="@drawable/ic_mail"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/iv_phone" />
 
@@ -143,19 +146,19 @@
                 android:id="@+id/tv_commerce_mail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/spacing_small"
+                android:layout_marginStart="@dimen/spacing_small"
                 android:layout_marginTop="@dimen/spacing_xsmall"
-                android:text="commerce@commerce.com"
                 app:layout_constraintBottom_toBottomOf="@id/iv_email"
                 app:layout_constraintLeft_toRightOf="@id/iv_email"
-                app:layout_constraintTop_toBottomOf="@id/tv_commerce_phone" />
+                app:layout_constraintTop_toBottomOf="@id/tv_commerce_phone"
+                tools:text="commerce@commerce.com" />
 
             <ImageView
                 android:id="@+id/iv_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_small"
-                android:src="@android:drawable/ic_menu_mylocation"
+                android:src="@drawable/ic_placeholder"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_commerce_mail" />
 
@@ -165,20 +168,20 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/spacing_small"
                 android:layout_marginTop="@dimen/spacing_small"
-                android:text="C/Alameda,23\nRivas-Vaciamadrid,Madrid"
                 android:visibility="visible"
                 app:layout_constraintLeft_toRightOf="@id/iv_address"
-                app:layout_constraintTop_toBottomOf="@id/tv_commerce_mail" />
+                app:layout_constraintTop_toBottomOf="@id/tv_commerce_mail"
+                tools:text="C/Alameda,23\nRivas-Vaciamadrid,Madrid" />
 
             <Button
                 android:id="@+id/btn_delete"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:layout_marginTop="@dimen/spacing_small"
                 android:layout_marginBottom="@dimen/spacing_medium"
+                android:layout_marginTop="@dimen/spacing_small"
                 android:background="@color/app_primary_color"
-                android:text="ELIMINAR"
+                android:text="@string/btn_delete"
                 android:textColor="@color/cpb_white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_commerce_address" />

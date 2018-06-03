@@ -1,8 +1,11 @@
 package com.example.sergiomoral.appcitas.presentation.ui.view.DetailsActivity;
 
 import android.graphics.drawable.Drawable;
+import android.util.Base64;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.sergiomoral.appcitas.R;
 import com.example.sergiomoral.appcitas.domain.entities.Appointment;
@@ -28,6 +31,9 @@ import butterknife.OnClick;
 
 public class AppointmentDetailsActivity extends BaseActivity implements AppointmentDetailsView {
 
+    @BindView(R.id.iv_commerce_logo)
+    ImageView mCommerceLogo;
+
     @BindView(R.id.tv_commerce_name)
     TextView mCommerceName;
 
@@ -48,6 +54,7 @@ public class AppointmentDetailsActivity extends BaseActivity implements Appointm
 
     @BindView(R.id.iv_commerce_location)
     ImageView mCommerceLocation;
+
 
     @Inject
     DialogManager mDialogManager;
@@ -97,7 +104,10 @@ public class AppointmentDetailsActivity extends BaseActivity implements Appointm
             String localidad = mAppointment.getOficina().getLocalidad();
             String email = mAppointment.getOficina().getEmail();
             String phone = mAppointment.getOficina().getTelefono();
+            String logo = mAppointment.getOficina().getLogo();
+            byte[] logoEncoded = Base64.decode(logo, Base64.DEFAULT);
 
+            mCommerceLogo.setImageBitmap(Utils.getBitmapFromBase64(logoEncoded));
             mCommerceName.setText(mAppointment.getOficina().getNombrelocal());
             mAppointmentDate.setText(mAppointment.getFechacita());
             mAppointmentHour.setText(mAppointment.getHoracita());
@@ -143,14 +153,18 @@ public class AppointmentDetailsActivity extends BaseActivity implements Appointm
     @OnClick(R.id.btn_modify)
     public void modifyAppointment() {
         // TODO: 8/5/18 Accion de modificar cita
+        Toast.makeText(this, "Falta por implementar", Toast.LENGTH_LONG).show();
     }
 
     @OnClick(R.id.btn_delete)
     public void deleteAppointment() {
-        // TODO: 8/5/18 Accion de eliminar cita
-        mPresenter.deleteAppointment(mAppointment);
 
-
+        mDialogManager.showAlert(R.string.dialog_warning_title, R.string.dialog_warning_message, this, new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPresenter.deleteAppointment(mAppointment);
+            }
+        });
     }
 
     @OnClick(R.id.iv_back)
