@@ -18,6 +18,8 @@
     <EditText
         android:id="@+id/et_service"
         style="@style/EditText"
+        android:drawableEnd="@drawable/ic_down_arrow"
+        android:drawableTint="@color/cpb_grey"
         android:hint="@string/et_select_service"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -36,6 +38,8 @@
         android:id="@+id/et_stablishment"
         style="@style/EditText"
         android:hint="@string/et_stablishment"
+        android:drawableEnd="@drawable/ic_down_arrow"
+        android:drawableTint="@color/cpb_grey"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_stablishment" />
 
@@ -53,6 +57,8 @@
         android:hint="@string/et_select_location"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        android:drawableEnd="@drawable/ic_down_arrow"
+        android:drawableTint="@color/cpb_grey"
         app:layout_constraintTop_toBottomOf="@id/tv_location" />
 
     <TextView

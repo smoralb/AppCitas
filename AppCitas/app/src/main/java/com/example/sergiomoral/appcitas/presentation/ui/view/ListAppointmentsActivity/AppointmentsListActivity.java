@@ -19,6 +19,7 @@ import com.example.sergiomoral.appcitas.domain.entities.Appointment;
 import com.example.sergiomoral.appcitas.presentation.base.BaseActivity;
 import com.example.sergiomoral.appcitas.presentation.di.components.DaggerActivityComponent;
 import com.example.sergiomoral.appcitas.presentation.ui.presenter.appointmentsList.AppointmentsListPresenter;
+import com.example.sergiomoral.appcitas.presentation.ui.view.CreateAppointmentActivity.CreateAppointmentActivity;
 import com.example.sergiomoral.appcitas.presentation.ui.view.DetailsActivity.AppointmentDetailsActivity;
 import com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsActivity.adapter.AppointmentListAdapter;
 import com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsActivity.adapter.onItemClickListener;
@@ -106,7 +107,8 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
 
     @OnClick(R.id.create_appointment)
     public void initFloatingButton() {
-
+        Intent createAppointment = new Intent(this, CreateAppointmentActivity.class);
+        startActivity(createAppointment);
     }
 
     @Override
