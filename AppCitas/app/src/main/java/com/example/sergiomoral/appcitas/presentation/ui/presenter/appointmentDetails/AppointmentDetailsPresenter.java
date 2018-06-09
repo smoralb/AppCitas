@@ -4,6 +4,7 @@ import com.example.sergiomoral.appcitas.domain.entities.Appointment;
 import com.example.sergiomoral.appcitas.presentation.ui.dialogs.base.DialogManagerImp;
 import com.example.sergiomoral.appcitas.presentation.ui.presenter.Presenter;
 import com.example.sergiomoral.appcitas.presentation.ui.view.DetailsActivity.AppointmentDetailsView;
+import com.example.sergiomoral.appcitas.presentation.utils.constants.BuildData;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -39,7 +40,7 @@ public class AppointmentDetailsPresenter implements Presenter<AppointmentDetails
 
     public void deleteAppointment(Appointment appointment) {
         showLoading();
-        DatabaseReference localReference = FirebaseDatabase.getInstance().getReference().child("LISTACITAS").child(appointment.getIdcita());
+        DatabaseReference localReference = FirebaseDatabase.getInstance().getReference().child(BuildData.APPOINTMENTS_LIST).child(appointment.getIdcita());
         localReference.removeValue();
         hideLoading();
         mView.goToAppointments();

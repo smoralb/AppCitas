@@ -2,6 +2,7 @@ package com.example.sergiomoral.appcitas.data.manager.signin.imp;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,6 +13,7 @@ import com.example.sergiomoral.appcitas.data.manager.BaseManager;
 import com.example.sergiomoral.appcitas.data.manager.signin.AuthManager;
 import com.example.sergiomoral.appcitas.domain.entities.User;
 import com.example.sergiomoral.appcitas.presentation.ui.dialogs.base.DialogManager;
+import com.example.sergiomoral.appcitas.presentation.utils.constants.BuildData;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -82,7 +84,7 @@ public class AuthManagerImp extends BaseManager implements AuthManager {
                         if (task.isSuccessful()) {
                             mDialogManager.showSuccess(R.drawable.ic_ok, R.string.success_title, R.string.success_message,activity);
                             FirebaseUser user = mAuth.getCurrentUser();
-                            mDataBase.child("USERSLIST").child(user.getUid()).setValue(mUser);
+                            mDataBase.child(BuildData.USERS_LIST).child(user.getUid()).setValue(mUser);
                             Log.d("AuthManagerImp", "signUpWithEmail:success");
                         } else {
                             mDialogManager.showError(R.drawable.ic_error, R.string.generic_error, R.string.error_user,activity);

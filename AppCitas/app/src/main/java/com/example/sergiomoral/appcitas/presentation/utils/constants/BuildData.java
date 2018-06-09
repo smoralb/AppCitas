@@ -24,6 +24,11 @@ public class BuildData {
     public static final String USER_REMEMBER = "userRemember";
     public static final String LOCATION = "location";
 
+    public static final String USERS_LIST = "USERSLIST";
+    public static final String CENTERS_LIST = "LISTACENTROS";
+    public static final String APPOINTMENTS_LIST = "LISTACITAS";
+    public static final String SERVICES = "SERVICIOS";
+
     public static final int USER = 1;
     public static final int PASSWORD = 2;
     public static final int NAV_FORWARD = 3;

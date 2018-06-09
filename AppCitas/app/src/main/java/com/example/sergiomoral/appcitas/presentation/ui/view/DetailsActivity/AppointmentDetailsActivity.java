@@ -33,25 +33,18 @@ public class AppointmentDetailsActivity extends BaseActivity implements Appointm
 
     @BindView(R.id.iv_commerce_logo)
     ImageView mCommerceLogo;
-
     @BindView(R.id.tv_commerce_name)
     TextView mCommerceName;
-
     @BindView(R.id.tv_appointment_date)
     TextView mAppointmentDate;
-
     @BindView(R.id.tv_appointment_hour)
     TextView mAppointmentHour;
-
     @BindView(R.id.tv_commerce_address)
     TextView mCommerceAddress;
-
     @BindView(R.id.tv_commerce_mail)
     TextView mCommerceMail;
-
     @BindView(R.id.tv_commerce_phone)
     TextView mCommercePhone;
-
     @BindView(R.id.iv_commerce_location)
     ImageView mCommerceLocation;
 
@@ -158,7 +151,6 @@ public class AppointmentDetailsActivity extends BaseActivity implements Appointm
 
     @OnClick(R.id.btn_delete)
     public void deleteAppointment() {
-
         mDialogManager.showAlert(R.string.dialog_warning_title, R.string.dialog_warning_message, this, new View.OnClickListener() {
             @Override
             public void onClick(View view) {

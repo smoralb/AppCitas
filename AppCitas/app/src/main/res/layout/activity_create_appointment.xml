@@ -15,15 +15,14 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tb_details" />
 
-    <EditText
+    <Spinner
         android:id="@+id/et_service"
         style="@style/EditText"
-        android:drawableEnd="@drawable/ic_down_arrow"
-        android:drawableTint="@color/cpb_grey"
-        android:hint="@string/et_select_service"
+        android:spinnerMode="dropdown"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_service" />
+
 
     <TextView
         android:id="@+id/tv_stablishment"
@@ -34,13 +33,13 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/et_service" />
 
-    <EditText
+
+    <Spinner
         android:id="@+id/et_stablishment"
         style="@style/EditText"
-        android:hint="@string/et_stablishment"
-        android:drawableEnd="@drawable/ic_down_arrow"
-        android:drawableTint="@color/cpb_grey"
+        android:spinnerMode="dropdown"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_stablishment" />
 
     <TextView
@@ -51,15 +50,15 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/et_stablishment" />
 
-    <EditText
+    <Spinner
         android:id="@+id/et_select_location"
         style="@style/EditText"
-        android:hint="@string/et_select_location"
+        android:background="@android:color/transparent"
+        android:spinnerMode="dropdown"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:drawableEnd="@drawable/ic_down_arrow"
-        android:drawableTint="@color/cpb_grey"
         app:layout_constraintTop_toBottomOf="@id/tv_location" />
+
 
     <TextView
         android:id="@+id/tv_select_hour"
@@ -68,10 +67,12 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/et_select_location" />
 
-    <EditText
+
+    <Spinner
         android:id="@+id/et_select_hour"
         style="@style/EditText"
-        android:hint="@string/et_select_hour"
+        android:background="@android:color/transparent"
+        android:spinnerMode="dropdown"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_select_hour" />
@@ -83,27 +84,31 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/et_select_hour" />
 
-    <EditText
+
+    <Spinner
         android:id="@+id/et_select_date"
         style="@style/EditText"
-        android:hint="@string/et_select_date"
+        android:background="@android:color/transparent"
+        android:spinnerMode="dropdown"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_select_date" />
 
+
     <Button
-        android:id="@+id/btn_modify"
+        android:id="@+id/btn_create_appointment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_small"
         android:layout_marginEnd="@dimen/spacing_small"
         android:layout_marginStart="@dimen/spacing_small"
         android:layout_marginTop="@dimen/spacing_small"
         android:background="@color/app_primary_color"
         android:text="@string/btn_request_appointment"
         android:textColor="@color/cpb_white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_select_date" />
+        app:layout_constraintRight_toRightOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

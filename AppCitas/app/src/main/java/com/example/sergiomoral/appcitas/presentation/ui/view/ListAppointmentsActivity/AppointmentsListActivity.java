@@ -101,8 +101,6 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
         mPresenter.clickListenerLogOut(mLogOut);
 
         mPresenter.initGuillotineAnimation(guillotineMenu, toolbar, contentHamburger);
-
-
     }
 
     @OnClick(R.id.create_appointment)

@@ -2,6 +2,7 @@ package com.example.sergiomoral.appcitas.data.manager.signup.imp;
 
 import com.example.sergiomoral.appcitas.data.manager.signup.SignUpManager;
 import com.example.sergiomoral.appcitas.domain.entities.User;
+import com.example.sergiomoral.appcitas.presentation.utils.constants.BuildData;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -36,6 +37,6 @@ public class SignUpManagerImp implements SignUpManager {
                 .mobilePhone(mobilePhone)
                 .build();
 
-        mDatabase.child("USERSLIST").setValue(registerUser);
+        mDatabase.child(BuildData.USERS_LIST).setValue(registerUser);
     }
 }

@@ -102,14 +102,14 @@ public class AppointmentsListPresenter implements Presenter<AppointmentsListView
     public void requestData(final String userToken) {
         showLoading();
 
-        mDatabase.child("LISTACITAS").keepSynced(true);
+        mDatabase.child(BuildData.APPOINTMENTS_LIST).keepSynced(true);
 
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 GenericTypeIndicator<ArrayList<Appointment>> typeIndicator = new GenericTypeIndicator<ArrayList<Appointment>>() {
                 };
-                ArrayList<Appointment> appointments = dataSnapshot.child("LISTACITAS").getValue(typeIndicator);
+                ArrayList<Appointment> appointments = dataSnapshot.child(BuildData.APPOINTMENTS_LIST).getValue(typeIndicator);
                 int index = 0;
                 for (Appointment appointment : appointments) {
                     if (appointment != null) {
