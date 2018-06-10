@@ -75,57 +75,56 @@
 
 
             <TextView
-                android:id="@+id/tv_select_hour"
-                style="@style/TextView"
-                android:layout_marginTop="@dimen/spacing_s_m"
-                android:text="@string/tv_select_hour"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/et_select_location" />
-
-
-            <Spinner
-                android:id="@+id/et_select_hour"
-                style="@style/EditText"
-                android:layout_marginTop="@dimen/spacing_xsmall"
-                android:spinnerMode="dropdown"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_select_hour" />
-
-
-            <TextView
                 android:id="@+id/tv_select_date"
                 style="@style/TextView"
                 android:layout_marginTop="@dimen/spacing_s_m"
                 android:text="@string/tv_select_date"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/et_select_hour" />
+                app:layout_constraintTop_toBottomOf="@id/et_select_location" />
 
-
-            <Spinner
+            <TextView
                 android:id="@+id/et_select_date"
                 style="@style/EditText"
+                android:hint="@string/tv_select_date"
                 android:layout_marginTop="@dimen/spacing_xsmall"
                 android:spinnerMode="dropdown"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_select_date" />
 
+            <TextView
+                android:id="@+id/tv_select_hour"
+                style="@style/TextView"
+                android:layout_marginTop="@dimen/spacing_s_m"
+                android:text="@string/tv_select_hour"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_select_date" />
+
+
+            <TextView
+                android:id="@+id/et_select_hour"
+                style="@style/EditText"
+                android:layout_marginTop="@dimen/spacing_xsmall"
+                android:hint="@string/tv_select_hour"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_select_hour" />
+
 
             <Button
                 android:id="@+id/btn_create_appointment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
                 android:layout_marginBottom="@dimen/spacing_small"
                 android:layout_marginEnd="@dimen/spacing_small"
                 android:layout_marginStart="@dimen/spacing_small"
                 android:layout_marginTop="@dimen/spacing_small"
                 android:background="@color/app_primary_color"
-                android:layout_gravity="bottom"
                 android:text="@string/btn_request_appointment"
                 android:textColor="@color/cpb_white"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/et_select_date" />
+                app:layout_constraintTop_toBottomOf="@id/et_select_hour" />
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

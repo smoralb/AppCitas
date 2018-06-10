@@ -93,5 +93,13 @@
     <string name="select_date">Seleccione una fecha</string>
     <string name="btn_request_appointment">PEDIR CITA</string>
 
+    <!-- Localities from Spain -->
+
+        <array name="localities_array">
+            <item>Madrid</item>
+            <item>Barcelona</item>
+            <item>Valencia</item>
+        </array>
+
 
 </resources>
