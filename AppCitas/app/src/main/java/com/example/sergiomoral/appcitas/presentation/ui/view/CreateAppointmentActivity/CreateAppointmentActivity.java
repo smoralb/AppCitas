@@ -70,7 +70,6 @@ public class CreateAppointmentActivity extends BaseActivity implements CreateApp
     protected void initUI() {
 
         populateSpinnerService();
-        populateSpinnerStablishment();
     }
 
     private void populateSpinnerStablishment() {
@@ -114,9 +113,10 @@ public class CreateAppointmentActivity extends BaseActivity implements CreateApp
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
-                services.remove(0);
+
+                if (services.get(0).equals(getString(R.string.select_service))) services.remove(0);
                 serviceSelected = services.get(position);
-                serviceSpinner.setPrompt(services.get(position));
+                populateSpinnerStablishment();
             }
 
             @Override
@@ -133,7 +133,9 @@ public class CreateAppointmentActivity extends BaseActivity implements CreateApp
         hideLoading();
         final ArrayList<String> centerNames = new ArrayList<>();
         for (Center center : centers) {
-            centerNames.add(center.getNombrelocal());
+            if (center.getServicio().equals(serviceSelected)) {
+                centerNames.add(center.getNombrelocal());
+            }
         }
         centerNames.add(0, getString(R.string.select_stablishment));
 
@@ -147,12 +149,16 @@ public class CreateAppointmentActivity extends BaseActivity implements CreateApp
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
-                centerNames.remove(0);
-                String centerName = centerNames.get(position);
-                //Get the center associated with te item selected
-                for (int i = 0; i < centers.size(); i++) {
-                    if (centerName.equals(centers.get(i).getNombrelocal())) {
-                        centerSelected = centers.get(i);
+                if (centerNames.size() > 1) {
+                    if (centerNames.get(0).equals(getString(R.string.select_stablishment)))
+                        centerNames.remove(0);
+                    String centerName = centerNames.get(position);
+
+                    //Get the center associated with te item selected
+                    for (int i = 0; i < centers.size(); i++) {
+                        if (centerName.equals(centers.get(i).getNombrelocal())) {
+                            centerSelected = centers.get(i);
+                        }
                     }
                 }
             }
@@ -160,6 +166,7 @@ public class CreateAppointmentActivity extends BaseActivity implements CreateApp
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 // TODO Auto-generated method stub
+                stablishmentSpinner.setPrompt(getString(R.string.select_stablishment));
 
             }
         });
