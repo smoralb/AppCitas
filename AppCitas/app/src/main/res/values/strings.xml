@@ -92,10 +92,12 @@
     <string name="tv_select_date">Seleccione una fecha</string>
     <string name="select_date">Seleccione una fecha</string>
     <string name="btn_request_appointment">PEDIR CITA</string>
+    <string name="select_locality">Seleccione una localidad</string>
 
     <!-- Localities from Spain -->
 
         <array name="localities_array">
+            <item>Seleccione una localidad</item>
             <item>Madrid</item>
             <item>Barcelona</item>
             <item>Valencia</item>

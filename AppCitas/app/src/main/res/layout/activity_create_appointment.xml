@@ -19,41 +19,14 @@
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/spacing_s_m">
 
-            <TextView
-                android:id="@+id/tv_service"
-                style="@style/TextView"
-                android:text="@string/tv_service"
-                app:layout_constraintLeft_toLeftOf="parent" />
-
-            <Spinner
-                android:id="@+id/et_service"
-                style="@style/EditText"
-                android:layout_marginTop="@dimen/spacing_xsmall"
-                android:spinnerMode="dropdown"
+            <ImageView
+                android:id="@+id/iv_locality"
+                android:layout_width="@dimen/back_button_width"
+                android:layout_height="@dimen/back_button_height"
+                app:layout_constraintBottom_toBottomOf="@id/tv_location"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_service" />
-
-
-            <TextView
-                android:id="@+id/tv_stablishment"
-                style="@style/TextView"
-                android:layout_marginStart="@dimen/spacing_medium"
-                android:layout_marginTop="@dimen/spacing_s_m"
-                android:text="@string/stablishment"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/et_service" />
-
-
-            <Spinner
-                android:id="@+id/et_stablishment"
-                style="@style/EditText"
-                android:layout_marginTop="@dimen/spacing_xsmall"
-                android:spinnerMode="dropdown"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_stablishment" />
-
+                app:layout_constraintRight_toLeftOf="@id/tv_location"
+                app:layout_constraintTop_toTopOf="@id/tv_location" />
 
             <TextView
                 android:id="@+id/tv_location"
@@ -61,8 +34,7 @@
                 android:layout_marginStart="@dimen/spacing_medium"
                 android:layout_marginTop="@dimen/spacing_s_m"
                 android:text="@string/tv_location"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/et_stablishment" />
+                app:layout_constraintLeft_toLeftOf="parent" />
 
             <Spinner
                 android:id="@+id/et_select_location"
@@ -73,6 +45,66 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_location" />
 
+            <ImageView
+                android:id="@+id/iv_service"
+                android:layout_width="@dimen/back_button_width"
+                android:layout_height="@dimen/back_button_height"
+                app:layout_constraintBottom_toBottomOf="@id/tv_service"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/tv_service"
+                app:layout_constraintTop_toTopOf="@id/tv_service" />
+
+            <TextView
+                android:id="@+id/tv_service"
+                style="@style/TextView"
+                android:text="@string/tv_service"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_select_location" />
+
+            <Spinner
+                android:id="@+id/et_service"
+                style="@style/EditText"
+                android:layout_marginTop="@dimen/spacing_xsmall"
+                android:spinnerMode="dropdown"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_service" />
+
+            <ImageView
+                android:id="@+id/iv_stablishment"
+                android:layout_width="@dimen/back_button_width"
+                android:layout_height="@dimen/back_button_height"
+                app:layout_constraintBottom_toBottomOf="@id/tv_stablishment"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/tv_stablishment"
+                app:layout_constraintTop_toTopOf="@id/tv_stablishment" />
+
+            <TextView
+                android:id="@+id/tv_stablishment"
+                style="@style/TextView"
+                android:layout_marginStart="@dimen/spacing_medium"
+                android:layout_marginTop="@dimen/spacing_s_m"
+                android:text="@string/stablishment"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_service" />
+
+            <Spinner
+                android:id="@+id/et_stablishment"
+                style="@style/EditText"
+                android:layout_marginTop="@dimen/spacing_xsmall"
+                android:spinnerMode="dropdown"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_stablishment" />
+
+            <ImageView
+                android:id="@+id/iv_date"
+                android:layout_width="@dimen/back_button_width"
+                android:layout_height="@dimen/back_button_height"
+                app:layout_constraintBottom_toBottomOf="@id/tv_select_date"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/tv_select_date"
+                app:layout_constraintTop_toTopOf="@id/tv_select_date" />
 
             <TextView
                 android:id="@+id/tv_select_date"
@@ -80,17 +112,26 @@
                 android:layout_marginTop="@dimen/spacing_s_m"
                 android:text="@string/tv_select_date"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/et_select_location" />
+                app:layout_constraintTop_toBottomOf="@id/et_stablishment" />
 
             <TextView
                 android:id="@+id/et_select_date"
                 style="@style/EditText"
-                android:hint="@string/tv_select_date"
                 android:layout_marginTop="@dimen/spacing_xsmall"
+                android:hint="@string/tv_select_date"
                 android:spinnerMode="dropdown"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_select_date" />
+
+            <ImageView
+                android:id="@+id/iv_hour"
+                android:layout_width="@dimen/back_button_width"
+                android:layout_height="@dimen/back_button_height"
+                app:layout_constraintBottom_toBottomOf="@id/tv_select_hour"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/tv_select_hour"
+                app:layout_constraintTop_toTopOf="@id/tv_select_hour" />
 
             <TextView
                 android:id="@+id/tv_select_hour"
@@ -100,7 +141,6 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/et_select_date" />
 
-
             <TextView
                 android:id="@+id/et_select_hour"
                 style="@style/EditText"
@@ -109,7 +149,6 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_select_hour" />
-
 
             <Button
                 android:id="@+id/btn_create_appointment"
@@ -125,6 +164,7 @@
                 android:textColor="@color/cpb_white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/et_select_hour" />
+
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

@@ -32,7 +32,11 @@ public class CreateAppointmentPresenter implements Presenter<CreateAppointmentVi
     @Inject
     public DialogManagerImp mDialogManager;
     private Activity activity;
-
+    private boolean localityCorrect;
+    private boolean serviceCorrect;
+    private boolean stablishmentCorrect;
+    private boolean dateCorrect;
+    private boolean hourCorrect;
 
     @Inject
     public CreateAppointmentPresenter() {
@@ -102,5 +106,20 @@ public class CreateAppointmentPresenter implements Presenter<CreateAppointmentVi
                 mDialogManager.showError(R.drawable.ic_error, R.string.success_title, R.string.generic_error, activity);
             }
         });
+    }
+
+    public void processFormData(String localitySelected, String serviceSelected, Center centerSelected, String dateSelected, String hourSelected) {
+
+        if (localitySelected != null) localityCorrect = true;
+        if (serviceSelected != null) serviceCorrect = true;
+        if (centerSelected != null) stablishmentCorrect = true;
+        if (dateSelected != null) dateCorrect = true;
+        if (hourSelected != null) hourCorrect = true;
+
+        mView.setImageToLocality(localityCorrect);
+        mView.setImageToService(serviceCorrect);
+        mView.setImageToStablishment(stablishmentCorrect);
+        mView.setImageToDateSelected(dateCorrect);
+        mView.setImagetoHourSelected(hourCorrect);
     }
 }

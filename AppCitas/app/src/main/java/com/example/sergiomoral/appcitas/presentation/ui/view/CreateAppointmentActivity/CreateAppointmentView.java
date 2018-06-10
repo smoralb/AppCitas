@@ -17,4 +17,14 @@ public interface CreateAppointmentView {
     void showServices(ArrayList<String> services);
 
     void showStablishments(ArrayList<Center> centers);
+
+    void setImageToLocality(boolean isCorrect);
+
+    void setImageToService(boolean isCorrect);
+
+    void setImageToStablishment(boolean isCorrect);
+
+    void setImageToDateSelected(boolean isCorrect);
+
+    void setImagetoHourSelected(boolean isCorrect);
 }
