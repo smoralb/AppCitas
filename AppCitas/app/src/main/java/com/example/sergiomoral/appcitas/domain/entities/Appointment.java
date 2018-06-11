@@ -2,6 +2,7 @@ package com.example.sergiomoral.appcitas.domain.entities;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.Nullable;
 
 /**
  * Created by sergiomoral on 26/2/18.
@@ -9,19 +10,16 @@ import android.os.Parcelable;
 
 public class Appointment implements Parcelable {
 
-
-    private String idcita;
-    private String userID;
     private String fechacita;
     private String horacita;
     private Office oficina;
+    private String userID;
 
     public Appointment() {
 
     }
 
     private Appointment(Builder builder) {
-        setIdcita(builder.idcita);
         setUserID(builder.userID);
         setFechacita(builder.fechacita);
         setHoracita(builder.horacita);
@@ -36,7 +34,6 @@ public class Appointment implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.idcita);
         dest.writeString(this.userID);
         dest.writeString(this.fechacita);
         dest.writeString(this.horacita);
@@ -44,7 +41,6 @@ public class Appointment implements Parcelable {
     }
 
     protected Appointment(Parcel in) {
-        this.idcita = in.readString();
         this.userID = in.readString();
         this.fechacita = in.readString();
         this.horacita = in.readString();
@@ -63,13 +59,6 @@ public class Appointment implements Parcelable {
         }
     };
 
-    public String getIdcita() {
-        return idcita;
-    }
-
-    public void setIdcita(String idcita) {
-        this.idcita = idcita;
-    }
 
     public String getUserID() {
         return userID;

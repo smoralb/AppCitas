@@ -23,6 +23,7 @@ public class Center implements Parcelable {
     private String tipocentro;
     private String tipovia;
 
+
     private Center(Builder builder) {
         ciudad = builder.ciudad;
         codpostal = builder.codpostal;

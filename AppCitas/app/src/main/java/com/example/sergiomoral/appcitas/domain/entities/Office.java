@@ -22,6 +22,7 @@ public class Office implements Parcelable {
     private String email;
     private Double latitud;
     private Double longitud;
+    private String servicio;
     private String logo;
 
     private Office(Builder builder) {
@@ -37,6 +38,7 @@ public class Office implements Parcelable {
         email = builder.email;
         latitud = builder.latitud;
         longitud = builder.longitud;
+        servicio = builder.servicio;
         logo = builder.logo;
     }
 
@@ -60,6 +62,7 @@ public class Office implements Parcelable {
         dest.writeString(this.email);
         dest.writeValue(this.latitud);
         dest.writeValue(this.longitud);
+        dest.writeString(this.servicio);
         dest.writeString(this.logo);
     }
 
@@ -162,6 +165,14 @@ public class Office implements Parcelable {
         this.longitud = longitud;
     }
 
+    public String getServicio() {
+        return servicio;
+    }
+
+    public void setServicio(String servicio) {
+        this.servicio = servicio;
+    }
+
     public String getLogo() {
         return logo;
     }
@@ -183,6 +194,7 @@ public class Office implements Parcelable {
         this.email = in.readString();
         this.latitud = (Double) in.readValue(Double.class.getClassLoader());
         this.longitud = (Double) in.readValue(Double.class.getClassLoader());
+        this.servicio = in.readString();
         this.logo = in.readString();
     }
 
@@ -212,6 +224,7 @@ public class Office implements Parcelable {
         private String email;
         private Double latitud;
         private Double longitud;
+        private String servicio;
         private String logo;
 
         public Builder() {
@@ -274,6 +287,11 @@ public class Office implements Parcelable {
 
         public Builder longitud(Double val) {
             longitud = val;
+            return this;
+        }
+
+        public Builder servicio(String val) {
+            servicio = val;
             return this;
         }
 

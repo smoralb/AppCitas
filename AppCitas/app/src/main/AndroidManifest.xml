@@ -32,6 +32,7 @@
             android:name=".presentation.ui.view.NetworkErrorActivity.NetworkErrorActivity"
             android:theme="@style/AppTheme" />
         <activity android:name=".presentation.ui.view.CreateAppointmentActivity.CreateAppointmentActivity"/>
+        <activity android:name=".presentation.ui.view.ProfileUserActivity.ProfileUserActivity"/>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

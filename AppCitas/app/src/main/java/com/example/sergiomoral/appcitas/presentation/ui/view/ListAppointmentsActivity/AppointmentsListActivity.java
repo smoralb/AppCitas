@@ -96,8 +96,8 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
         LinearLayout mProfile = findViewById(R.id.profile_group);
         LinearLayout mSettings = findViewById(R.id.settings_group);
 
-        mPresenter.clickListenerProfile(mProfile);
-        mPresenter.clickListenerSettings(mSettings);
+        mPresenter.clickListenerProfile(mProfile, this);
+        mPresenter.clickListenerSettings(mSettings, this);
         mPresenter.clickListenerLogOut(mLogOut);
 
         mPresenter.initGuillotineAnimation(guillotineMenu, toolbar, contentHamburger);

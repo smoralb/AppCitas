@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.util.Log;
 
 import com.example.sergiomoral.appcitas.R;
+import com.example.sergiomoral.appcitas.data.manager.signin.imp.AuthManagerImp;
+import com.example.sergiomoral.appcitas.domain.entities.Appointment;
 import com.example.sergiomoral.appcitas.domain.entities.Center;
+import com.example.sergiomoral.appcitas.domain.entities.Office;
 import com.example.sergiomoral.appcitas.presentation.ui.dialogs.base.DialogManagerImp;
 import com.example.sergiomoral.appcitas.presentation.ui.presenter.Presenter;
 import com.example.sergiomoral.appcitas.presentation.ui.view.CreateAppointmentActivity.CreateAppointmentView;
@@ -17,6 +20,8 @@ import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -31,6 +36,9 @@ public class CreateAppointmentPresenter implements Presenter<CreateAppointmentVi
 
     @Inject
     public DialogManagerImp mDialogManager;
+    @Inject
+    public AuthManagerImp mAuthManager;
+
     private Activity activity;
     private boolean localityCorrect;
     private boolean serviceCorrect;
@@ -91,9 +99,9 @@ public class CreateAppointmentPresenter implements Presenter<CreateAppointmentVi
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                GenericTypeIndicator<ArrayList<Center>> typeIndicator = new GenericTypeIndicator<ArrayList<Center>>() {
+                GenericTypeIndicator<ArrayList<Office>> typeIndicator = new GenericTypeIndicator<ArrayList<Office>>() {
                 };
-                ArrayList<Center> centers = dataSnapshot.child(BuildData.CENTERS_LIST).getValue(typeIndicator);
+                ArrayList<Office> centers = dataSnapshot.child(BuildData.CENTERS_LIST).getValue(typeIndicator);
                 if (centers != null) {
                     mView.showStablishments(centers);
                 }
@@ -108,10 +116,12 @@ public class CreateAppointmentPresenter implements Presenter<CreateAppointmentVi
         });
     }
 
-    public void processFormData(String localitySelected, String serviceSelected, Center centerSelected, String dateSelected, String hourSelected) {
+    public void processFormData(String localitySelected, String serviceSelected, Office centerSelected, String dateSelected, String hourSelected) {
 
-        if (!localitySelected.equals(activity.getString(R.string.select_locality)) && !localitySelected.equals("")) localityCorrect = true;
-        if (!serviceSelected.equals(activity.getString(R.string.select_service)) && !serviceSelected.equals("")) serviceCorrect = true;
+        if (!localitySelected.equals(activity.getString(R.string.select_locality)) && !localitySelected.equals(""))
+            localityCorrect = true;
+        if (!serviceSelected.equals(activity.getString(R.string.select_service)) && !serviceSelected.equals(""))
+            serviceCorrect = true;
         if (centerSelected != null) stablishmentCorrect = true;
         if (!dateSelected.equals("")) dateCorrect = true;
         if (!hourSelected.equals("")) hourCorrect = true;
@@ -122,4 +132,20 @@ public class CreateAppointmentPresenter implements Presenter<CreateAppointmentVi
         mView.setImageToDateSelected(dateCorrect);
         mView.setImagetoHourSelected(hourCorrect);
     }
+
+    public void sendDataToDataBase(String localitySelected, String serviceSelected, Office centerSelected, String dateSelected, String hourSelected) {
+
+        showLoading();
+
+        Appointment newAppointment = new Appointment.Builder()
+                .fechacita(dateSelected)
+                .horacita(hourSelected)
+                .usertoken(mAuthManager.getCurrentUserId())
+                .oficina(centerSelected)
+                .build();
+
+        mDatabaseRef.child("LISTACITAS").push().setValue(newAppointment);
+        hideLoading();
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.example.sergiomoral.appcitas.presentation.ui.view.CreateAppointmentActivity;
 
 import com.example.sergiomoral.appcitas.domain.entities.Center;
+import com.example.sergiomoral.appcitas.domain.entities.Office;
 
 import java.util.ArrayList;
 
@@ -16,7 +17,7 @@ public interface CreateAppointmentView {
 
     void showServices(ArrayList<String> services);
 
-    void showStablishments(ArrayList<Center> centers);
+    void showStablishments(ArrayList<Office> centers);
 
     void setImageToLocality(boolean isCorrect);
 

@@ -17,6 +17,7 @@ import android.widget.TimePicker;
 
 import com.example.sergiomoral.appcitas.R;
 import com.example.sergiomoral.appcitas.domain.entities.Center;
+import com.example.sergiomoral.appcitas.domain.entities.Office;
 import com.example.sergiomoral.appcitas.presentation.base.BaseActivity;
 import com.example.sergiomoral.appcitas.presentation.di.components.DaggerActivityComponent;
 import com.example.sergiomoral.appcitas.presentation.ui.presenter.createAppointment.CreateAppointmentPresenter;
@@ -61,7 +62,7 @@ public class CreateAppointmentActivity extends BaseActivity implements CreateApp
     @Inject
     CreateAppointmentPresenter mPresenter;
 
-    private Center centerSelected;
+    private Office officeSelected;
     private String serviceSelected = "";
     private String localitySelected = "";
     private String dateSelected = "";
@@ -176,14 +177,14 @@ public class CreateAppointmentActivity extends BaseActivity implements CreateApp
     }
 
     @Override
-    public void showStablishments(final ArrayList<Center> centers) {
+    public void showStablishments(final ArrayList<Office> offices) {
 
         hideLoading();
         final ArrayList<String> centerNames = new ArrayList<>();
-        for (Center center : centers) {
-            if (center.getServicio().equals(serviceSelected)
-                    && center.getCiudad().equals(localitySelected)) {
-                centerNames.add(center.getNombrelocal());
+        for (Office office : offices) {
+            if (office.getServicio().equals(serviceSelected)
+                    && office.getCiudad().equals(localitySelected)) {
+                centerNames.add(office.getNombrelocal());
             }
         }
         centerNames.add(0, getString(R.string.select_stablishment));
@@ -199,9 +200,9 @@ public class CreateAppointmentActivity extends BaseActivity implements CreateApp
                                        int position, long id) {
                 String centerName = centerNames.get(position);
                 //Get the center associated with the item selected
-                for (int i = 0; i < centers.size(); i++) {
-                    if (centerName.equals(centers.get(i).getNombrelocal())) {
-                        centerSelected = centers.get(i);
+                for (int i = 0; i < offices.size(); i++) {
+                    if (centerName.equals(offices.get(i).getNombrelocal())) {
+                        officeSelected = offices.get(i);
                     }
                 }
             }
@@ -245,10 +246,9 @@ public class CreateAppointmentActivity extends BaseActivity implements CreateApp
 
     @OnClick(R.id.btn_create_appointment)
     public void createAppointment() {
-        mPresenter.processFormData(localitySelected, serviceSelected, centerSelected, dateSelected, hourSelected);
+        mPresenter.processFormData(localitySelected, serviceSelected, officeSelected, dateSelected, hourSelected);
         if (correctForm) {
-            // TODO: 10/6/18 datos para crear la cita
-            //mPresenter.sendDataToDataBase();
+            mPresenter.sendDataToDataBase(localitySelected, serviceSelected, officeSelected, dateSelected, hourSelected);
         }
     }
 

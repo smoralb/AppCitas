@@ -1,5 +1,6 @@
 package com.example.sergiomoral.appcitas.presentation.ui.presenter.appointmentsList;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
@@ -11,7 +12,9 @@ import com.example.sergiomoral.appcitas.Appointments;
 import com.example.sergiomoral.appcitas.R;
 import com.example.sergiomoral.appcitas.domain.entities.Appointment;
 import com.example.sergiomoral.appcitas.presentation.ui.presenter.Presenter;
+import com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsActivity.AppointmentsListActivity;
 import com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsActivity.AppointmentsListView;
+import com.example.sergiomoral.appcitas.presentation.ui.view.ProfileUserActivity.ProfileUserActivity;
 import com.example.sergiomoral.appcitas.presentation.utils.constants.BuildData;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -32,6 +35,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -70,19 +74,19 @@ public class AppointmentsListPresenter implements Presenter<AppointmentsListView
         });
     }
 
-    public void clickListenerProfile(LinearLayout profile) {
+    public void clickListenerProfile(final LinearLayout profile, final AppointmentsListActivity appointmentsListActivity) {
 
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // your action
-
+                Intent profileData = new Intent(appointmentsListActivity,ProfileUserActivity.class);
+                appointmentsListActivity.startActivity(profileData);
             }
         });
     }
 
 
-    public void clickListenerSettings(LinearLayout settings) {
+    public void clickListenerSettings(LinearLayout settings, AppointmentsListActivity appointmentsListActivity) {
 
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,15 +106,16 @@ public class AppointmentsListPresenter implements Presenter<AppointmentsListView
     public void requestData(final String userToken) {
         showLoading();
 
-        mDatabase.child(BuildData.APPOINTMENTS_LIST).keepSynced(true);
+        //mDatabase.child(BuildData.APPOINTMENTS_LIST).keepSynced(true);
 
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                int index = 0;
                 GenericTypeIndicator<ArrayList<Appointment>> typeIndicator = new GenericTypeIndicator<ArrayList<Appointment>>() {
                 };
                 ArrayList<Appointment> appointments = dataSnapshot.child(BuildData.APPOINTMENTS_LIST).getValue(typeIndicator);
-                int index = 0;
+
                 for (Appointment appointment : appointments) {
                     if (appointment != null) {
                         if (appointments.get(index).getUserID().equals(userToken)) {
@@ -119,7 +124,9 @@ public class AppointmentsListPresenter implements Presenter<AppointmentsListView
                         }
                     } else index++;
                 }
+
                 mView.showAppointments(mAppointmentsFilteredByUser);
+
             }
 
             @Override

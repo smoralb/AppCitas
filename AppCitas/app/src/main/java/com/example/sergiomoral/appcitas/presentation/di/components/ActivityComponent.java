@@ -8,6 +8,7 @@ import com.example.sergiomoral.appcitas.presentation.ui.view.DetailsActivity.App
 import com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsActivity.AppointmentsListActivity;
 import com.example.sergiomoral.appcitas.presentation.ui.view.LoginActivity.LoginActivity;
 import com.example.sergiomoral.appcitas.presentation.ui.view.NetworkErrorActivity.NetworkErrorActivity;
+import com.example.sergiomoral.appcitas.presentation.ui.view.ProfileUserActivity.ProfileUserActivity;
 import com.example.sergiomoral.appcitas.presentation.ui.view.SignUpActivity.SignUpActivity;
 import com.example.sergiomoral.appcitas.presentation.ui.view.SignUpActivity.sections.PersonalDataFragment;
 import com.example.sergiomoral.appcitas.presentation.ui.view.SignUpActivity.sections.UserDataFragment;
@@ -42,5 +43,7 @@ public interface ActivityComponent {
     void inject(AppointmentDetailsActivity appointmentDetailsActivity);
 
     void inject(CreateAppointmentActivity createAppointmentActivity);
+
+    void inject(ProfileUserActivity profileUserActivity);
 
 }
