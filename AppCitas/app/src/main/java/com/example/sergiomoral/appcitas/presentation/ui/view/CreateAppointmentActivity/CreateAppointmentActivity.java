@@ -290,4 +290,9 @@ public class CreateAppointmentActivity extends BaseActivity implements CreateApp
         if (isCorrect) ivHour.setImageDrawable(getDrawable(R.drawable.ic_ok));
         else ivHour.setImageDrawable(getDrawable(R.drawable.ic_error));
     }
+
+    @Override
+    public void goToAppointmentList() {
+        finish();
+    }
 }

@@ -1,6 +1,7 @@
 package com.example.sergiomoral.appcitas.presentation.ui.presenter.createAppointment;
 
 import android.app.Activity;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.example.sergiomoral.appcitas.R;
@@ -12,11 +13,14 @@ import com.example.sergiomoral.appcitas.presentation.ui.dialogs.base.DialogManag
 import com.example.sergiomoral.appcitas.presentation.ui.presenter.Presenter;
 import com.example.sergiomoral.appcitas.presentation.ui.view.CreateAppointmentActivity.CreateAppointmentView;
 import com.example.sergiomoral.appcitas.presentation.utils.constants.BuildData;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -140,11 +144,13 @@ public class CreateAppointmentPresenter implements Presenter<CreateAppointmentVi
         Appointment newAppointment = new Appointment.Builder()
                 .fechacita(dateSelected)
                 .horacita(hourSelected)
-                .usertoken(mAuthManager.getCurrentUserId())
+                .userID(mAuthManager.getCurrentUserId())
                 .oficina(centerSelected)
                 .build();
 
         mDatabaseRef.child("LISTACITAS").push().setValue(newAppointment);
+        mView.goToAppointmentList();
+
         hideLoading();
     }
 

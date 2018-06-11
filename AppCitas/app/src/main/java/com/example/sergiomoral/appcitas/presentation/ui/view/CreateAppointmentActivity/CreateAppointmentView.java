@@ -28,4 +28,6 @@ public interface CreateAppointmentView {
     void setImageToDateSelected(boolean isCorrect);
 
     void setImagetoHourSelected(boolean isCorrect);
+
+    void goToAppointmentList();
 }

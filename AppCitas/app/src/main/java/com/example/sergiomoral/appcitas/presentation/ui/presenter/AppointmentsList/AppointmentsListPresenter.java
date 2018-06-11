@@ -34,6 +34,7 @@ import com.yalantis.guillotine.animation.GuillotineAnimation;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -106,12 +107,13 @@ public class AppointmentsListPresenter implements Presenter<AppointmentsListView
     public void requestData(final String userToken) {
         showLoading();
 
-        //mDatabase.child(BuildData.APPOINTMENTS_LIST).keepSynced(true);
+        mDatabase.child(BuildData.APPOINTMENTS_LIST).keepSynced(true);
 
-        mDatabase.addValueEventListener(new ValueEventListener() {
+        mDatabase.child(BuildData.APPOINTMENTS_LIST).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 int index = 0;
+/*
                 GenericTypeIndicator<ArrayList<Appointment>> typeIndicator = new GenericTypeIndicator<ArrayList<Appointment>>() {
                 };
                 ArrayList<Appointment> appointments = dataSnapshot.child(BuildData.APPOINTMENTS_LIST).getValue(typeIndicator);
@@ -125,6 +127,13 @@ public class AppointmentsListPresenter implements Presenter<AppointmentsListView
                     } else index++;
                 }
 
+                mView.showAppointments(mAppointmentsFilteredByUser);
+*/
+                Iterable<DataSnapshot> app = dataSnapshot.getChildren();
+                for (DataSnapshot apps : app){
+                    Appointment app2 = apps.getValue(Appointment.class);
+                    mAppointmentsFilteredByUser.add(app2);
+                }
                 mView.showAppointments(mAppointmentsFilteredByUser);
 
             }
