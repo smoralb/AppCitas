@@ -62,10 +62,10 @@ public class CreateAppointmentActivity extends BaseActivity implements CreateApp
     CreateAppointmentPresenter mPresenter;
 
     private Center centerSelected;
-    private String serviceSelected;
-    private String localitySelected;
-    private String dateSelected;
-    private String hourSelected;
+    private String serviceSelected = "";
+    private String localitySelected = "";
+    private String dateSelected = "";
+    private String hourSelected = "";
     private boolean correctForm;
 
     @Override
@@ -127,6 +127,7 @@ public class CreateAppointmentActivity extends BaseActivity implements CreateApp
             localitiesArray.add(localities[i]);
         }
 
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, localitiesArray);
         locationSpinner.setAdapter(adapter);
@@ -134,11 +135,9 @@ public class CreateAppointmentActivity extends BaseActivity implements CreateApp
         locationSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                if (localitySelected != null) {
-                    if (!localitySelected.equals(localities[0]))
-                        localitySelected = localities[position];
-                    else localitySelected = null;
-                }
+                //if (!localitySelected.equals(localities[0]))
+                localitySelected = localities[position];
+                //else localitySelected = getString(R.string.select_locality);
             }
 
             @Override
@@ -162,9 +161,9 @@ public class CreateAppointmentActivity extends BaseActivity implements CreateApp
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
-                if (!serviceSelected.equals(R.string.select_service))
-                    serviceSelected = services.get(position);
-                else serviceSelected = null;
+                //if (!serviceSelected.equals(R.string.select_service))
+                serviceSelected = services.get(position);
+                //else serviceSelected = null;
                 populateSpinnerStablishment();
             }
 
