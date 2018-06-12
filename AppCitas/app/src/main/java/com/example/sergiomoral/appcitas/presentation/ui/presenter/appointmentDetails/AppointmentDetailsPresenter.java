@@ -41,8 +41,8 @@ public class AppointmentDetailsPresenter implements Presenter<AppointmentDetails
     public void deleteAppointment(Appointment appointment) {
         showLoading();
 
-        //DatabaseReference localReference = FirebaseDatabase.getInstance().getReference().child(BuildData.APPOINTMENTS_LIST).child(appointment.getIdcita());
-        //localReference.removeValue();
+        DatabaseReference localReference = FirebaseDatabase.getInstance().getReference().child(BuildData.APPOINTMENTS_LIST).child(appointment.getKey());
+        localReference.removeValue();
         hideLoading();
         mView.goToAppointments();
     }

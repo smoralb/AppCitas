@@ -83,7 +83,7 @@ public class AppointmentsListPresenter implements Presenter<AppointmentsListView
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent profileData = new Intent(appointmentsListActivity,ProfileUserActivity.class);
+                Intent profileData = new Intent(appointmentsListActivity, ProfileUserActivity.class);
                 appointmentsListActivity.startActivity(profileData);
             }
         });
@@ -107,7 +107,7 @@ public class AppointmentsListPresenter implements Presenter<AppointmentsListView
         }
     }
 
-    public void requestData(final String userToken) {
+    public void requestData(final String userToken, final boolean request) {
         showLoading();
 
         mDatabase.child(BuildData.APPOINTMENTS_LIST).keepSynced(true);
@@ -116,14 +116,17 @@ public class AppointmentsListPresenter implements Presenter<AppointmentsListView
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
+                if (mAppointmentsFilteredByUser != null) mAppointmentsFilteredByUser.clear();
+
                 Iterable<DataSnapshot> app = dataSnapshot.getChildren();
-                for (DataSnapshot apps : app){
+                for (DataSnapshot apps : app) {
                     keyValue = apps.getKey();
                     setKeyValue(keyValue);
                     Appointment app2 = apps.getValue(Appointment.class);
                     mAppointmentsFilteredByUser.add(app2);
                 }
                 mView.showAppointments(mAppointmentsFilteredByUser);
+
             }
 
             @Override

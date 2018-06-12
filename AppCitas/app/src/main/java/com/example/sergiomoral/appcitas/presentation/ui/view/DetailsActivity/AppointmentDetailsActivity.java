@@ -1,5 +1,7 @@
 package com.example.sergiomoral.appcitas.presentation.ui.view.DetailsActivity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.util.Base64;
 import android.view.View;
@@ -13,6 +15,8 @@ import com.example.sergiomoral.appcitas.presentation.base.BaseActivity;
 import com.example.sergiomoral.appcitas.presentation.di.components.DaggerActivityComponent;
 import com.example.sergiomoral.appcitas.presentation.ui.dialogs.base.DialogManager;
 import com.example.sergiomoral.appcitas.presentation.ui.presenter.appointmentDetails.AppointmentDetailsPresenter;
+import com.example.sergiomoral.appcitas.presentation.ui.view.CreateAppointmentActivity.CreateAppointmentActivity;
+import com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsActivity.AppointmentsListActivity;
 import com.example.sergiomoral.appcitas.presentation.utils.Utils;
 import com.example.sergiomoral.appcitas.presentation.utils.constants.BuildData;
 
@@ -57,6 +61,7 @@ public class AppointmentDetailsActivity extends BaseActivity implements Appointm
 
     public String url;
     public Appointment mAppointment;
+    private Context mContext;
 
 
     @Override
@@ -70,6 +75,7 @@ public class AppointmentDetailsActivity extends BaseActivity implements Appointm
     @Override
     protected void initUI() {
 
+        mContext = this;
 
         mAppointment = (Appointment) getIntent().getExtras().get(BuildData.ITEM_APPOINTMENT);
 
@@ -145,8 +151,16 @@ public class AppointmentDetailsActivity extends BaseActivity implements Appointm
 
     @OnClick(R.id.btn_modify)
     public void modifyAppointment() {
-        // TODO: 8/5/18 Accion de modificar cita
-        Toast.makeText(this, "Falta por implementar", Toast.LENGTH_LONG).show();
+
+        mDialogManager.showAlert(R.string.modify_appointment_title, R.string.modify_appointment_message, this, new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPresenter.deleteAppointment(mAppointment);
+                Intent gotToCreateAppointment = new Intent(mContext, CreateAppointmentActivity.class);
+                startActivity(gotToCreateAppointment);
+                finish();
+            }
+        });
     }
 
     @OnClick(R.id.btn_delete)

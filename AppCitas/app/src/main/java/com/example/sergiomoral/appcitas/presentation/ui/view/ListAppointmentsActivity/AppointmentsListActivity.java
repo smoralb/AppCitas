@@ -57,14 +57,20 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
     String userToken;
     private ArrayList<Appointment> mAppointments;
     private AppointmentListAdapter adapter;
+    private boolean requestData;
+    private boolean firstTime = true;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         userToken = getIntent().getStringExtra(BuildData.USER_TOKEN);
+        if (mAppointments != null) {
+            mAppointments.clear();
+            adapter.notifyDataSetChanged();
+        }
+        mPresenter.requestData(userToken, true);
         recyclerAppointments.invalidate();
-        mPresenter.requestData(userToken);
     }
 
     @Inject
@@ -107,6 +113,7 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
     public void initFloatingButton() {
         Intent createAppointment = new Intent(this, CreateAppointmentActivity.class);
         startActivity(createAppointment);
+        finish();
     }
 
     @Override
@@ -122,6 +129,7 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
 
     @Override
     public void showAppointments(ArrayList<Appointment> appointments) {
+
         mAppointments = appointments;
         recyclerAppointments.setLayoutManager(new LinearLayoutManager(this));
         adapter = new AppointmentListAdapter(this, appointments, new onItemClickListener() {
@@ -139,15 +147,12 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
     @Override
     protected void onResume() {
         super.onResume();
-        if (mAppointments != null) {
-            mAppointments.clear();
-            adapter.notifyDataSetChanged();
-            mPresenter.requestData(userToken);
-        }
+
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        requestData = true;
     }
 }

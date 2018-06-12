@@ -3,6 +3,7 @@ package com.example.sergiomoral.appcitas.presentation.ui.view.CreateAppointmentA
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -21,6 +22,7 @@ import com.example.sergiomoral.appcitas.domain.entities.Office;
 import com.example.sergiomoral.appcitas.presentation.base.BaseActivity;
 import com.example.sergiomoral.appcitas.presentation.di.components.DaggerActivityComponent;
 import com.example.sergiomoral.appcitas.presentation.ui.presenter.createAppointment.CreateAppointmentPresenter;
+import com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsActivity.AppointmentsListActivity;
 import com.example.sergiomoral.appcitas.presentation.utils.DatePickerFragment;
 import com.example.sergiomoral.appcitas.presentation.utils.TimePickerFragment;
 
@@ -104,6 +106,9 @@ public class CreateAppointmentActivity extends BaseActivity implements CreateApp
 
     @OnClick(R.id.iv_back)
     public void onBack() {
+
+        Intent listActivity = new Intent(this, AppointmentsListActivity.class);
+        startActivity(listActivity);
         finish();
     }
 
@@ -293,6 +298,8 @@ public class CreateAppointmentActivity extends BaseActivity implements CreateApp
 
     @Override
     public void goToAppointmentList() {
+        Intent listActivity = new Intent(this, AppointmentsListActivity.class);
+        startActivity(listActivity);
         finish();
     }
 }
