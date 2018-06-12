@@ -1,6 +1,10 @@
 package com.example.sergiomoral.appcitas.presentation.ui.view.ProfileUserActivity;
 
-import android.widget.TextView;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.sergiomoral.appcitas.R;
 import com.example.sergiomoral.appcitas.domain.entities.ProfileData;
@@ -22,20 +26,36 @@ public class ProfileUserActivity extends BaseActivity implements ProfileUserView
 
 
     @BindView(R.id.user_name)
-    TextView userName;
+    EditText userName;
     @BindView(R.id.user_surname)
-    TextView userSurname;
+    EditText userSurname;
     @BindView(R.id.user_surname2)
-    TextView userSurname2;
+    EditText userSurname2;
     @BindView(R.id.user_email)
-    TextView userEmail;
+    EditText userEmail;
+    @BindView(R.id.btn_edit_personal_data)
+    Button btnEditData;
 
     @Inject
     ProfileUserPresenter mPresenter;
 
     @Inject
     DialogManagerImp mDialogManager;
+    private boolean settings;
 
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getIntent().getExtras() != null) {
+            settings = getIntent().getExtras().getBoolean("settings");
+        }
+        if (!settings) {
+            userName.setFocusable(false);
+            userEmail.setFocusable(false);
+            userSurname.setFocusable(false);
+            userSurname2.setFocusable(false);
+        } else btnEditData.setVisibility(View.VISIBLE);
+    }
 
     @Override
     protected void initInjector() {
@@ -76,5 +96,11 @@ public class ProfileUserActivity extends BaseActivity implements ProfileUserView
     @OnClick(R.id.iv_back)
     public void onBack() {
         finish();
+    }
+
+
+    @OnClick(R.id.btn_edit_personal_data)
+    public void setBtnEditData() {
+        mPresenter.updateData(userName.getText().toString(), userSurname.getText().toString(), userSurname2.getText().toString(), userEmail.getText().toString(), this);
     }
 }

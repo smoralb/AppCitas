@@ -1,8 +1,11 @@
 package com.example.sergiomoral.appcitas.presentation.ui.presenter.userProfile;
 
+import android.app.Activity;
 import android.util.Log;
 
+import com.example.sergiomoral.appcitas.R;
 import com.example.sergiomoral.appcitas.domain.entities.ProfileData;
+import com.example.sergiomoral.appcitas.presentation.ui.dialogs.base.DialogManagerImp;
 import com.example.sergiomoral.appcitas.presentation.ui.presenter.Presenter;
 import com.example.sergiomoral.appcitas.presentation.ui.view.ProfileUserActivity.ProfileUserView;
 import com.example.sergiomoral.appcitas.presentation.utils.constants.BuildData;
@@ -28,6 +31,9 @@ public class ProfileUserPresenter implements Presenter<ProfileUserView> {
     FirebaseAuth mAuth;
     FirebaseUser user;
     String userID;
+
+    @Inject
+    DialogManagerImp mDialogManager;
 
     @Inject
     public ProfileUserPresenter() {
@@ -74,5 +80,13 @@ public class ProfileUserPresenter implements Presenter<ProfileUserView> {
         if (mView != null) {
             mView.showLoading();
         }
+    }
+
+    public void updateData(String name, String surname, String surname2, String email, Activity activity) {
+        mDatabase.child(userID).child("name").setValue(name);
+        mDatabase.child(userID).child("apellido1").setValue(surname);
+        mDatabase.child(userID).child("apellido2").setValue(surname2);
+        mDatabase.child(userID).child("email").setValue(email);
+        mDialogManager.showSuccess(R.drawable.ic_ok,R.string.success_title, R.string.success_message, activity);
     }
 }

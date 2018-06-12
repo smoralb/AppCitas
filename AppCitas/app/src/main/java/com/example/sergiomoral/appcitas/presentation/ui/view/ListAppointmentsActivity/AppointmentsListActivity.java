@@ -113,7 +113,6 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
     public void initFloatingButton() {
         Intent createAppointment = new Intent(this, CreateAppointmentActivity.class);
         startActivity(createAppointment);
-        finish();
     }
 
     @Override

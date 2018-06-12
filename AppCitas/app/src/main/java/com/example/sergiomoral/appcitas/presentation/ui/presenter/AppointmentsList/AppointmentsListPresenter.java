@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import com.example.sergiomoral.appcitas.Appointments;
 import com.example.sergiomoral.appcitas.R;
 import com.example.sergiomoral.appcitas.domain.entities.Appointment;
+import com.example.sergiomoral.appcitas.domain.entities.ProfileData;
 import com.example.sergiomoral.appcitas.presentation.ui.presenter.Presenter;
 import com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsActivity.AppointmentsListActivity;
 import com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsActivity.AppointmentsListView;
@@ -90,13 +91,15 @@ public class AppointmentsListPresenter implements Presenter<AppointmentsListView
     }
 
 
-    public void clickListenerSettings(LinearLayout settings, AppointmentsListActivity appointmentsListActivity) {
+    public void clickListenerSettings(LinearLayout settings, final AppointmentsListActivity appointmentsListActivity) {
 
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // your action
-
+                Intent settings = new Intent(appointmentsListActivity, ProfileUserActivity.class);
+                settings.putExtra("settings",true);
+                appointmentsListActivity.startActivity(settings);
             }
         });
     }

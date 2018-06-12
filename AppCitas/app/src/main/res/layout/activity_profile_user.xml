@@ -23,31 +23,38 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
 
-        <TextView
+        <EditText
             android:id="@+id/user_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_xsmall"
+            android:focusable="true"
+            android:inputType="text"
+            android:textSize="@dimen/font_big"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_name"
             tools:hint="@string/tv_user_name" />
 
+
         <TextView
             android:id="@+id/tv_surname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_xsmall"
+            android:layout_marginTop="@dimen/spacing_small"
             android:text="@string/tv_user_surname"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/user_name" />
 
-        <TextView
+        <EditText
             android:id="@+id/user_surname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_xsmall"
+            android:focusable="true"
+            android:inputType="text"
+            android:textSize="@dimen/font_big"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_surname"
@@ -57,17 +64,20 @@
             android:id="@+id/tv_surname2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_xsmall"
+            android:layout_marginTop="@dimen/spacing_small"
             android:text="@string/tv_user_surname2"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/user_surname" />
 
-        <TextView
+        <EditText
             android:id="@+id/user_surname2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_xsmall"
+            android:focusable="true"
+            android:inputType="text"
+            android:textSize="@dimen/font_big"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_surname2"
@@ -77,23 +87,43 @@
             android:id="@+id/tv_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_xsmall"
+            android:layout_marginTop="@dimen/spacing_small"
             android:text="@string/tv_user_email"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/user_surname2" />
 
-        <TextView
+        <EditText
             android:id="@+id/user_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_xsmall"
+            android:focusable="true"
+            android:inputType="textEmailAddress"
+            android:textSize="@dimen/font_big"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_email"
             tools:hint="@string/ht_user_email" />
 
+
     </android.support.constraint.ConstraintLayout>
+
+
+    <Button
+        android:id="@+id/btn_edit_personal_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/spacing_small"
+        android:layout_marginEnd="@dimen/spacing_small"
+        android:layout_marginStart="@dimen/spacing_small"
+        android:layout_marginTop="@dimen/spacing_small"
+        android:background="@color/app_primary_color"
+        android:text="@string/accept"
+        android:textColor="@color/cpb_white"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_select_hour" />
 
 
 </android.support.constraint.ConstraintLayout>
