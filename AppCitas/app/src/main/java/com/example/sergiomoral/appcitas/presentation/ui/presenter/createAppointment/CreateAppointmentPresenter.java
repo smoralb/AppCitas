@@ -141,14 +141,16 @@ public class CreateAppointmentPresenter implements Presenter<CreateAppointmentVi
 
         showLoading();
 
-        Appointment newAppointment = new Appointment.Builder()
+        final Appointment newAppointment = new Appointment.Builder()
                 .fechacita(dateSelected)
                 .horacita(hourSelected)
                 .userID(mAuthManager.getCurrentUserId())
                 .oficina(centerSelected)
+                .key("")
                 .build();
 
-        mDatabaseRef.child("LISTACITAS").push().setValue(newAppointment);
+        mDatabaseRef.child(BuildData.APPOINTMENTS_LIST).push().setValue(newAppointment);
+
         mView.goToAppointmentList();
 
         hideLoading();

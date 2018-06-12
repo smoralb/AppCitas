@@ -25,6 +25,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
@@ -52,6 +54,7 @@ public class AppointmentsListPresenter implements Presenter<AppointmentsListView
     ArrayList<Appointment> mAppointments = new ArrayList<>();
     ArrayList<Appointment> mAppointmentsFilteredByUser = new ArrayList<>();
     private DatabaseReference mDatabase;
+    private String keyValue;
 
 
     @Inject
@@ -112,30 +115,15 @@ public class AppointmentsListPresenter implements Presenter<AppointmentsListView
         mDatabase.child(BuildData.APPOINTMENTS_LIST).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                int index = 0;
-/*
-                GenericTypeIndicator<ArrayList<Appointment>> typeIndicator = new GenericTypeIndicator<ArrayList<Appointment>>() {
-                };
-                ArrayList<Appointment> appointments = dataSnapshot.child(BuildData.APPOINTMENTS_LIST).getValue(typeIndicator);
 
-                for (Appointment appointment : appointments) {
-                    if (appointment != null) {
-                        if (appointments.get(index).getUserID().equals(userToken)) {
-                            mAppointmentsFilteredByUser.add(appointment);
-                            index++;
-                        }
-                    } else index++;
-                }
-
-                mView.showAppointments(mAppointmentsFilteredByUser);
-*/
                 Iterable<DataSnapshot> app = dataSnapshot.getChildren();
                 for (DataSnapshot apps : app){
+                    keyValue = apps.getKey();
+                    setKeyValue(keyValue);
                     Appointment app2 = apps.getValue(Appointment.class);
                     mAppointmentsFilteredByUser.add(app2);
                 }
                 mView.showAppointments(mAppointmentsFilteredByUser);
-
             }
 
             @Override
@@ -144,6 +132,10 @@ public class AppointmentsListPresenter implements Presenter<AppointmentsListView
                 Log.w(BuildData.TAG_DATABASE_ERROR, "loadPost:onCancelled", error.toException());
             }
         });
+    }
+
+    private void setKeyValue(String keyValue) {
+        mDatabase.child(BuildData.APPOINTMENTS_LIST).child(keyValue).child("key").setValue(keyValue);
     }
 
     public void initGuillotineAnimation(View guillotineMenu, Toolbar toolbar, View contentHamburger) {
