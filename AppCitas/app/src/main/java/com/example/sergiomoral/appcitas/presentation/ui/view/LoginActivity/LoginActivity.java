@@ -46,6 +46,8 @@ public class LoginActivity extends BaseActivity implements LoginView {
     private SharedPreferences loginPreferences;
 
     private boolean rememberMe;
+    String regexpEmail = "^[A-Za-z][A-Za-z0-9_.-]*@[A-Za-z0-9_.-]+\\.[A-Za-z0-9_.]+[A-za-z]$";
+
 
     @Inject
     public LoginActivity() {
@@ -68,8 +70,8 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     public void initLabels() {
         loginPreferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
-        if (!loginPreferences.getString(BuildData.USER_NAME, "").isEmpty() && !loginPreferences.getString(BuildData.USER_PASSWORD, "").isEmpty()) {
-            mUserEmail.setText(loginPreferences.getString(BuildData.USER_NAME, ""));
+        if (!loginPreferences.getString(BuildData.USER_EMAIL, "").isEmpty() && !loginPreferences.getString(BuildData.USER_PASSWORD, "").isEmpty()) {
+            mUserEmail.setText(loginPreferences.getString(BuildData.USER_EMAIL, ""));
             mUserPassword.setText(loginPreferences.getString(BuildData.USER_PASSWORD, ""));
             rememberMe = loginPreferences.getBoolean(BuildData.USER_REMEMBER, false);
         }
@@ -121,10 +123,31 @@ public class LoginActivity extends BaseActivity implements LoginView {
     @OnClick(R.id.btn_login)
     public void loginProcess() {
         hideSoftKeyboard();
+
+        if (!mUserEmail.getText().toString().isEmpty() && !mUserPassword.getText().toString().isEmpty()) {
+            if (mUserEmail.getText().toString().matches(regexpEmail) && mUserPassword.getText().toString().length() > 5) {
+                if (mRememberMe.isChecked()) {
+                    SharedPreferences.Editor editor = loginPreferences.edit();
+                    editor.putString(BuildData.USER_EMAIL, mUserEmail.getText().toString());
+                    editor.putString(BuildData.USER_PASSWORD, mUserPassword.getText().toString());
+                    editor.putBoolean(BuildData.USER_REMEMBER, rememberMe);
+                    editor.commit();
+                }
+                else {
+                    mUserEmail.getText().clear();
+                    mUserPassword.getText().clear();
+                }
+            } else
+                mDialogManager.showError(R.drawable.ic_error, R.string.generic_title_error, R.string.error_login, this);
+        } else
+            mDialogManager.showError(R.drawable.ic_error, R.string.generic_title_error, R.string.error_empty_field, this);
+
+        /*
         if (mRememberMe.isChecked()) {
             rememberMe = true;
         } else rememberMe = false;
-        mLoginPresenter.initLoginProcess(mUserEmail.getText().toString(), mUserPassword.getText().toString(), this, rememberMe);
 
+        mLoginPresenter.initLoginProcess(mUserEmail.getText().toString(), mUserPassword.getText().toString(), this, rememberMe);
+*/
     }
 }

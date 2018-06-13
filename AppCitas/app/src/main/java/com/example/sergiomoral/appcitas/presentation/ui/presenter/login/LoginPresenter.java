@@ -43,7 +43,7 @@ public class LoginPresenter implements Presenter<LoginView> {
         loginPrefsEditor = loginPreferences.edit();
         if (rememberMe) {
             showLoading();
-            loginPrefsEditor.putString(BuildData.USER_NAME, user);
+            loginPrefsEditor.putString(BuildData.USER_EMAIL, user);
             loginPrefsEditor.putString(BuildData.USER_PASSWORD, password);
         } else
             mView.showEmptyFieldsError();

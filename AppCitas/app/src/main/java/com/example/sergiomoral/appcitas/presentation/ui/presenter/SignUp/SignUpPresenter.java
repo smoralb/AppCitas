@@ -21,7 +21,6 @@ public class SignUpPresenter implements Presenter<SignUpView> {
     private String userName, userSurname, userSurname2, userID;
 
     String regexpEmail = "^[A-Za-z][A-Za-z0-9_.-]*@[A-Za-z0-9_.-]+\\.[A-Za-z0-9_.]+[A-za-z]$";
-    String regexpPassword = "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[A-Za-z\\d]{8,15}$/";
 
 
     @Inject

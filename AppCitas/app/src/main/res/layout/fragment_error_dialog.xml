@@ -28,16 +28,18 @@
             android:id="@+id/error_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/spacing_small"
             android:textColor="@android:color/black"
             android:textSize="15sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            tools:text="@string/generic_title_error" />
 
         <TextView
             android:id="@+id/error_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/spacing_xsmall"
+            android:gravity="center"
             android:textSize="15sp"
             tools:text="Contenido error del mensaje" />
 
