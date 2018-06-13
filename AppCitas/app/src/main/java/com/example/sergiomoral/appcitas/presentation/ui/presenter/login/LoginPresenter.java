@@ -50,6 +50,7 @@ public class LoginPresenter implements Presenter<LoginView> {
     private String userName;
     private String userPassword;
     private DataSnapshot data;
+    private String userToken;
 
     @Inject
     public LoginPresenter(AuthManager authManager) {
@@ -71,7 +72,6 @@ public class LoginPresenter implements Presenter<LoginView> {
             loginPrefsEditor.putString(BuildData.USER_PASSWORD, password);
             loginPrefsEditor.putBoolean(BuildData.USER_REMEMBER, rememberMe);
         }
-        loginPrefsEditor.commit();
 
         Query usersQuery = mDatabase.child(BuildData.USERS_LIST);
 
@@ -83,7 +83,10 @@ public class LoginPresenter implements Presenter<LoginView> {
                             password.equals(ds.child("password").getValue(String.class))) {
                         userName = ds.child("email").getValue(String.class);
                         userPassword = ds.child("password").getValue(String.class);
+                        userToken = ds.getKey();
+                        loginPrefsEditor.putString(BuildData.USER_TOKEN, userToken);
                         data = ds;
+                        loginPrefsEditor.commit();
                     }
                 }
                 if (userName != null && userPassword != null) {

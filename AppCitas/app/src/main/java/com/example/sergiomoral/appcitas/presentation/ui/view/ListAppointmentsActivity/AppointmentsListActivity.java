@@ -1,7 +1,9 @@
 package com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsActivity;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -62,16 +64,21 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
     private ArrayList<Appointment> mAppointments;
     private AppointmentListAdapter adapter;
     private boolean requestData;
+    private SharedPreferences loginPreferences;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        userToken = getIntent().getStringExtra(BuildData.USER_TOKEN);
+        loginPreferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
+        userToken = loginPreferences.getString(BuildData.USER_TOKEN, "");
+
         if (mAppointments != null) {
             mAppointments.clear();
             adapter.notifyDataSetChanged();
         }
+
         mPresenter.requestData(userToken, true);
         recyclerAppointments.invalidate();
     }
