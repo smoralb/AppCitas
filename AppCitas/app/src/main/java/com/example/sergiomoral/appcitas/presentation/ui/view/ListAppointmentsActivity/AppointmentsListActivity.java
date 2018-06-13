@@ -49,6 +49,10 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
     RecyclerView recyclerAppointments;
     @BindView(R.id.create_appointment)
     FloatingActionButton createAppointment;
+    @BindView(R.id.rv_appointments)
+    FrameLayout frameAppointments;
+    @BindView(R.id.fl_no_appointments)
+    FrameLayout frameNoAppointments;
 
     @Inject
     AppointmentsListPresenter mPresenter;
@@ -58,7 +62,6 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
     private ArrayList<Appointment> mAppointments;
     private AppointmentListAdapter adapter;
     private boolean requestData;
-    private boolean firstTime = true;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -129,17 +132,22 @@ public class AppointmentsListActivity extends BaseActivity implements Appointmen
     @Override
     public void showAppointments(ArrayList<Appointment> appointments) {
 
-        mAppointments = appointments;
-        recyclerAppointments.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new AppointmentListAdapter(this, appointments, new onItemClickListener() {
-            @Override
-            public void onItemClick(Appointment item) {
-                Intent gotToDetails = new Intent(AppointmentsListActivity.this, AppointmentDetailsActivity.class);
-                gotToDetails.putExtra(BuildData.ITEM_APPOINTMENT, item);
-                startActivity(gotToDetails);
-            }
-        });
-        recyclerAppointments.setAdapter(adapter);
+        if (appointments.size() != 0) {
+            mAppointments = appointments;
+            recyclerAppointments.setLayoutManager(new LinearLayoutManager(this));
+            adapter = new AppointmentListAdapter(this, appointments, new onItemClickListener() {
+                @Override
+                public void onItemClick(Appointment item) {
+                    Intent gotToDetails = new Intent(AppointmentsListActivity.this, AppointmentDetailsActivity.class);
+                    gotToDetails.putExtra(BuildData.ITEM_APPOINTMENT, item);
+                    startActivity(gotToDetails);
+                }
+            });
+            recyclerAppointments.setAdapter(adapter);
+        } else {
+            frameAppointments.setVisibility(View.GONE);
+            frameNoAppointments.setVisibility(View.VISIBLE);
+        }
         hideLoading();
     }
 

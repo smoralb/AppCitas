@@ -49,6 +49,7 @@ public class LoginPresenter implements Presenter<LoginView> {
     private FirebaseUser userData;
     private String userName;
     private String userPassword;
+    private DataSnapshot data;
 
     @Inject
     public LoginPresenter(AuthManager authManager) {
@@ -82,13 +83,17 @@ public class LoginPresenter implements Presenter<LoginView> {
                             password.equals(ds.child("password").getValue(String.class))) {
                         userName = ds.child("email").getValue(String.class);
                         userPassword = ds.child("password").getValue(String.class);
+                        data = ds;
                     }
                 }
-                if (userName.equals(user) && userPassword.equals(password)) {
-                    mAuthManager.signInUser(user, password);
-                    mView.goToListAppointments(mAuthManager.getCurrentUserId());
+                if (userName != null && userPassword != null) {
+                    if (userName.equals(user) && userPassword.equals(password)) {
+                        mAuthManager.signInUser(user, password);
+                        mView.goToListAppointments(data.getKey());
+                    } else
+                        mDialogManager.showError(R.drawable.ic_error, R.string.generic_title_error, R.string.error_message_no_registered, (Activity) context);
                 } else
-                    mDialogManager.showError(R.drawable.ic_error, R.string.generic_title_error, R.string.error_message_no_registered, (Activity) context);
+                    mDialogManager.showError(R.drawable.ic_error, R.string.generic_title_error, R.string.error_login, (Activity) context);
             }
 
             @Override

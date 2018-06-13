@@ -98,7 +98,7 @@ public class AppointmentsListPresenter implements Presenter<AppointmentsListView
             public void onClick(View v) {
                 // your action
                 Intent settings = new Intent(appointmentsListActivity, ProfileUserActivity.class);
-                settings.putExtra("settings",true);
+                settings.putExtra("settings", true);
                 appointmentsListActivity.startActivity(settings);
             }
         });
@@ -118,18 +118,17 @@ public class AppointmentsListPresenter implements Presenter<AppointmentsListView
         mDatabase.child(BuildData.APPOINTMENTS_LIST).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
                 if (mAppointmentsFilteredByUser != null) mAppointmentsFilteredByUser.clear();
 
-                Iterable<DataSnapshot> app = dataSnapshot.getChildren();
-                for (DataSnapshot apps : app) {
-                    keyValue = apps.getKey();
-                    setKeyValue(keyValue);
-                    Appointment app2 = apps.getValue(Appointment.class);
-                    mAppointmentsFilteredByUser.add(app2);
+                for (DataSnapshot apps : dataSnapshot.getChildren()) {
+                    if (userToken.equals(apps.child("userID").getValue())) {
+                        keyValue = apps.getKey();
+                        setKeyValue(keyValue);
+                        Appointment app2 = apps.getValue(Appointment.class);
+                        mAppointmentsFilteredByUser.add(app2);
+                    }
                 }
                 mView.showAppointments(mAppointmentsFilteredByUser);
-
             }
 
             @Override

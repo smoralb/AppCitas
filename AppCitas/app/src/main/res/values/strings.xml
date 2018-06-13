@@ -96,6 +96,7 @@
     <string name="select_locality">Seleccione una localidad</string>
     <string name="modify_appointment_title">¿Modificar cita?</string>
     <string name="modify_appointment_message">¿Está seguro que desea modificar su cita?</string>
+    <string name="no_appointments">No hay citas disponibles</string>
 
     <!-- Localities from Spain -->
 
