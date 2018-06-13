@@ -5,6 +5,8 @@ import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 
+import com.example.sergiomoral.appcitas.R;
+
 import java.util.Calendar;
 
 /**
@@ -33,7 +35,8 @@ public class TimePickerFragment extends android.support.v4.app.DialogFragment {
         int hour = c.get(Calendar.HOUR_OF_DAY);
         int minutes = c.get(Calendar.MINUTE);
 
+
         // Create a new instance of DatePickerDialog and return it
-        return new TimePickerDialog(getActivity(), listener, hour, minutes, true);
+        return new TimePickerDialog(getActivity(), R.style.datepicker, listener, hour, minutes, true);
     }
 }

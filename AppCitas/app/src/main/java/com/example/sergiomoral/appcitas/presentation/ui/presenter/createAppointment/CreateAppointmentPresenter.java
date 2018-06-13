@@ -151,8 +151,6 @@ public class CreateAppointmentPresenter implements Presenter<CreateAppointmentVi
 
         mDatabaseRef.child(BuildData.APPOINTMENTS_LIST).push().setValue(newAppointment);
 
-        //mDialogManager.showSuccess(R.drawable.ic_ok, R.string.success_title, R.string.success_message, activity);
-
         mView.goToAppointmentList();
 
         hideLoading();
