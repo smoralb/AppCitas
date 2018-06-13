@@ -20,8 +20,6 @@ public class SignUpPresenter implements Presenter<SignUpView> {
 
     private String userName, userSurname, userSurname2, userID;
 
-    String regexpEmail = "^[A-Za-z][A-Za-z0-9_.-]*@[A-Za-z0-9_.-]+\\.[A-Za-z0-9_.]+[A-za-z]$";
-
 
     @Inject
     public SignUpPresenter(AuthManager authManager) {
@@ -29,6 +27,7 @@ public class SignUpPresenter implements Presenter<SignUpView> {
     }
 
     public void initSignUpProccess(String userEmail, String password, Context context) {
+
         mAuth.signUpUser(userName, userSurname, userSurname2, userID, userEmail, password,context);
     }
 

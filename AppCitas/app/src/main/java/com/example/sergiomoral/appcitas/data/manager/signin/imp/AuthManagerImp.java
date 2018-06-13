@@ -76,7 +76,6 @@ public class AuthManagerImp extends BaseManager implements AuthManager {
                 .password(password)
                 .build();
 
-
         mAuth.createUserWithEmailAndPassword(mUser.getEmail(), mUser.getPassword())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override

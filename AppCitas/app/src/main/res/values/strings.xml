@@ -40,6 +40,7 @@
     <string name="success_message">Ahora podrá iniciar sesión con sus credenciales</string>
     <string name="error_user">El usuario ya existe en la base de datos</string>
     <string name="error_password">Introduzca una contraseña valida</string>
+    <string name="error_password_length">La contraseña ha de tener 5 dígitos como mínimo</string>
     <string name="error_passwords">Ambas contraseñas no coinciden</string>
 
 

@@ -41,6 +41,9 @@ public class SignUpActivity extends BaseActivity implements SignUpView, Personal
     private UserDataFragment mUserDataFragment;
 
 
+    String regexpEmail = "^[A-Za-z][A-Za-z0-9_.-]*@[A-Za-z0-9_.-]+\\.[A-Za-z0-9_.]+[A-za-z]$";
+
+
     @Inject
     public SignUpActivity() {
     }
@@ -93,21 +96,33 @@ public class SignUpActivity extends BaseActivity implements SignUpView, Personal
 
     @Override
     public void confirmAppointment(String email, String password, String repeatPassword) {
-        if (isValid(email, password, repeatPassword)) {
-            mUser.setEmail(email);
-            if (password.equals(repeatPassword)) {
-                mUser.setPassword(password);
-                showLoading();
-                mPresenter.initSignUpProccess(email, password, this);
-            } else {
-                mDialogManager.showError(R.drawable.ic_error, R.string.generic_error, R.string.error_passwords, this);
+        if (!email.isEmpty() && !password.isEmpty() && !repeatPassword.isEmpty()) {
+            if (isValid(email, password, repeatPassword)) {
+                if (email.matches(regexpEmail)) {
+                    mUser.setEmail(email);
+                    if (password.length() > 5) {
+                        if (password.equals(repeatPassword)) {
+                            mUser.setPassword(password);
+                            showLoading();
+                            mPresenter.initSignUpProccess(email, password, this);
+                        } else {
+                            mDialogManager.showError(R.drawable.ic_error, R.string.generic_error, R.string.error_passwords, this);
+                        }
+                    } else
+                        mDialogManager.showError(R.drawable.ic_error, R.string.generic_error, R.string.error_password_length, this);
+
+                } else
+                    mDialogManager.showError(R.drawable.ic_error, R.string.generic_title_error, R.string.error_email, this);
             }
-            hideLoading();
-        }
+        } else
+            mDialogManager.showError(R.drawable.ic_error, R.string.generic_title_error, R.string.error_empty_field, this);
+
+        hideLoading();
     }
 
     @Override
     public void returnToPersonalDataStep() {
+        showStep(1);
         onBackPressed();
     }
 
