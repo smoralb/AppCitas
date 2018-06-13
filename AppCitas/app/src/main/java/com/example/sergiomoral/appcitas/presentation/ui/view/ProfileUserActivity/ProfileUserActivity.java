@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.sergiomoral.appcitas.R;
 import com.example.sergiomoral.appcitas.domain.entities.ProfileData;
@@ -35,6 +36,8 @@ public class ProfileUserActivity extends BaseActivity implements ProfileUserView
     EditText userEmail;
     @BindView(R.id.btn_edit_personal_data)
     Button btnEditData;
+    @BindView(R.id.tv_title_toolbar)
+    TextView tvTitleToolbar;
 
     @Inject
     ProfileUserPresenter mPresenter;
@@ -48,8 +51,10 @@ public class ProfileUserActivity extends BaseActivity implements ProfileUserView
         super.onCreate(savedInstanceState);
         if (getIntent().getExtras() != null) {
             settings = getIntent().getExtras().getBoolean("settings");
+            tvTitleToolbar.setText(R.string.settings);
         }
         if (!settings) {
+            tvTitleToolbar.setText(R.string.user_profile);
             userName.setFocusable(false);
             userEmail.setFocusable(false);
             userSurname.setFocusable(false);

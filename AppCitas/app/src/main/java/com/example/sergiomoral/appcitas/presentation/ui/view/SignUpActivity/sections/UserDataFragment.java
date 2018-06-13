@@ -95,10 +95,6 @@ public class UserDataFragment extends BaseFragment implements UserDataView {
         mListener.confirmAppointment(userEmail, userPassword, userRepeatPassword);
     }
 
-    public void showFormError() {
-        showError(R.string.error_values);
-    }
-
     @OnClick(R.id.tv_footer_left)
     public void returnToBackStack() {
         mListener.returnToPersonalDataStep();

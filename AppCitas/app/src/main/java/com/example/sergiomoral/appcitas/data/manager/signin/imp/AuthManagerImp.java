@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.View;
 
 import com.example.sergiomoral.appcitas.R;
 import com.example.sergiomoral.appcitas.data.manager.BaseManager;
@@ -81,12 +82,14 @@ public class AuthManagerImp extends BaseManager implements AuthManager {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            mDialogManager.showSuccess(R.drawable.ic_ok, R.string.success_title, R.string.success_message,activity);
                             FirebaseUser user = mAuth.getCurrentUser();
                             mDataBase.child(BuildData.USERS_LIST).child(user.getUid()).setValue(mUser);
                             Log.d("AuthManagerImp", "signUpWithEmail:success");
+
+                            mDialogManager.showSuccess(R.drawable.ic_ok,R.string.success_title, R.string.success_message, activity);
+
                         } else {
-                            mDialogManager.showError(R.drawable.ic_error, R.string.generic_error, R.string.error_user,activity);
+                            mDialogManager.showError(R.drawable.ic_error, R.string.generic_error, R.string.error_user, activity);
                             Log.w("AuthManagerImp", "signUpWithEmail:failure", task.getException());
                         }
                     }

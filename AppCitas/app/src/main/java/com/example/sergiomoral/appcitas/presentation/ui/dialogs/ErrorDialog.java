@@ -67,8 +67,8 @@ public class ErrorDialog extends BaseDialog {
             public void onClick(View v) {
                 //Close dialog
                 dismiss();
-               // if (activity != null)
-                 //   activity.finish();
+                if (activity != null)
+                    activity.finish();
             }
         });
         if (getString(msg) != null) {

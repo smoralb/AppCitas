@@ -59,6 +59,8 @@ public class CreateAppointmentActivity extends BaseActivity implements CreateApp
     ImageView ivDate;
     @BindView(R.id.iv_hour)
     ImageView ivHour;
+    @BindView(R.id.tv_title_toolbar)
+    TextView toolbarTitle;
 
 
     @Inject
@@ -74,6 +76,7 @@ public class CreateAppointmentActivity extends BaseActivity implements CreateApp
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        toolbarTitle. setText(R.string.create_appointment);
     }
 
     @Inject
