@@ -201,7 +201,7 @@ public class SignUpActivity extends BaseActivity implements SignUpView, Personal
 
     public boolean isValid(String name, String surname, String surname2, String userID) {
         if (!name.equals("") && !surname.equals("")
-                && !surname2.equals("") && !userID.equals("")) {
+                && !surname2.equals("")) {
             return true;
         } else {
             return false;

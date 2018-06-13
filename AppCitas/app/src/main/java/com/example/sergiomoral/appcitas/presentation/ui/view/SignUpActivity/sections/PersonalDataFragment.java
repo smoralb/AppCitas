@@ -28,8 +28,6 @@ public class PersonalDataFragment extends BaseFragment implements PersonalDataVi
     @BindView(R.id.et_user_surname2)
     EditText mUserSurname2;
 
-    @BindView(R.id.et_user_id)
-    EditText mUserId;
 
     private Listener mListener;
 
@@ -81,7 +79,7 @@ public class PersonalDataFragment extends BaseFragment implements PersonalDataVi
 
     @Override
     public void navigateToUserData() {
-        mListener.continueRegister(mUserName.getText().toString(), mUserSurname.getText().toString(), mUserSurname2.getText().toString(), mUserId.getText().toString());
+        mListener.continueRegister(mUserName.getText().toString(), mUserSurname.getText().toString(), mUserSurname2.getText().toString(),"");
     }
 
 

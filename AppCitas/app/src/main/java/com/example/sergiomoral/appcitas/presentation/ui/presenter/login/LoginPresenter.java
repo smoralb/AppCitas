@@ -77,9 +77,12 @@ public class LoginPresenter implements Presenter<LoginView> {
         usersQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot ds : dataSnapshot.getChildren()) {
-                    userName = ds.child("email").getValue(String.class);
-                    userPassword = ds.child("password").getValue(String.class);
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    if (user.equals(ds.child("email").getValue(String.class)) &&
+                            password.equals(ds.child("password").getValue(String.class))) {
+                        userName = ds.child("email").getValue(String.class);
+                        userPassword = ds.child("password").getValue(String.class);
+                    }
                 }
                 if (userName.equals(user) && userPassword.equals(password)) {
                     mAuthManager.signInUser(user, password);
