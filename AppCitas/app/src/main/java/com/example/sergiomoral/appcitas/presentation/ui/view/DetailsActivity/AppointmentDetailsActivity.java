@@ -3,6 +3,7 @@ package com.example.sergiomoral.appcitas.presentation.ui.view.DetailsActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.util.Base64;
 import android.view.View;
 import android.widget.ImageView;
@@ -23,6 +24,7 @@ import com.example.sergiomoral.appcitas.presentation.utils.constants.BuildData;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -85,7 +87,8 @@ public class AppointmentDetailsActivity extends BaseActivity implements Appointm
                     + mAppointment.getOficina().getLongitud()
                     + "&zoom=15&"
                     + "size=400x200"
-                    + "&sensor=false&markers=color:green%7Clabel:G%7C"
+                    + "&sensor=false&markers=color:green%7Clabel:"
+                    + mAppointment.getOficina().getNombrelocal() + "%7C"
                     + mAppointment.getOficina().getLatitud()
                     + ", "
                     + mAppointment.getOficina().getLongitud()
@@ -184,6 +187,13 @@ public class AppointmentDetailsActivity extends BaseActivity implements Appointm
         return R.layout.activity_appointment_details;
     }
 
+    @OnClick(R.id.iv_commerce_location)
+    public void openGoogleMaps() {
+        String formattedLocale = mAppointment.getOficina().getNombrelocal().replaceAll("\\s+", "+");
+        String map = "https://www.google.com/maps/search/?api=1&query=" + mAppointment.getOficina().getLatitud() + "," + mAppointment.getOficina().getLongitud();
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(map));
+        startActivity(intent);
+    }
 
     @Override
     public void attachViewToPresenter() {
