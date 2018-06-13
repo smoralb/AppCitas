@@ -6,6 +6,7 @@
     <string name="btn_login">LOG IN</string>
     <string name="tv_sign_up">¿No eres usuario?. Regístrate!</string>
     <string name="tv_remember_me">Remember me</string>
+    <string name="error_message_no_registered">Usuario no registrado</string>
 
     <!-- Sign up strings -->
     <string name="tv_goto_login">¿Ya eres usuario?. Inicia sesión</string>

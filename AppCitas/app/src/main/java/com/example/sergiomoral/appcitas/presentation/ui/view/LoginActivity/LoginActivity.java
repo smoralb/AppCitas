@@ -45,7 +45,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     private SharedPreferences loginPreferences;
 
-    private boolean rememberMe;
+    private boolean rememberMe = false;
     String regexpEmail = "^[A-Za-z][A-Za-z0-9_.-]*@[A-Za-z0-9_.-]+\\.[A-Za-z0-9_.]+[A-za-z]$";
 
 
@@ -120,6 +120,13 @@ public class LoginActivity extends BaseActivity implements LoginView {
         finish();
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initLabels();
+    }
+
     @OnClick(R.id.btn_login)
     public void loginProcess() {
         hideSoftKeyboard();
@@ -127,27 +134,14 @@ public class LoginActivity extends BaseActivity implements LoginView {
         if (!mUserEmail.getText().toString().isEmpty() && !mUserPassword.getText().toString().isEmpty()) {
             if (mUserEmail.getText().toString().matches(regexpEmail) && mUserPassword.getText().toString().length() > 5) {
                 if (mRememberMe.isChecked()) {
-                    SharedPreferences.Editor editor = loginPreferences.edit();
-                    editor.putString(BuildData.USER_EMAIL, mUserEmail.getText().toString());
-                    editor.putString(BuildData.USER_PASSWORD, mUserPassword.getText().toString());
-                    editor.putBoolean(BuildData.USER_REMEMBER, rememberMe);
-                    editor.commit();
+                    rememberMe = true;
                 }
-                else {
-                    mUserEmail.getText().clear();
-                    mUserPassword.getText().clear();
-                }
+                mLoginPresenter.initLoginProcess(mUserEmail.getText().toString(), mUserPassword.getText().toString(), this, rememberMe);
             } else
                 mDialogManager.showError(R.drawable.ic_error, R.string.generic_title_error, R.string.error_login, this);
         } else
             mDialogManager.showError(R.drawable.ic_error, R.string.generic_title_error, R.string.error_empty_field, this);
 
-        /*
-        if (mRememberMe.isChecked()) {
-            rememberMe = true;
-        } else rememberMe = false;
 
-        mLoginPresenter.initLoginProcess(mUserEmail.getText().toString(), mUserPassword.getText().toString(), this, rememberMe);
-*/
     }
 }
