@@ -74,6 +74,10 @@ public class CreateAppointmentActivity extends BaseActivity implements CreateApp
     private String hourSelected = "";
     private boolean correctForm;
     private boolean appointmentToModify;
+    private boolean imageForm;
+    private boolean stablishmentForm;
+    private boolean dateSelectedForm;
+    private boolean hourSelectedform;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -119,7 +123,6 @@ public class CreateAppointmentActivity extends BaseActivity implements CreateApp
 
     @OnClick(R.id.iv_back)
     public void onBack() {
-
         Intent listActivity = new Intent(this, AppointmentsListActivity.class);
         startActivity(listActivity);
         finish();
@@ -261,7 +264,7 @@ public class CreateAppointmentActivity extends BaseActivity implements CreateApp
     @OnClick(R.id.btn_create_appointment)
     public void createAppointment() {
         mPresenter.processFormData(localitySelected, serviceSelected, officeSelected, dateSelected, hourSelected);
-        if (correctForm) {
+        if (correctForm && imageForm && stablishmentForm && dateSelectedForm && hourSelectedform) {
             mPresenter.sendDataToDataBase(localitySelected, serviceSelected, officeSelected, dateSelected, hourSelected);
         }
     }
@@ -276,7 +279,7 @@ public class CreateAppointmentActivity extends BaseActivity implements CreateApp
     @Override
     public void setImageToService(boolean isCorrect) {
 
-        correctForm = isCorrect;
+        imageForm = isCorrect;
         if (isCorrect) ivService.setImageDrawable(getDrawable(R.drawable.ic_ok));
         else ivService.setImageDrawable(getDrawable(R.drawable.ic_error));
     }
@@ -284,7 +287,7 @@ public class CreateAppointmentActivity extends BaseActivity implements CreateApp
     @Override
     public void setImageToStablishment(boolean isCorrect) {
 
-        correctForm = isCorrect;
+        stablishmentForm = isCorrect;
         if (isCorrect) ivStablishment.setImageDrawable(getDrawable(R.drawable.ic_ok));
         else ivStablishment.setImageDrawable(getDrawable(R.drawable.ic_error));
     }
@@ -292,7 +295,7 @@ public class CreateAppointmentActivity extends BaseActivity implements CreateApp
     @Override
     public void setImageToDateSelected(boolean isCorrect) {
 
-        correctForm = isCorrect;
+        dateSelectedForm = isCorrect;
         if (isCorrect) ivDate.setImageDrawable(getDrawable(R.drawable.ic_ok));
         else ivDate.setImageDrawable(getDrawable(R.drawable.ic_error));
     }
@@ -300,7 +303,7 @@ public class CreateAppointmentActivity extends BaseActivity implements CreateApp
     @Override
     public void setImagetoHourSelected(boolean isCorrect) {
 
-        correctForm = isCorrect;
+        hourSelectedform = isCorrect;
         if (isCorrect) ivHour.setImageDrawable(getDrawable(R.drawable.ic_ok));
         else ivHour.setImageDrawable(getDrawable(R.drawable.ic_error));
     }

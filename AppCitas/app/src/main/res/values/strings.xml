@@ -4,8 +4,8 @@
     <!-- Login strings -->
     <string name="mainActivity">Appointments</string>
     <string name="btn_login">LOG IN</string>
-    <string name="tv_sign_up">¿No eres usuario?. Regístrate!</string>
-    <string name="tv_remember_me">Remember me</string>
+    <string name="tv_sign_up">¿No eres usuario? ¡Regístrate!</string>
+    <string name="tv_remember_me">Recuérdame</string>
     <string name="error_message_no_registered">Usuario no registrado</string>
 
     <!-- Sign up strings -->
@@ -21,7 +21,7 @@
     <string name="tv_user_name">Nombre</string>
     <string name="tv_user_surname">Primer apellido</string>
     <string name="tv_user_surname2">Segundo apellido</string>
-    <string name="tv_user_email">Correo electrónico</string>
+    <string name="tv_user_email">Correo electrónico</string>N
     <string name="tv_user_id">DNI</string>
     <string name="tv_user_password">Contraseña</string>
     <string name="tv_user_repeat_password">Repita su contraseña</string>

@@ -1,9 +1,13 @@
 package com.example.sergiomoral.appcitas.presentation.ui.view.DetailsActivity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Base64;
 import android.view.View;
 import android.widget.ImageView;
@@ -115,17 +119,16 @@ public class AppointmentDetailsActivity extends BaseActivity implements Appointm
             mAppointmentHour.setText(mAppointment.getHoracita());
             mCommerceAddress.setText(Utils.addressFormat(roadType, localidad, road, city, numVia, zipCode));
 
-            if (email != null) {
+            if (email != null && !email.equals("")) {
                 mCommerceMail.setText(email);
             } else {
                 mCommerceMail.setText(R.string.email_not_disponible);
             }
-            if (phone != null) {
+            if (phone != null && !phone.equals("")) {
                 mCommercePhone.setText(phone);
             } else {
                 mCommercePhone.setText(R.string.phone_not_disponible);
             }
-            mCommercePhone.setText(phone);
 
         } else
             mDialogManager.showError(R.drawable.ic_error, R.string.generic_title_error, R.string.generic_error, this);
@@ -160,7 +163,7 @@ public class AppointmentDetailsActivity extends BaseActivity implements Appointm
                 mDialogManager.hideAlertDialog();
                 mPresenter.deleteAppointment(mAppointment);
                 Intent goToCreateAppointment = new Intent(mContext, CreateAppointmentActivity.class);
-                goToCreateAppointment.putExtra("modifyAppointment",true);
+                goToCreateAppointment.putExtra("modifyAppointment", true);
                 startActivity(goToCreateAppointment);
                 finish();
             }
@@ -176,6 +179,34 @@ public class AppointmentDetailsActivity extends BaseActivity implements Appointm
                 mPresenter.deleteAppointment(mAppointment);
             }
         });
+    }
+
+    @OnClick(R.id.tv_commerce_phone)
+    public void callCommercePhone() {
+        String commercePhone = mCommercePhone.getText().toString();
+        if (ContextCompat.checkSelfPermission(
+                mContext, android.Manifest.permission.CALL_PHONE) !=
+                PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions((Activity) mContext, new
+                    String[]{android.Manifest.permission.CALL_PHONE}, 0);
+        } else {
+            startActivity(new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + commercePhone)));
+        }
+    }
+
+    @OnClick(R.id.tv_commerce_mail)
+    public void sendEmailToCommerce() {
+        // TODO: 14/6/18 Coger email del usuario logueado
+        if (mCommerceMail != null && !mCommerceMail.getText().toString().equals(R.string.email_not_disponible)) {
+            try {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("mailto:" + mCommerceMail.getText().toString()));
+                intent.putExtra(Intent.EXTRA_SUBJECT, "Solicitud de cita en " + mCommerceName.getText().toString());
+                startActivity(intent);
+            } catch (Exception e) {
+                Toast.makeText(this, "Losiento, no encontramos aplicación disponible para mandar email", Toast.LENGTH_LONG).show();
+                e.printStackTrace();
+            }
+        } else Toast.makeText(this, "No hay dirección email disponible", Toast.LENGTH_LONG).show();
     }
 
     @OnClick(R.id.iv_back)

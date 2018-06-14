@@ -123,8 +123,9 @@ public class CreateAppointmentPresenter implements Presenter<CreateAppointmentVi
 
     public void processFormData(String localitySelected, String serviceSelected, Office centerSelected, String dateSelected, String hourSelected) {
 
-        if (!localitySelected.equals(activity.getString(R.string.select_locality)) && !localitySelected.equals(""))
+        if (!localitySelected.equals(activity.getString(R.string.select_locality)) && !localitySelected.equals("")) {
             localityCorrect = true;
+        }
         if (!serviceSelected.equals(activity.getString(R.string.select_service)) && !serviceSelected.equals(""))
             serviceCorrect = true;
         if (centerSelected != null) stablishmentCorrect = true;
