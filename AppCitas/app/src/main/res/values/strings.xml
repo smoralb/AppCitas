@@ -99,6 +99,7 @@
     <string name="modify_appointment_message">¿Está seguro que desea modificar su cita?</string>
     <string name="no_appointments">No hay citas disponibles</string>
     <string name="create_appointment">CREAR CITA</string>
+    <string name="modify_appointment">MODIFICAR CITA</string>
     <string name="user_profile">PROFILE</string>
 
 

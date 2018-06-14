@@ -17,7 +17,6 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.example.sergiomoral.appcitas.R;
-import com.example.sergiomoral.appcitas.domain.entities.Center;
 import com.example.sergiomoral.appcitas.domain.entities.Office;
 import com.example.sergiomoral.appcitas.presentation.base.BaseActivity;
 import com.example.sergiomoral.appcitas.presentation.di.components.DaggerActivityComponent;
@@ -61,6 +60,8 @@ public class CreateAppointmentActivity extends BaseActivity implements CreateApp
     ImageView ivHour;
     @BindView(R.id.tv_title_toolbar)
     TextView toolbarTitle;
+    @BindView(R.id.iv_back)
+    ImageView backButton;
 
 
     @Inject
@@ -72,11 +73,16 @@ public class CreateAppointmentActivity extends BaseActivity implements CreateApp
     private String dateSelected = "";
     private String hourSelected = "";
     private boolean correctForm;
+    private boolean appointmentToModify;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        toolbarTitle. setText(R.string.create_appointment);
+        toolbarTitle.setText(R.string.create_appointment);
+        if (getIntent().getExtras() != null) {
+            appointmentToModify = getIntent().getBooleanExtra("modifyAppointment", false);
+            initUI();
+        }
     }
 
     @Inject
@@ -94,6 +100,10 @@ public class CreateAppointmentActivity extends BaseActivity implements CreateApp
     @Override
     protected void initUI() {
 
+        if (appointmentToModify){
+            backButton.setVisibility(View.GONE);
+            toolbarTitle.setText(R.string.modify_appointment);
+        }
         populateLocalities();
         populateSpinnerService();
         populateSpinnerStablishment();
@@ -144,9 +154,7 @@ public class CreateAppointmentActivity extends BaseActivity implements CreateApp
         locationSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                //if (!localitySelected.equals(localities[0]))
                 localitySelected = localities[position];
-                //else localitySelected = getString(R.string.select_locality);
             }
 
             @Override
@@ -170,9 +178,7 @@ public class CreateAppointmentActivity extends BaseActivity implements CreateApp
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
-                //if (!serviceSelected.equals(R.string.select_service))
                 serviceSelected = services.get(position);
-                //else serviceSelected = null;
                 populateSpinnerStablishment();
             }
 

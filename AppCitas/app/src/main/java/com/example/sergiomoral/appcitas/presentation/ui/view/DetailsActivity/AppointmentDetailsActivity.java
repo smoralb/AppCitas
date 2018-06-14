@@ -154,13 +154,14 @@ public class AppointmentDetailsActivity extends BaseActivity implements Appointm
 
     @OnClick(R.id.btn_modify)
     public void modifyAppointment() {
-
         mDialogManager.showAlert(R.string.modify_appointment_title, R.string.modify_appointment_message, this, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mDialogManager.hideAlertDialog();
                 mPresenter.deleteAppointment(mAppointment);
-                Intent gotToCreateAppointment = new Intent(mContext, CreateAppointmentActivity.class);
-                startActivity(gotToCreateAppointment);
+                Intent goToCreateAppointment = new Intent(mContext, CreateAppointmentActivity.class);
+                goToCreateAppointment.putExtra("modifyAppointment",true);
+                startActivity(goToCreateAppointment);
                 finish();
             }
         });
@@ -189,7 +190,6 @@ public class AppointmentDetailsActivity extends BaseActivity implements Appointm
 
     @OnClick(R.id.iv_commerce_location)
     public void openGoogleMaps() {
-        String formattedLocale = mAppointment.getOficina().getNombrelocal().replaceAll("\\s+", "+");
         String map = "https://www.google.com/maps/search/?api=1&query=" + mAppointment.getOficina().getLatitud() + "," + mAppointment.getOficina().getLongitud();
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(map));
         startActivity(intent);

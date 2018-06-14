@@ -96,6 +96,7 @@ public class CreateAppointmentPresenter implements Presenter<CreateAppointmentVi
                 mDialogManager.showError(R.drawable.ic_error, R.string.success_title, R.string.generic_error, activity);
             }
         });
+        hideLoading();
     }
 
     public void getStablishments() {
@@ -151,9 +152,10 @@ public class CreateAppointmentPresenter implements Presenter<CreateAppointmentVi
 
         mDatabaseRef.child(BuildData.APPOINTMENTS_LIST).push().setValue(newAppointment);
 
+        hideLoading();
+
         mView.goToAppointmentList();
 
-        hideLoading();
     }
 
 }

@@ -32,24 +32,10 @@ public class AppointmentDetailsPresenter implements Presenter<AppointmentDetails
         this.mView = view;
     }
 
-    private void showLoading() {
-        if (mView != null) {
-            mView.showLoading();
-        }
-    }
-
     public void deleteAppointment(Appointment appointment) {
-        showLoading();
-
         DatabaseReference localReference = FirebaseDatabase.getInstance().getReference().child(BuildData.APPOINTMENTS_LIST).child(appointment.getKey());
         localReference.removeValue();
-        hideLoading();
         mView.goToAppointments();
     }
 
-    private void hideLoading() {
-        if (mView != null) {
-            mView.hideLoading();
-        }
-    }
 }
