@@ -45,6 +45,7 @@ public class ErrorDialog extends BaseDialog {
 
     @Nullable
     private int icon;
+    private boolean finishFlag;
 
 
     @Inject
@@ -68,8 +69,8 @@ public class ErrorDialog extends BaseDialog {
             public void onClick(View v) {
                 //Close dialog
                 dismiss();
-                //if (activity != null)
-                    //activity.finish();
+                if (activity != null && finishFlag)
+                    activity.finish();
             }
         });
         if (getString(msg) != null) {
@@ -99,5 +100,9 @@ public class ErrorDialog extends BaseDialog {
 
     public void setActivity(@Nullable Activity activity) {
         this.activity = activity;
+    }
+
+    public void setFinishFlag(boolean finishActivity) {
+        this.finishFlag = finishActivity;
     }
 }

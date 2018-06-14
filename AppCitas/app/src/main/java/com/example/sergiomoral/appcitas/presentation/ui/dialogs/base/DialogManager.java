@@ -1,14 +1,9 @@
 package com.example.sergiomoral.appcitas.presentation.ui.dialogs.base;
 
 import android.app.Activity;
-import android.content.Context;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
 import android.view.View;
-
-import com.example.sergiomoral.appcitas.presentation.ui.view.DetailsActivity.AppointmentDetailsActivity;
-
-import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Created by sergiomoral on 25/1/18.
@@ -29,7 +24,7 @@ public interface DialogManager {
 
     void showNetworkError(@StringRes int msg);
 
-    void showSuccess(@DrawableRes int icon, @StringRes int title, @StringRes int msg, Activity activity);
+    void showSuccess(@DrawableRes int icon, @StringRes int title, @StringRes int msg, Activity activity, boolean finishActivity);
 
     void showError(@DrawableRes int icon, @StringRes int title, @StringRes int msg, Activity activity);
 

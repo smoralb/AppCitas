@@ -90,7 +90,7 @@ public class SignUpActivity extends BaseActivity implements SignUpView, Personal
 
     @Override
     public void signUpSuccess() {
-        mDialogManager.showSuccess(R.drawable.ic_ok, R.string.success_title, R.string.success_message, this);
+        mDialogManager.showSuccess(R.drawable.ic_ok, R.string.success_title, R.string.success_message, this, true);
 
     }
 

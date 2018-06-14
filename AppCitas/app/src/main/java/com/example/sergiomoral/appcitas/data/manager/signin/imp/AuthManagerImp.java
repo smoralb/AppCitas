@@ -86,7 +86,7 @@ public class AuthManagerImp extends BaseManager implements AuthManager {
                             mDataBase.child(BuildData.USERS_LIST).child(user.getUid()).setValue(mUser);
                             Log.d("AuthManagerImp", "signUpWithEmail:success");
 
-                            mDialogManager.showSuccess(R.drawable.ic_ok,R.string.success_title, R.string.success_message, activity);
+                            mDialogManager.showSuccess(R.drawable.ic_ok,R.string.success_title, R.string.success_message, activity, true);
 
                         } else {
                             mDialogManager.showError(R.drawable.ic_error, R.string.generic_error, R.string.error_user, activity);

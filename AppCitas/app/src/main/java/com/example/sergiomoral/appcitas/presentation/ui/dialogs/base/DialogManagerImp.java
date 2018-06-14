@@ -1,11 +1,9 @@
 package com.example.sergiomoral.appcitas.presentation.ui.dialogs.base;
 
 import android.app.Activity;
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 
 import com.example.sergiomoral.appcitas.R;
 import com.example.sergiomoral.appcitas.presentation.ui.dialogs.AlertDialog;
@@ -13,8 +11,6 @@ import com.example.sergiomoral.appcitas.presentation.ui.dialogs.ErrorDialog;
 import com.example.sergiomoral.appcitas.presentation.ui.dialogs.LoadingDialog;
 
 import javax.inject.Inject;
-
-import butterknife.BindView;
 
 /**
  * Created by sergiomoral on 25/1/18.
@@ -76,11 +72,12 @@ public class DialogManagerImp implements DialogManager {
     }
 
     @Override
-    public void showSuccess(int icon, int title, int msg, Activity activity) {
+    public void showSuccess(int icon, int title, int msg, Activity activity, boolean finishActivity) {
         mErrorDialog.serErrorIcon(icon);
         mErrorDialog.setErrorTitle(title);
         mErrorDialog.setErrorMessage(msg);
         mErrorDialog.setActivity(activity);
+        mErrorDialog.setFinishFlag(finishActivity);
         show(mErrorDialog);
 
     }
