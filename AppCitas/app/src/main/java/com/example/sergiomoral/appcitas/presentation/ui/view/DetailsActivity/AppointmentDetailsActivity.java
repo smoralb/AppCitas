@@ -200,7 +200,8 @@ public class AppointmentDetailsActivity extends BaseActivity implements Appointm
         if (mCommerceMail != null && !mCommerceMail.getText().toString().equals(R.string.email_not_disponible)) {
             try {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("mailto:" + mCommerceMail.getText().toString()));
-                intent.putExtra(Intent.EXTRA_SUBJECT, "Solicitud de cita en " + mCommerceName.getText().toString());
+                intent.setData(Uri.parse("mailto:"+ mCommerceMail.getText().toString()));
+                intent.putExtra(Intent.EXTRA_SUBJECT, "Consulta de información a " + mCommerceName.getText().toString());
                 startActivity(intent);
             } catch (Exception e) {
                 Toast.makeText(this, "Losiento, no encontramos aplicación disponible para mandar email", Toast.LENGTH_LONG).show();
