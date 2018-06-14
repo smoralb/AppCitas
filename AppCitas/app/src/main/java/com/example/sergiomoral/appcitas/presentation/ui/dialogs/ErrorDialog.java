@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.sergiomoral.appcitas.R;
 import com.example.sergiomoral.appcitas.presentation.ui.dialogs.base.BaseDialog;
+import com.example.sergiomoral.appcitas.presentation.ui.view.LoginActivity.LoginActivity;
 
 import javax.inject.Inject;
 
@@ -67,8 +68,8 @@ public class ErrorDialog extends BaseDialog {
             public void onClick(View v) {
                 //Close dialog
                 dismiss();
-                if (activity != null)
-                    activity.finish();
+                //if (activity != null)
+                    //activity.finish();
             }
         });
         if (getString(msg) != null) {

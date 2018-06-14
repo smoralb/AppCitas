@@ -3,6 +3,7 @@ package com.example.sergiomoral.appcitas.presentation.ui.view.LoginActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -21,6 +22,8 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
+import static java.security.AccessController.getContext;
 
 /**
  * Created by sergiomoral on 12/11/17.
@@ -70,10 +73,17 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     public void initLabels() {
         loginPreferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
-        if (!loginPreferences.getString(BuildData.USER_EMAIL, "").isEmpty() && !loginPreferences.getString(BuildData.USER_PASSWORD, "").isEmpty()) {
-            mUserEmail.setText(loginPreferences.getString(BuildData.USER_EMAIL, ""));
-            mUserPassword.setText(loginPreferences.getString(BuildData.USER_PASSWORD, ""));
-            rememberMe = loginPreferences.getBoolean(BuildData.USER_REMEMBER, false);
+        if (!loginPreferences.getBoolean(BuildData.USER_REMEMBER, false)) {
+            if (!mUserEmail.getText().equals("") && !mUserPassword.getText().equals("")) {
+                mUserEmail.setText("");
+                mUserPassword.setText("");
+            }
+        } else {
+            if (!loginPreferences.getString(BuildData.USER_EMAIL, "").isEmpty() && !loginPreferences.getString(BuildData.USER_PASSWORD, "").isEmpty()) {
+                mUserEmail.setText(loginPreferences.getString(BuildData.USER_EMAIL, ""));
+                mUserPassword.setText(loginPreferences.getString(BuildData.USER_PASSWORD, ""));
+                rememberMe = loginPreferences.getBoolean(BuildData.USER_REMEMBER, false);
+            }
         }
         mRememberMe.setChecked(rememberMe);
 
@@ -134,8 +144,14 @@ public class LoginActivity extends BaseActivity implements LoginView {
         if (!mUserEmail.getText().toString().isEmpty() && !mUserPassword.getText().toString().isEmpty()) {
             if (mUserEmail.getText().toString().matches(regexpEmail) && mUserPassword.getText().toString().length() > 5) {
                 if (mRememberMe.isChecked()) {
+                    //editor.putString(BuildData.USER_EMAIL, mUserEmail.getText().toString());
+                    //editor.putString(BuildData.USER_PASSWORD, mUserPassword.getText().toString());
                     rememberMe = true;
+                } else {
+                    rememberMe = false;
                 }
+                //editor.putBoolean(BuildData.USER_REMEMBER, rememberMe);
+                //editor.apply();
                 mLoginPresenter.initLoginProcess(mUserEmail.getText().toString(), mUserPassword.getText().toString(), this, rememberMe);
             } else
                 mDialogManager.showError(R.drawable.ic_error, R.string.generic_title_error, R.string.error_login, this);

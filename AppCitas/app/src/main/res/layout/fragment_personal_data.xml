@@ -27,7 +27,9 @@
                 android:id="@+id/et_user_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 android:hint="@string/ht_user_name"
+                android:inputType="text"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:textSize="@dimen/font_medium" />
@@ -43,7 +45,9 @@
                 android:id="@+id/et_user_surname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 android:hint="@string/ht_user_surname"
+                android:inputType="text"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:textSize="@dimen/font_medium" />
@@ -59,7 +63,9 @@
                 android:id="@+id/et_user_surname2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 android:hint="@string/ht_user_surname2"
+                android:inputType="text"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:textSize="@dimen/font_medium" />

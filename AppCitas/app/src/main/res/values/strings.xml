@@ -63,8 +63,8 @@
     <string name="generic_error">Se ha producido un error</string>
 
     <!-- Strings for signup process -->
-    <string name="personal_data">PERSONAL DATA</string>
-    <string name="user_data">USER DATA</string>
+    <string name="personal_data">DATOS PERSONALES</string>
+    <string name="user_data">DATOS DE USUARIO</string>
     <string name="finalize">FINALIZAR</string>
 
     <!-- Appointments list item-->

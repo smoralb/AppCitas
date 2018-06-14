@@ -70,8 +70,14 @@ public class LoginPresenter implements Presenter<LoginView> {
             showLoading();
             loginPrefsEditor.putString(BuildData.USER_EMAIL, user);
             loginPrefsEditor.putString(BuildData.USER_PASSWORD, password);
-            loginPrefsEditor.putBoolean(BuildData.USER_REMEMBER, rememberMe);
         }
+        else {
+            loginPrefsEditor.putString(BuildData.USER_EMAIL, "");
+            loginPrefsEditor.putString(BuildData.USER_PASSWORD, "");
+        }
+
+        loginPrefsEditor.putBoolean(BuildData.USER_REMEMBER, rememberMe);
+        loginPrefsEditor.apply();
 
         Query usersQuery = mDatabase.child(BuildData.USERS_LIST);
 
