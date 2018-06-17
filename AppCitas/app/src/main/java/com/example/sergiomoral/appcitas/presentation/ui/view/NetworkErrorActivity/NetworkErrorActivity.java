@@ -50,7 +50,7 @@ public class NetworkErrorActivity extends BaseActivity implements NetworkErrorVi
         if (checkConnectivity(this)) {
             goToLogin();
         } else {
-            mDialogManager.showNetworkError(R.string.error_connection);
+            mDialogManager.showNetworkError(R.drawable.ic_error, R.string.generic_title_error, R.string.error_connection);
         }
     }
 }

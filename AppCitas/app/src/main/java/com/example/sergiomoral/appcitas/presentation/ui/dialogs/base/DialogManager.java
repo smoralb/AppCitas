@@ -22,7 +22,7 @@ public interface DialogManager {
 
     void hideLoading();
 
-    void showNetworkError(@StringRes int msg);
+    void showNetworkError(@DrawableRes int icon, @StringRes int title, @StringRes int msg);
 
     void showSuccess(@DrawableRes int icon, @StringRes int title, @StringRes int msg, Activity activity, boolean finishActivity);
 

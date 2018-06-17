@@ -66,7 +66,9 @@ public class DialogManagerImp implements DialogManager {
     }
 
     @Override
-    public void showNetworkError(int msg) {
+    public void showNetworkError(int icon, int title, int msg) {
+        mErrorDialog.serErrorIcon(icon);
+        mErrorDialog.setErrorTitle(title);
         mErrorDialog.setErrorMessage(msg);
         show(mErrorDialog);
     }
