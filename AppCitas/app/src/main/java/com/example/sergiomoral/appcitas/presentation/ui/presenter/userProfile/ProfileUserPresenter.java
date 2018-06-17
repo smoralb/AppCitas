@@ -87,6 +87,6 @@ public class ProfileUserPresenter implements Presenter<ProfileUserView> {
         mDatabase.child(userID).child("apellido1").setValue(surname);
         mDatabase.child(userID).child("apellido2").setValue(surname2);
         mDatabase.child(userID).child("email").setValue(email);
-        mDialogManager.showSuccess(R.drawable.ic_ok,R.string.success_title, R.string.success_message, activity, true);
+        mDialogManager.showSuccess(R.drawable.ic_ok, R.string.success_generic_title, R.string.modify_profile_data, activity, true);
     }
 }

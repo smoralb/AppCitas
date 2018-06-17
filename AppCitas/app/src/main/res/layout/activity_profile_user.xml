@@ -102,6 +102,7 @@
             android:id="@+id/user_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:focusableInTouchMode="false"
             android:layout_marginTop="@dimen/spacing_xsmall"
             android:focusable="true"
             android:inputType="textEmailAddress"

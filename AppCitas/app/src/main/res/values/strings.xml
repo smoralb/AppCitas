@@ -105,6 +105,8 @@
 
     <string name="appintment_list">LISTA DE CITAS</string>
     <string name="details">DETALLES</string>
+    <string name="success_generic_title">Acción exitosa</string>
+    <string name="modify_profile_data">Se han realizado los cambios correctamente</string>
 
     <!-- Localities from Spain -->
 
