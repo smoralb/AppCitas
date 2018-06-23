@@ -1,6 +1,5 @@
 package com.example.sergiomoral.appcitas.domain.interactor;
 
-import com.example.sergiomoral.appcitas.domain.exceptions.BaseException;
 import com.example.sergiomoral.appcitas.domain.interactor.executor.InteractorExecutor;
 import com.example.sergiomoral.appcitas.domain.interactor.executor.MainThreadExecutor;
 
@@ -36,6 +35,5 @@ public abstract class BaseInteractor {
 
         void onSuccess(T response);
 
-        void onError(BaseException exception);
     }
 }

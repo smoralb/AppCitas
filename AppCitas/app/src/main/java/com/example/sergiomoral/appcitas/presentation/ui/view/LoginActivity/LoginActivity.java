@@ -144,14 +144,10 @@ public class LoginActivity extends BaseActivity implements LoginView {
         if (!mUserEmail.getText().toString().isEmpty() && !mUserPassword.getText().toString().isEmpty()) {
             if (mUserEmail.getText().toString().matches(regexpEmail) && mUserPassword.getText().toString().length() > 5) {
                 if (mRememberMe.isChecked()) {
-                    //editor.putString(BuildData.USER_EMAIL, mUserEmail.getText().toString());
-                    //editor.putString(BuildData.USER_PASSWORD, mUserPassword.getText().toString());
                     rememberMe = true;
                 } else {
                     rememberMe = false;
                 }
-                //editor.putBoolean(BuildData.USER_REMEMBER, rememberMe);
-                //editor.apply();
                 mLoginPresenter.initLoginProcess(mUserEmail.getText().toString(), mUserPassword.getText().toString(), this, rememberMe);
             } else
                 mDialogManager.showError(R.drawable.ic_error, R.string.generic_title_error, R.string.error_login, this);

@@ -1,6 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.example.sergiomoral.appcitas"
@@ -70,7 +75,8 @@ dependencies {
     //Google maps API
     compile 'com.google.android.gms:play-services-location:15.0.0'
     compile 'com.google.android.gms:play-services-maps:15.0.0'
-
+    // Robolectric
+    testCompile "org.robolectric:robolectric:3.8"
 
 }
 apply plugin: 'com.google.gms.google-services'

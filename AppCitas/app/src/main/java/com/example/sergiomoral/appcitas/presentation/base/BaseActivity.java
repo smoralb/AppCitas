@@ -17,6 +17,7 @@ import com.example.sergiomoral.appcitas.presentation.di.modules.ActivityModule;
 import com.example.sergiomoral.appcitas.presentation.ui.dialogs.base.DialogManager;
 import com.example.sergiomoral.appcitas.presentation.ui.view.BaseView;
 import com.example.sergiomoral.appcitas.presentation.ui.view.LoginActivity.LoginActivity;
+import com.google.firebase.FirebaseApp;
 
 
 import javax.inject.Inject;
@@ -38,6 +39,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        FirebaseApp.initializeApp(BaseActivity.this);
+
 
         int layoutId = getLayoutId();
         if (layoutId != 0) {
