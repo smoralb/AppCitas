@@ -14,14 +14,16 @@ public class Appointment implements Parcelable {
     private String horacita;
     private Office oficina;
     private String userID;
+    private String estado;
     private String key;
 
     private Appointment(Builder builder) {
-        setFechacita(builder.fechacita);
-        setHoracita(builder.horacita);
-        setOficina(builder.oficina);
-        setUserID(builder.userID);
-        setKey(builder.key);
+        fechacita = builder.fechacita;
+        horacita = builder.horacita;
+        oficina = builder.oficina;
+        userID = builder.userID;
+        estado = builder.estado;
+        key = builder.key;
     }
 
 
@@ -36,11 +38,33 @@ public class Appointment implements Parcelable {
         dest.writeString(this.horacita);
         dest.writeParcelable(this.oficina, flags);
         dest.writeString(this.userID);
+        dest.writeString(this.estado);
         dest.writeString(this.key);
     }
 
     public Appointment() {
     }
+
+    protected Appointment(Parcel in) {
+        this.fechacita = in.readString();
+        this.horacita = in.readString();
+        this.oficina = in.readParcelable(Office.class.getClassLoader());
+        this.userID = in.readString();
+        this.estado = in.readString();
+        this.key = in.readString();
+    }
+
+    public static final Creator<Appointment> CREATOR = new Creator<Appointment>() {
+        @Override
+        public Appointment createFromParcel(Parcel source) {
+            return new Appointment(source);
+        }
+
+        @Override
+        public Appointment[] newArray(int size) {
+            return new Appointment[size];
+        }
+    };
 
     public String getFechacita() {
         return fechacita;
@@ -74,6 +98,14 @@ public class Appointment implements Parcelable {
         this.userID = userID;
     }
 
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
     public String getKey() {
         return key;
     }
@@ -82,32 +114,12 @@ public class Appointment implements Parcelable {
         this.key = key;
     }
 
-    protected Appointment(Parcel in) {
-        this.fechacita = in.readString();
-        this.horacita = in.readString();
-        this.oficina = in.readParcelable(Office.class.getClassLoader());
-        this.userID = in.readString();
-        this.key = in.readString();
-    }
-
-    public static final Creator<Appointment> CREATOR = new Creator<Appointment>() {
-        @Override
-        public Appointment createFromParcel(Parcel source) {
-            return new Appointment(source);
-        }
-
-        @Override
-        public Appointment[] newArray(int size) {
-            return new Appointment[size];
-        }
-    };
-
-
     public static final class Builder {
         private String fechacita;
         private String horacita;
         private Office oficina;
         private String userID;
+        private String estado;
         private String key;
 
         public Builder() {
@@ -130,6 +142,11 @@ public class Appointment implements Parcelable {
 
         public Builder userID(String val) {
             userID = val;
+            return this;
+        }
+
+        public Builder estado(String val) {
+            estado = val;
             return this;
         }
 

@@ -27,6 +27,7 @@ public class BuildData {
     public static final String USERS_LIST = "USERSLIST";
     public static final String CENTERS_LIST = "LISTACENTROS";
     public static final String APPOINTMENTS_LIST = "LISTACITAS";
+    public static final String APPOINTMENTS_PENDING_LIST = "LISTACITASPENDIENTES";
     public static final String SERVICES = "SERVICIOS";
 
     public static final int USER = 1;

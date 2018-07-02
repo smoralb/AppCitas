@@ -83,9 +83,8 @@ public class AppointmentDetailsActivity extends BaseActivity implements Appointm
 
         mContext = this;
 
-        mAppointment = (Appointment) getIntent().getExtras().get(BuildData.ITEM_APPOINTMENT);
-
-        if (mAppointment != null) {
+        if (getIntent().getExtras() != null) {
+            mAppointment = (Appointment) getIntent().getExtras().get(BuildData.ITEM_APPOINTMENT);
 
             url = "http://maps.google.com/maps/api/staticmap?center=" + mAppointment.getOficina().getLatitud() + ","
                     + mAppointment.getOficina().getLongitud()
@@ -200,7 +199,7 @@ public class AppointmentDetailsActivity extends BaseActivity implements Appointm
         if (mCommerceMail != null && !mCommerceMail.getText().toString().equals(R.string.email_not_disponible)) {
             try {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("mailto:" + mCommerceMail.getText().toString()));
-                intent.setData(Uri.parse("mailto:"+ mCommerceMail.getText().toString()));
+                intent.setData(Uri.parse("mailto:" + mCommerceMail.getText().toString()));
                 intent.putExtra(Intent.EXTRA_SUBJECT, "Consulta de información a " + mCommerceName.getText().toString());
                 startActivity(intent);
             } catch (Exception e) {

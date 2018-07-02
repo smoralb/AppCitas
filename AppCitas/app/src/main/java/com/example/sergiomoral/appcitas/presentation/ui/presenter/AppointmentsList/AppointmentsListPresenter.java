@@ -1,45 +1,27 @@
 package com.example.sergiomoral.appcitas.presentation.ui.presenter.appointmentsList;
 
 import android.content.Intent;
-import android.net.Uri;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.example.sergiomoral.appcitas.Appointments;
 import com.example.sergiomoral.appcitas.R;
 import com.example.sergiomoral.appcitas.domain.entities.Appointment;
-import com.example.sergiomoral.appcitas.domain.entities.ProfileData;
 import com.example.sergiomoral.appcitas.presentation.ui.presenter.Presenter;
 import com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsActivity.AppointmentsListActivity;
 import com.example.sergiomoral.appcitas.presentation.ui.view.ListAppointmentsActivity.AppointmentsListView;
 import com.example.sergiomoral.appcitas.presentation.ui.view.ProfileUserActivity.ProfileUserActivity;
 import com.example.sergiomoral.appcitas.presentation.utils.constants.BuildData;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.GenericTypeIndicator;
-import com.google.firebase.database.MutableData;
-import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FileDownloadTask;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.yalantis.guillotine.animation.GuillotineAnimation;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -150,4 +132,6 @@ public class AppointmentsListPresenter implements Presenter<AppointmentsListView
                 .setClosedOnStart(true)
                 .build();
     }
+
+
 }

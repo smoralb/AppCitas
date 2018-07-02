@@ -151,7 +151,7 @@ public class CreateAppointmentPresenter implements Presenter<CreateAppointmentVi
                 .key("")
                 .build();
 
-        mDatabaseRef.child(BuildData.APPOINTMENTS_LIST).push().setValue(newAppointment);
+        mDatabaseRef.child(BuildData.APPOINTMENTS_PENDING_LIST).push().setValue(newAppointment);
 
         hideLoading();
 

@@ -2,8 +2,8 @@ package com.example.sergiomoral.appcitas;
 
 import android.app.Activity;
 
+import com.example.sergiomoral.appcitas.domain.entities.Appointment;
 import com.example.sergiomoral.appcitas.presentation.ui.view.DetailsActivity.AppointmentDetailsActivity;
-import com.example.sergiomoral.appcitas.presentation.ui.view.LoginActivity.LoginActivity;
 import com.google.firebase.FirebaseApp;
 
 import org.junit.Before;
@@ -14,6 +14,8 @@ import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 
 import static junit.framework.Assert.assertNotNull;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * Created by sergiomoral on 23/6/18.
@@ -40,5 +42,17 @@ public class AppointmentDetailsActivityTest {
     @Test
     public void shouldNotBeNull() throws Exception {
         assertNotNull(activity);
+
+        Appointment appointment = mock(Appointment.class);
+
+        when(appointment.getFechacita() == null).thenThrow(new NullPointerException());
+        when(appointment.getHoracita() == null).thenThrow(new NullPointerException());
+        when(appointment.getOficina() == null).thenThrow(new NullPointerException());
+
+    }
+
+    @Test
+    public void continueToModify(){
+
     }
 }
